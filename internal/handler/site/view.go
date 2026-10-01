@@ -213,6 +213,7 @@ var boardNames = map[string]string{
 	"hn": "HN: Who is hiring", "weworkremotely": "We Work Remotely", "djinni": "Djinni",
 	"golangprojects": "Golang Projects", "arbeitnow": "Arbeitnow", "workingnomads": "Working Nomads",
 	"freehire": "freehire (сайты компаний через открытый API)",
+	"habr":     "Хабр Карьера", "getmatch": "GetMatch",
 }
 
 var boardLinks = map[string]string{
@@ -222,6 +223,7 @@ var boardLinks = map[string]string{
 	"djinni": "https://djinni.co/jobs/?primary_keyword=Golang", "golangprojects": "https://www.golangprojects.com",
 	"arbeitnow": "https://www.arbeitnow.com", "workingnomads": "https://www.workingnomads.com",
 	"freehire": "https://freehire.me",
+	"habr":     "https://career.habr.com/vacancies/skills/golang", "getmatch": "https://getmatch.ru/vacancies/golang",
 }
 
 func kindOrder(k string) int {

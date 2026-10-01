@@ -85,12 +85,26 @@ var (
 // Salary finds the first stated pay in s. It only trusts numbers next to a
 // currency, or numbers inside a line that talks about pay.
 func Salary(s string) models.Salary {
+	local := localCurrency(s)
 	for _, line := range strings.Split(s, "\n") {
-		if sal, ok := salaryInLine(line); ok {
+		if sal, ok := salaryInLine(line, local); ok {
 			return sal
 		}
 	}
 	return models.Salary{}
+}
+
+// localCurrency is what a bare figure in a Russian-language post is paid in:
+// rubles, unless the post is about Kazakhstan and not Russia ("Алматы,
+// до 1 500 000" is tenge).
+func localCurrency(s string) string {
+	lower := strings.ToLower(s)
+	kz := countAny(lower, []string{"казахстан", "алматы", "астана", "шымкент", "тенге", "₸", "kazakhstan", "almaty", "astana"}) > 0
+	ru := countAny(lower, []string{"росси", "москв", "петербург", "₽", "руб", "тк рф"}) > 0
+	if kz && !ru {
+		return "KZT"
+	}
+	return "RUB"
 }
 
 // explicitCode returns an ISO code the line spells out next to "$" figures,
@@ -136,7 +150,7 @@ var (
 	payWord = regexp.MustCompile(`(?i)salary|base pay|pay range|compensation range|annual (?:base|pay)|wage|зарплат|вилк|оклад|(?:^|[^\p{L}])зп(?:[^\p{L}]|$)|з/п|на руки`)
 )
 
-func salaryInLine(line string) (models.Salary, bool) {
+func salaryInLine(line, local string) (models.Salary, bool) {
 	if !mayHoldSalary(line) {
 		return models.Salary{}, false
 	}
@@ -148,7 +162,7 @@ func salaryInLine(line string) (models.Salary, bool) {
 	ctx := salaryContext.MatchString(line)
 	defaultCur := ""
 	if ctx && hasCyrillic(line) {
-		defaultCur = "RUB" // "вилка 250-350к" in a Russian post
+		defaultCur = local // "вилка 250-350к" in a Russian post
 	}
 
 	for _, m := range rangeRe.FindAllStringSubmatchIndex(line, -1) {

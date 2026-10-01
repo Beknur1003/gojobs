@@ -49,6 +49,21 @@ telegram:
     - { name: alljvmjobs }
     - { name: careernoborders }
     - { name: jobs_juniors_remote }
+    # Added 2026-10-02: Go channels, one of them from Kazakhstan.
+    - { name: go_kz_vacancy, go_only: true }
+    - { name: go_vacancies, go_only: true }
+    # Large channels for every role, Kazakhstan and relocation first: read
+    # through the preview's search for "golang" instead of their whole feed.
+    - { name: devkz_jobs, search: golang }
+    - { name: workitkz, search: golang }
+    - { name: it_jobs_kz, search: golang }
+    - { name: jobkz_1, search: golang }
+    - { name: itcom_kz, search: golang }
+    - { name: it_iskra, search: golang }
+    - { name: relocateme, search: golang }
+    - { name: hrlunapark, search: golang }
+    - { name: remotegeekjob, search: golang }
+    - { name: it_vakansii_jobs, search: golang }
 
 apis:
   remoteok: true
@@ -65,6 +80,8 @@ apis:
   # ATS platforms, read through its public keyless API. Affiliate feeds and
   # boards listed above are skipped there (see internal/repository/sources/boards/freehire.go).
   freehire: true
+  habr: true            # Habr Career: Russian IT board, Golang tag and "golang" search
+  getmatch: true        # getmatch.ru: Russian IT board with salaries; API closed to robots, so sitemap + pages
 
 # Company career pages fetched every run. Thousands more are found by
 # discovery below; list a company here only to read it daily no matter what.

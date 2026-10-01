@@ -34,6 +34,8 @@ func TestSalary_Formats_Parsed(t *testing.T) {
 		{"code after dollar range", "The salary range is $234,000-$275,000 CAD", 234000, 275000, "CAD", models.PeriodYear},
 		{"danish kroner monthly", "Salary: DKK 53283-66608 gross per month", 53283, 66608, "DKK", models.PeriodMonth},
 		{"taka monthly", "Salary: BDT 220,000-285,000 monthly", 220000, 285000, "BDT", models.PeriodMonth},
+		{"bare figure in kazakhstan is tenge", "Локация: Казахстан (Алматы)\nЗарплата: до 1 500 000", 0, 1500000, "KZT", models.PeriodMonth},
+		{"bare figure in moscow stays rubles", "Москва, гибрид\nЗарплата: до 400 000", 0, 400000, "RUB", models.PeriodMonth},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

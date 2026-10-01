@@ -65,6 +65,9 @@ type Telegram struct {
 type Channel struct {
 	Name   string `yaml:"name"`
 	GoOnly bool   `yaml:"go_only"` // the whole channel is about Go
+	// Search reads only posts matching this word ("golang"): for large
+	// channels with every kind of role, where Go posts are a few a month.
+	Search string `yaml:"search"`
 }
 
 type APIs struct {
@@ -79,6 +82,8 @@ type APIs struct {
 	Arbeitnow bool `yaml:"arbeitnow"`
 	WorkNomad bool `yaml:"workingnomads"`
 	Freehire  bool `yaml:"freehire"` // freehire.me open API: ~90 ATS platforms
+	Habr      bool `yaml:"habr"`     // Habr Career
+	GetMatch  bool `yaml:"getmatch"` // getmatch.ru, read through its sitemap and pages
 }
 
 type HTTPConfig struct {

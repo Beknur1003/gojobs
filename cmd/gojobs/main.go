@@ -319,7 +319,7 @@ func fixedSources(cfg config.Config, client *httpx.Client, filter ats.Filter, ca
 		if feeds["telegram:"+ch.Name].LastOK.IsZero() {
 			pages = cfg.Telegram.BackfillPages // first time: read the history
 		}
-		out = append(out, telegram.New(client, telegram.Channel{Name: ch.Name, GoOnly: ch.GoOnly}, pages))
+		out = append(out, telegram.New(client, telegram.Channel{Name: ch.Name, GoOnly: ch.GoOnly, Search: ch.Search}, pages))
 	}
 
 	apis := []struct {
@@ -336,6 +336,8 @@ func fixedSources(cfg config.Config, client *httpx.Client, filter ats.Filter, ca
 		{cfg.APIs.Arbeitnow, boards.NewArbeitnow(client)},
 		{cfg.APIs.WorkNomad, boards.NewWorkingNomads(client)},
 		{cfg.APIs.Freehire, boards.NewFreehire(client)},
+		{cfg.APIs.Habr, boards.NewHabr(client)},
+		{cfg.APIs.GetMatch, boards.NewGetMatch(client)},
 		{cfg.APIs.HN, hn.New(client, hnThreads)},
 	}
 	for _, a := range apis {

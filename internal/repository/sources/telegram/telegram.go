@@ -28,6 +28,10 @@ type Getter interface {
 type Channel struct {
 	Name   string
 	GoOnly bool
+	// Search reads only the posts matching a word, through the preview's own
+	// search (t.me/s/<channel>?q=golang): a large channel for every role then
+	// costs a page or two, not hundreds.
+	Search string
 }
 
 // Source is one channel. Each channel is its own feed, so a dead or renamed
@@ -59,12 +63,9 @@ func (s *Source) fetchChannel(ctx context.Context, ch Channel, pages int) ([]mod
 		before int
 	)
 	for page := 0; page < pages; page++ {
-		pageURL := baseURL + url.PathEscape(ch.Name)
-		if before > 0 {
-			pageURL += "?before=" + strconv.Itoa(before)
-		}
+		u := pageURL(ch, before)
 
-		body, err := s.http.Get(ctx, pageURL)
+		body, err := s.http.Get(ctx, u)
 		if err != nil {
 			return out, err
 		}
@@ -82,6 +83,22 @@ func (s *Source) fetchChannel(ctx context.Context, ch Channel, pages int) ([]mod
 		before = oldest
 	}
 	return out, nil
+}
+
+// pageURL is the preview page of ch older than message id before (0: newest).
+func pageURL(ch Channel, before int) string {
+	q := url.Values{}
+	if ch.Search != "" {
+		q.Set("q", ch.Search)
+	}
+	if before > 0 {
+		q.Set("before", strconv.Itoa(before))
+	}
+	u := baseURL + url.PathEscape(ch.Name)
+	if len(q) > 0 {
+		u += "?" + q.Encode()
+	}
+	return u
 }
 
 // ParsePage extracts the posts of one preview page and the smallest message id

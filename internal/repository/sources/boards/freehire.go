@@ -42,7 +42,7 @@ var freehireSkip = []string{
 	"whatjobs", "adzuna", "jobleads",
 	"jobstash", // re-posts ATS listings and names a portfolio's investor as the employer
 	"arbeitnow", "djinni", "himalayas", "jobicy", "remoteok", "remotive",
-	"weworkremotely", "workingnomads", "hackernews", "golangprojects",
+	"weworkremotely", "workingnomads", "hackernews", "golangprojects", "habr_career", "getmatch",
 }
 
 // freehireEmployers are origins that read an employer's own career page: an

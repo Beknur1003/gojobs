@@ -37,3 +37,9 @@ func TestParsePage_RealChannel_PostsAndCursor(t *testing.T) {
 		}
 	}
 }
+
+func TestPageURL_SearchAndCursor_Encoded(t *testing.T) {
+	assert.Equal(t, "https://t.me/s/rabota_golang", pageURL(Channel{Name: "rabota_golang"}, 0))
+	assert.Equal(t, "https://t.me/s/rabota_golang?before=1274", pageURL(Channel{Name: "rabota_golang"}, 1274))
+	assert.Equal(t, "https://t.me/s/devkz_jobs?before=13591&q=golang", pageURL(Channel{Name: "devkz_jobs", Search: "golang"}, 13591))
+}
