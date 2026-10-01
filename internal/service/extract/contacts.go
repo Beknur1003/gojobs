@@ -32,7 +32,17 @@ var tmeReserved = map[string]bool{
 // Address domains and parts that are never a hiring contact.
 var junkEmail = []string{"example.com", "example.org", "domain.com", "email.com", "sentry.io", "noreply", "no-reply", "wixpress"}
 
+// junkLocal are mailbox names that belong to a function, not to a recruiter:
+// accessibility and privacy desks, anti-fraud notices, placeholders. Words
+// like "security" or "support" count only as the whole name ("security@"),
+// so a recruiter's "security-careers@" survives.
+var junkLocal = regexp.MustCompile(`accommodat|accomodat|accessib|disabilit|privacy|dataprotection|data[._-]protection|donotreply|do[._-]not[._-]reply|phish|fraud|^(?:dpo|gdpr|security|abuse|legal|compliance|ethics|support|name|firstname|first[._]last|firstname[._]lastname|you|your[._]?name|user|email|john[._]?doe)$`)
+
 var imageExt = regexp.MustCompile(`(?i)\.(png|jpe?g|gif|webp|svg)$`)
+
+// channelHandle looks like a job channel or chat, not a person: channels
+// promote each other under every post ("@job_python", "@devs_it").
+var channelHandle = regexp.MustCompile(`(?:^|_)(?:jobs?|vacanc[a-z]*|vakans[a-z]*|rabota|careers?|channel|chat|news|digest|feed)(?:_|$)|^it_|_it$|^best_?it`)
 
 // Contacts mines emails, Telegram handles and links from a post. Values in
 // ignore (a channel's own footer, its name) are skipped. URL contacts are only
@@ -92,6 +102,9 @@ func Emails(text string, links []string) []string {
 		if seen[e] || !emailRe.MatchString(e) || imageExt.MatchString(e) {
 			return
 		}
+		if local, _, _ := strings.Cut(e, "@"); junkLocal.MatchString(local) {
+			return
+		}
 		for _, j := range junkEmail {
 			if strings.Contains(e, j) {
 				return
@@ -123,7 +136,7 @@ func Handles(text string, links []string) []string {
 	seen := map[string]bool{}
 	add := func(h string) {
 		lh := strings.ToLower(h)
-		if seen[lh] || tmeReserved[lh] || strings.HasSuffix(lh, "bot") {
+		if seen[lh] || tmeReserved[lh] || strings.HasSuffix(lh, "bot") || channelHandle.MatchString(lh) {
 			return
 		}
 		seen[lh] = true

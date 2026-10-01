@@ -3,7 +3,7 @@
 <head>
 {{template "head" .}}
 <title>Вакансии Go-разработчиков с прямыми контактами — {{.Title}}</title>
-<meta name="description" content="{{.Total}} {{plural .Total "вакансия" "вакансии" "вакансий"}} для Go-разработчиков за {{.FeedDays}} дней: Telegram-каналы, доски удалёнки и сайты компаний. Контакты рекрутеров открыты, бесплатно и без регистрации.">
+<meta name="description" content="{{.Total}} {{plural .Total "открытая вакансия" "открытые вакансии" "открытых вакансий"}} для Go-разработчиков: Telegram-каналы, доски удалёнки и сайты тысяч компаний. Контакты рекрутеров открыты, бесплатно и без регистрации.">
 <link rel="canonical" href="{{abs "/"}}">
 <meta property="og:title" content="Вакансии Go-разработчиков с прямыми контактами">
 <meta property="og:description" content="{{.Stats.Direct}} вакансий с email или Telegram рекрутера. Бесплатно, без регистрации.">
@@ -16,9 +16,9 @@
 <main class="wrap">
   <section class="hero">
     <h1>Вакансии Go-разработчиков <span class="nowrap">с прямыми контактами</span></h1>
-    <p class="hero-sub">Telegram-каналы, доски удалёнки и карьерные страницы компаний в одной ленте. Дубли склеены, контакты открыты, регистрации нет.</p>
+    <p class="hero-sub">Telegram-каналы, доски удалёнки и карьерные страницы тысяч компаний в одной ленте. Дубли склеены, контакты открыты, регистрации нет.</p>
     <ul class="hero-stats" aria-label="Сводка">
-      <li><strong>{{num .Stats.Total}}</strong> {{plural .Stats.Total "вакансия" "вакансии" "вакансий"}} за {{.FeedDays}} дней</li>
+      <li><strong>{{num .Stats.Total}}</strong> {{plural .Stats.Total "открытая вакансия" "открытые вакансии" "открытых вакансий"}}</li>
       <li><strong>{{num .Stats.Direct}}</strong> с email или Telegram</li>
       <li><strong>{{num .Stats.WithSalary}}</strong> с зарплатой</li>
       <li><strong>{{num .Stats.Remote}}</strong> удалённых</li>
@@ -93,7 +93,7 @@
             <label class="check"><input type="checkbox" name="r" value="1"> Есть релокация</label>
             <label class="inline-input">Опубликовано
               <select name="days">
-                <option value="">за {{.FeedDays}} дней</option>
+                <option value="">когда угодно</option>
                 <option value="1">за сутки</option>
                 <option value="3">за 3 дня</option>
                 <option value="7">за неделю</option>

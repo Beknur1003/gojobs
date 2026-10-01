@@ -139,6 +139,7 @@ type sourceDTO struct {
 	Name       string    `json:"name"`
 	ExternalID string    `json:"external_id"`
 	URL        string    `json:"url"`
+	ApplyURL   string    `json:"apply_url,omitempty"`
 	PostedAt   time.Time `json:"posted_at"`
 	LastSeen   time.Time `json:"last_seen"`
 }
@@ -161,7 +162,8 @@ func jobFromModel(j models.Job) jobDTO {
 	}
 	for _, s := range j.Sources {
 		d.Sources = append(d.Sources, sourceDTO{
-			Source: s.Source, Feed: s.Feed, Name: s.Name, ExternalID: s.ExternalID, URL: s.URL, PostedAt: s.PostedAt, LastSeen: s.LastSeen,
+			Source: s.Source, Feed: s.Feed, Name: s.Name, ExternalID: s.ExternalID, URL: s.URL, ApplyURL: s.ApplyURL,
+			PostedAt: s.PostedAt, LastSeen: s.LastSeen,
 		})
 	}
 	return d
@@ -186,7 +188,8 @@ func (d jobDTO) toModel() models.Job {
 	}
 	for _, s := range d.Sources {
 		j.Sources = append(j.Sources, models.SourceRef{
-			Source: s.Source, Feed: s.Feed, Name: s.Name, ExternalID: s.ExternalID, URL: s.URL, PostedAt: s.PostedAt, LastSeen: s.LastSeen,
+			Source: s.Source, Feed: s.Feed, Name: s.Name, ExternalID: s.ExternalID, URL: s.URL, ApplyURL: s.ApplyURL,
+			PostedAt: s.PostedAt, LastSeen: s.LastSeen,
 		})
 	}
 	return j

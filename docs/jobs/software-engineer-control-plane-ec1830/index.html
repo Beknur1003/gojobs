@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="ru" data-base="/gojobs">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="/gojobs/assets/style.css">
+<link rel="icon" href="/gojobs/assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Go Jobs" href="/gojobs/feed.xml">
+
+
+<title>Software Engineer, Control Plane — conduit | Go Jobs</title>
+<meta name="description" content="Software Engineer, Control Plane · conduit · Удалёнка · Гибрид. Conduit is an enterprise-grade blockchain infrastructure and tooling platform powering the next generation of on-chain applications. Our platform supports many of the most notable teams in crypto, with use cases spanning payments…">
+<link rel="canonical" href="https://beknur1003.github.io/gojobs/jobs/software-engineer-control-plane-ec1830/">
+<meta property="og:title" content="Software Engineer, Control Plane — conduit">
+<meta property="og:description" content="Software Engineer, Control Plane · conduit · Удалёнка · Гибрид. Conduit is an enterprise-grade blockchain infrastructure and tooling platform powering the next generation of on-chain applications. Our platform supports many of the most notable teams in crypto, with use cases spanning payments…">
+<meta property="og:url" content="https://beknur1003.github.io/gojobs/jobs/software-engineer-control-plane-ec1830/">
+<meta property="og:type" content="article">
+
+
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="/gojobs/" aria-label="Go Jobs, на главную">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M7.5 12.5h5.5M10 9.5h6.5M9 15.5h5" stroke="var(--bg)" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </span>
+      <span class="brand-name">Go Jobs</span>
+    </a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="/gojobs/">Вакансии</a>
+      <a href="/gojobs/about/">О проекте</a>
+      <a href="/gojobs/feed.xml" class="nav-rss" title="RSS со свежими вакансиями">RSS</a>
+    </nav>
+  </div>
+</header>
+
+
+<main class="wrap job">
+  <a class="back" href="/gojobs/">← Все вакансии</a>
+
+  
+  
+
+  <header class="job-head">
+    <h1>Software Engineer, Control Plane</h1>
+    <p class="job-meta">
+      <span class="company">conduit</span>
+      <span>Remote</span>
+      <span>опубликовано <time datetime="2026-09-15T22:12:30Z" data-ts="1789510350">15 сентября 2026</time></span>
+    </p>
+    <div class="chips">
+      <span class="chip chip-format">Удалёнка</span><span class="chip chip-format">Гибрид</span>
+      
+      <span class="chip">Полная занятость</span>
+      
+      
+    </div>
+  </header>
+
+  <div class="job-layout">
+    <article class="job-body">
+      
+      <div class="chips job-stack" aria-label="Стек"><span class="chip">PostgreSQL</span><span class="chip">Redis</span><span class="chip">gRPC</span><span class="chip">Kubernetes</span><span class="chip">Terraform</span><span class="chip">GCP</span><span class="chip">Python</span><span class="chip">Blockchain</span><span class="chip">FinTech</span></div>
+      
+      <div class="post">Conduit is an enterprise-grade blockchain infrastructure and tooling platform powering the next generation of on-chain applications.
+
+Our platform supports many of the most notable teams in crypto, with use cases spanning payments, tokenization, and beyond. Built for security, customization, and scalability, Conduit delivers production-grade reliability paired with deep blockchain expertise—so teams can stay focused on what matters most: their product.
+
+Backed by a $37M Series A led by Paradigm and Haun Ventures, Conduit is a remote-first company with offices in San Francisco and New York City for those who prefer a hybrid environment. Our team brings experience from companies like Meta, Amazon, Aave, Compound, and Paradigm.
+
+We’re building the infrastructure layer that will power on-chain finance for the next decade.
+
+If you want to build something people rely on every day, join us.
+
+About the Role
+
+Conduit&#39;s Control Plane team owns the coordination layer of the Conduit Platform: the services that provision, update, and retire everything customers run on us — rollups, RPC nodes, indexing, and whatever comes next — meter what those products consume, and give both customers and our own team a trustworthy picture of what is actually running.
+
+The core of it is a control loop. We&#39;re building a lifecycle service that observes what&#39;s actually running and reconciles toward the desired state, rather than writing a status field and hoping it stays true. It treats each product as opaque: its shape and configuration come from schema read at runtime, so onboarding a new product type is a description, not a pull request.
+
+If you&#39;ve worked on Kubernetes controllers, provisioning APIs, deployment systems, or any platform where the hard part is keeping many systems consistent with one another, this will feel familiar. It&#39;s a web2 stack in service of web3 technology — we don&#39;t require blockchain experience, and people on the team picked up the domain here.
+
+Three things worth knowing up front:
+
+•
+A small, senior team with a large charter. Control Plane is small and entirely senior — this layer is critical enough that everyone on it operates independently. The surface area — lifecycle, usage reporting, the customer-facing API, internal tooling — is wider than the team can build at once, which is why we spent this year defining what it owns and what it doesn&#39;t. The upside is unusual influence: your design decisions become the architecture rather than one input among many.
+
+•
+The mission is automation. Plenty of platform operations still have a human in the loop. Turning those into automated, self-serve paths is the work — and because the first users of what you build are inside the company, the feedback loop is measured in hours, not quarters.
+
+•
+A lot of this work is decoupling before extending. These systems grew organically and carry real coupling. We&#39;d rather pay that down than keep building on top of it.
+
+The team optimizes for correctness and reliability first. Performance matters, but this isn&#39;t a role about making one component marginally faster — it&#39;s about making sure a change in one system doesn&#39;t quietly break three others. Nearly everything here is an integration problem, so breadth of systems judgment counts for more than depth in any one specialty.
+
+What you&#39;ll work on
+
+•
+Lifecycle as a service. A single, well-defined interface for provisioning, updating, repairing, and retiring what customers run, backed by reconciliation against observed state rather than best-effort writes.
+
+•
+Schema-driven, product-agnostic design. Moving product-specific knowledge out of code and into contracts the service interprets at runtime, so products and the control plane can evolve independently.
+
+•
+Usage and consumption reporting. A product-agnostic path for metering what customers consume and reporting it to the systems that bill for it. We don&#39;t build the billing engine — but consumption data is money, and correctness here is unforgiving.
+
+•
+Internal tooling. Admin surfaces that let our own teams operate the platform through the control plane&#39;s abstractions. You&#39;ll own the services and interfaces behind them, partnering with our UI engineers on the surface itself.
+
+Responsibilities
+
+•
+Own the interfaces other teams build against — lifecycle operations, usage reporting, schema contracts — including how they version and migrate as they evolve
+
+•
+Integrate systems that don&#39;t fit together on their own, including third-party billing and partner integrations
+
+•
+Drive cross-functional coordination when the control plane is the shared point of integration
+
+•
+Improve the tooling and process that keep the platform maintainable and reliable
+
+•
+Participate in the team&#39;s oncall rotation, covering the control plane services you own rather than the customer data path
+
+Qualifications
+
+Required
+
+•
+5+ years building and operating production backend systems
+
+•
+Systems breadth: you reason across several interacting systems at once — how they fail, where the seams belong, how they stay consistent
+
+•
+Experience designing APIs and contracts that other teams depend on — versioning, backward compatibility, deprecation
+
+•
+Comfort with asynchronous and event-driven systems: idempotency, retries, partial failure, eventual consistency
+
+•
+Experience debugging complex issues across the stack — networking, performance, data integrity — and good instincts for where security boundaries belong
+
+•
+Self-directed: comfortable with ambiguity, able to take a loosely-defined problem and drive it to done
+
+•
+Able to become productive in an unfamiliar language quickly — our services are Go today
+
+Bonus
+
+•
+Production Go experience
+
+•
+Built reconciliation- or controller-pattern systems (Kubernetes operators, Terraform providers, provisioning or deployment control planes)
+
+•
+Worked with schema- or config-as-data systems (CUE, JSON Schema, protobuf) and the realities of schema evolution and migration
+
+•
+Metering, usage reporting, or other systems where correctness has financial consequences
+
+•
+Built internal tools for expert operators
+
+•
+Crypto / web3 background — genuinely not required
+
+We think you&#39;ll find this work really exciting if you:
+
+•
+Are drawn to questions like: how do we know what&#39;s actually running? How do we make a change safely when several systems have to agree? How do we let products evolve without the control plane needing to know?
+
+•
+Would rather build the abstraction that makes the next ten integrations easy than hand-wire the eleventh
+
+•
+Want to work somewhere that writes real design docs — arguing a position, naming the tradeoff, and disagreeing in writing before the code gets written
+
+•
+Are excited about building robust, large-scale, always-on services
+
+•
+Love building and iterating on new technologies in a fast-paced environment
+
+Our tech stack
+
+A flavor of technologies in use:
+
+•
+Languages: Go (primary), Python
+
+•
+Services: gRPC / protobuf, GCP Pub/Sub, River (Postgres job queue), Watermill
+
+•
+Data: Postgres, Redis, GCS
+
+•
+Schema &amp; config: CUE, YAML
+
+•
+Runtime we integrate with: Kubernetes, ArgoCD, GCP
+
+While we value experience with these technologies, we&#39;re primarily looking for engineers with strong systems judgment and the ability to quickly pick up new tools and frameworks.
+
+Conduit does not discriminate on the basis of race, religion, color, sex, gender identity, sexual orientation, age, non-disqualifying physical or mental disability, national origin, veteran status or any other basis covered by appropriate law.</div>
+      <p class="caution">Вакансия собрана автоматически из открытого источника. Перед тем как отправлять документы, проверьте компанию. Никогда не платите за трудоустройство и не устанавливайте программы по просьбе «рекрутера».</p>
+    </article>
+
+    <aside class="job-side">
+      
+
+      <section class="side-box apply">
+        <h2 class="side-title">Как откликнуться</h2>
+        
+        
+        
+        <a class="btn" href="https://jobs.ashbyhq.com/conduit/5e599120-22ec-46c8-b933-6c833139d59f/application" target="_blank" rel="noopener">
+          <span class="btn-label">Откликнуться на сайте</span><span class="btn-value">jobs.ashbyhq.com ↗</span>
+        </a>
+        
+        
+        
+      </section>
+
+      <section class="side-box">
+        <h2 class="side-title">Источник</h2>
+        <ul class="sources">
+          
+          <li><a href="https://jobs.ashbyhq.com/conduit/5e599120-22ec-46c8-b933-6c833139d59f" target="_blank">conduit (Ashby) ↗</a><span class="muted"> · <time data-ts="1789510350">15 сентября 2026</time></span></li>
+          
+        </ul>
+      </section>
+    </aside>
+  </div>
+  
+</main>
+
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <p>Бесплатно и без регистрации. Вакансии собраны из открытых источников; у каждой есть ссылка на оригинал.</p>
+    <p>
+      
+      <a href="/gojobs/about/">Источники и статус</a> ·
+      <a href="https://github.com/Beknur1003/gojobs">Код на GitHub</a> ·
+      <a href="https://github.com/Beknur1003/gojobs/issues/new?title=Добавить+источник">Предложить канал</a>
+    </p>
+  </div>
+</footer>
+
+<script src="/gojobs/assets/app.js" defer></script>
+</body>
+</html>

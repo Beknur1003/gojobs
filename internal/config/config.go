@@ -19,7 +19,21 @@ type Config struct {
 	Greenhouse []string   `yaml:"greenhouse"`
 	Lever      []string   `yaml:"lever"`
 	Ashby      []string   `yaml:"ashby"`
+	Workday    []string   `yaml:"workday"` // "tenant|wd5|site"
+	Discovery  Discovery  `yaml:"discovery"`
 	HTTP       HTTPConfig `yaml:"http"`
+}
+
+// Discovery probes thousands of company boards in rotation and keeps the ones
+// that have Go roles. See internal/service/discovery.
+type Discovery struct {
+	Enabled      bool           `yaml:"enabled"`
+	SeedsDir     string         `yaml:"seeds_dir"`
+	Registry     string         `yaml:"registry"`
+	Cache        string         `yaml:"cache"`
+	RecheckDays  int            `yaml:"recheck_days"`
+	PerRun       map[string]int `yaml:"per_run"`
+	WorkdayQuery string         `yaml:"workday_query"`
 }
 
 type Site struct {
@@ -60,6 +74,11 @@ type APIs struct {
 	Jobicy    bool `yaml:"jobicy"`
 	HN        bool `yaml:"hn"`
 	WWR       bool `yaml:"weworkremotely"`
+	Djinni    bool `yaml:"djinni"`
+	GoProj    bool `yaml:"golangprojects"`
+	Arbeitnow bool `yaml:"arbeitnow"`
+	WorkNomad bool `yaml:"workingnomads"`
+	Freehire  bool `yaml:"freehire"` // freehire.me open API: ~90 ATS platforms
 }
 
 type HTTPConfig struct {
@@ -68,6 +87,8 @@ type HTTPConfig struct {
 	// DelayMillis is the pause between requests to the same host. Every source
 	// here is free; being polite is what keeps it that way.
 	DelayMillis int `yaml:"delay_millis"`
+	// HostDelayMillis overrides it for APIs built for machine traffic.
+	HostDelayMillis map[string]int `yaml:"host_delay_millis"`
 }
 
 func Load(path string) (Config, error) {
@@ -120,6 +141,21 @@ func (c *Config) applyDefaults() {
 	}
 	if c.HTTP.DelayMillis == 0 {
 		c.HTTP.DelayMillis = 700
+	}
+	if c.Discovery.SeedsDir == "" {
+		c.Discovery.SeedsDir = "data/seeds"
+	}
+	if c.Discovery.Registry == "" {
+		c.Discovery.Registry = "data/boards.json"
+	}
+	if c.Discovery.Cache == "" {
+		c.Discovery.Cache = "cache/ats.json"
+	}
+	if c.Discovery.RecheckDays == 0 {
+		c.Discovery.RecheckDays = 30
+	}
+	if c.Discovery.WorkdayQuery == "" {
+		c.Discovery.WorkdayQuery = "golang"
 	}
 }
 

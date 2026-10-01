@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="ru" data-base="/gojobs">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="/gojobs/assets/style.css">
+<link rel="icon" href="/gojobs/assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Go Jobs" href="/gojobs/feed.xml">
+
+
+<title>Sr. Software Engineer - Go/MongoDB (Remote) — percona | Go Jobs</title>
+<meta name="description" content="Sr. Software Engineer - Go/MongoDB (Remote) · percona · Удалёнка. MongoDB Tools Team Team: MongoDB Tools (Product and Engineering) Location: Remote Projects: percona/percona-clustersync-mongodb and percona/percona-backup-mongodb About the team The MongoDB Tools Team builds Percona&#39;s open source…">
+<link rel="canonical" href="https://beknur1003.github.io/gojobs/jobs/sr-software-engineer-go-mongodb-remote-818248/">
+<meta property="og:title" content="Sr. Software Engineer - Go/MongoDB (Remote) — percona">
+<meta property="og:description" content="Sr. Software Engineer - Go/MongoDB (Remote) · percona · Удалёнка. MongoDB Tools Team Team: MongoDB Tools (Product and Engineering) Location: Remote Projects: percona/percona-clustersync-mongodb and percona/percona-backup-mongodb About the team The MongoDB Tools Team builds Percona&#39;s open source…">
+<meta property="og:url" content="https://beknur1003.github.io/gojobs/jobs/sr-software-engineer-go-mongodb-remote-818248/">
+<meta property="og:type" content="article">
+
+
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="/gojobs/" aria-label="Go Jobs, на главную">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M7.5 12.5h5.5M10 9.5h6.5M9 15.5h5" stroke="var(--bg)" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </span>
+      <span class="brand-name">Go Jobs</span>
+    </a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="/gojobs/">Вакансии</a>
+      <a href="/gojobs/about/">О проекте</a>
+      <a href="/gojobs/feed.xml" class="nav-rss" title="RSS со свежими вакансиями">RSS</a>
+    </nav>
+  </div>
+</header>
+
+
+<main class="wrap job">
+  <a class="back" href="/gojobs/">← Все вакансии</a>
+
+  
+  
+
+  <header class="job-head">
+    <h1>Sr. Software Engineer - Go/MongoDB (Remote)</h1>
+    <p class="job-meta">
+      <span class="company">percona</span>
+      <span>EMEA</span>
+      <span>опубликовано <time datetime="2026-07-28T14:47:21Z" data-ts="1785250041">28 июля 2026</time></span>
+    </p>
+    <div class="chips">
+      <span class="chip chip-format">Удалёнка</span>
+      <span class="chip chip-grade">Senior</span>
+      <span class="chip">Полная занятость</span>
+      
+      
+    </div>
+  </header>
+
+  <div class="job-layout">
+    <article class="job-body">
+      
+      <div class="chips job-stack" aria-label="Стек"><span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">MongoDB</span><span class="chip">Azure</span><span class="chip">Prometheus</span><span class="chip">CI/CD</span></div>
+      
+      <div class="post">MongoDB Tools Team
+
+Team: MongoDB Tools (Product and Engineering)
+
+Location: Remote
+
+Projects: percona/percona-clustersync-mongodb and percona/percona-backup-mongodb
+
+About the team
+
+The MongoDB Tools Team builds Percona&#39;s open source operational tooling for MongoDB. Two projects sit at the center of what we do. Percona ClusterSync for MongoDB (PCSM) clones and continuously replicates data between clusters. Percona Backup for MongoDB (PBM) is a distributed, low-impact backup and restore solution for replica sets and sharded clusters. Both are written in Go, both are Apache 2.0 licensed, and both are built fully in the open.
+
+This role sits primarily on PCSM, which is younger and moving fast, so you will have real influence over how it takes shape. You will also work across into PBM. The two tools share many hard problems: cluster topology, the oplog and change streams, consistency across shards, and performance in very large production clusters. Backup and restore experience is a real advantage here, not just a box to tick.
+
+The projects
+
+•
+PCSM (primary focus): initial data cloning followed by continuous change replication over MongoDB Change Streams, for both replica sets and sharded clusters. Still pre-1.0 and evolving quickly.
+
+•
+PBM (secondary): consistent backup and restore with point-in-time recovery, using oplog capture to stay consistent across replica sets and sharded clusters, with S3-compatible and filesystem storage. Driven by pbm-agent processes on each node and a pbm CLI. Mature and widely deployed in production.
+
+What you will work on
+
+Primary, on PCSM
+
+•
+The core replication engine: initial collection cloning followed by continuous change capture over MongoDB Change Streams, with correct handling of resume tokens, ordering, and resumability after failures.
+
+•
+Correctness and fault tolerance at scale: recovering cleanly from network drops, primary elections, and restarts without losing or duplicating changes, and reasoning carefully about the delivery guarantees we can honestly promise.
+
+•
+Sharded cluster support: replicating across shards, dealing with the realities of chunk migrations and balancer activity, and keeping the target consistent.
+
+•
+Namespace filtering and automatic index management, plus the edge cases that show up with DDL, TTL, and index differences between source and target.
+
+•
+Performance and throughput: parallelizing the clone, applying backpressure, and keeping memory and connection use sane against large clusters with great change volume.
+
+•
+The CLI and HTTP API that drive and observe a sync, and the metrics and logging that let an operator trust what is happening.
+
+Also across PBM
+
+•
+Consistent backup, restore, and point-in-time recovery across replica sets and sharded clusters, using physical or logical type of the backup.
+
+•
+Backup storage: integrating reliably with main cloud object storage (S3, GCS, Azure Blob Storage...) and remote filesystems, and handling the throughput and failure modes that show up at scale.
+
+•
+The pbm-agent and pbm CLI, and the control-collection state in MongoDB that coordinates them across the cluster.
+
+Shared across both
+
+•
+Working in the open: pull requests, code review, JIRA, and the community forum.
+
+•
+Release quality: tests, packaging, and the CI and security scanning that gate every change.
+
+What Have You Done:
+
+•
+Strong Go experience in production, with real fluency in concurrency: goroutines, channels, context cancellation, worker pools, and backpressure. You have debugged a race condition that only showed up under load, and you know how you found it.
+
+•
+Solid grounding in distributed systems and data consistency. You can talk clearly about at-least-once versus exactly-once, idempotency, ordering, and what it takes to make a stateful process resumable.
+
+•
+Hands-on MongoDB knowledge: change streams, the oplog, resume tokens, replica sets, and sharding. You do not need to have built replication before, but you should understand why it is hard.
+
+•
+Comfort building and operating command-line tools and HTTP APIs, and instrumenting them with metrics and structured logs.
+
+•
+A habit of writing tests that catch real problems, and comfort working across a mixed toolchain.
+
+•
+Experience working in the open: Git and pull request workflows, giving and taking code review well, and communicating clearly in writing with contributors you have never met in person.
+
+Nice to have
+
+•
+Prior work on database internals, CDC pipelines, ETL, or data migration tooling.
+
+•
+Familiarity with the Prometheus style of metrics and observability.
+
+•
+Experience with golangci-lint, vulnerability scanning (for example Trivy), and deb and rpm packaging.
+
+•
+Background maintaining or contributing to an open source project with an external community.
+
+•
+Exposure to MongoDB sharded clusters at large scale, where balancer behavior and backup interaction stop being theoretical.
+
+How we work
+
+Both projects live on GitHub, contributions go through pull requests and code review, and we track work in JIRA. We care about keeping open source open, so the default is that the work you do here is public and stays that way.
+
+&lt;!--WEB-ONLY--&gt;
+
+Why Percona?
+
+At Percona, we believe an open world is a better world. Our mission is to enable everyone to innovate freely, by providing the best open source database software, support, and services. We make databases and applications run better through a unique combination of expertise and open source software built with the community for you. Our technical teams are experts in MySQL, MongoDB, PostgreSQL, and MariaDB.
+
+Percona is proud to be a remote-only and globally dispersed workforce – we have colleagues in more than 50 countries! We offer a collaborative, highly-engaged culture where your ideas are welcome and your voice is heard.
+
+Our staff receives generous benefits including flexible work hours and various paid time off programs, all your equipment for your remote office, funds for career development (external training, certifications, conferences), ongoing connectivity allowances, and the opportunity to participate in our equity incentive plan. We also have benefits that support a healthy work/life balance such as The Percona Adventure Team, Work-from-Anywhere, FlowDays, FryDays, and overall flexibility. We also support being socially responsible through our PAVE volunteering program and Women Transforming Technology.
+
+If you love the idea of working with a high-growth tech company that is one of the best in the business and known globally as a leader in the open-source database space, let’s talk!
+
+Connect with us and stay up to date on our latest news and developments by following us on LinkedIn and Twitter. We look forward to connecting with you!</div>
+      <p class="caution">Вакансия собрана автоматически из открытого источника. Перед тем как отправлять документы, проверьте компанию. Никогда не платите за трудоустройство и не устанавливайте программы по просьбе «рекрутера».</p>
+    </article>
+
+    <aside class="job-side">
+      
+
+      <section class="side-box apply">
+        <h2 class="side-title">Как откликнуться</h2>
+        
+        
+        
+        <a class="btn" href="https://jobs.ashbyhq.com/percona/74eb45a3-fb7f-4078-bb62-97048b7623e8/application" target="_blank" rel="noopener">
+          <span class="btn-label">Откликнуться на сайте</span><span class="btn-value">jobs.ashbyhq.com ↗</span>
+        </a>
+        
+        
+        
+      </section>
+
+      <section class="side-box">
+        <h2 class="side-title">Источник</h2>
+        <ul class="sources">
+          
+          <li><a href="https://jobs.ashbyhq.com/percona/74eb45a3-fb7f-4078-bb62-97048b7623e8" target="_blank">percona (Ashby) ↗</a><span class="muted"> · <time data-ts="1785250041">28 июля 2026</time></span></li>
+          
+        </ul>
+      </section>
+    </aside>
+  </div>
+  
+</main>
+
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <p>Бесплатно и без регистрации. Вакансии собраны из открытых источников; у каждой есть ссылка на оригинал.</p>
+    <p>
+      
+      <a href="/gojobs/about/">Источники и статус</a> ·
+      <a href="https://github.com/Beknur1003/gojobs">Код на GitHub</a> ·
+      <a href="https://github.com/Beknur1003/gojobs/issues/new?title=Добавить+источник">Предложить канал</a>
+    </p>
+  </div>
+</footer>
+
+<script src="/gojobs/assets/app.js" defer></script>
+</body>
+</html>

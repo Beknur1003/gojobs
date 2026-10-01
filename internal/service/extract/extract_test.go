@@ -47,6 +47,24 @@ func TestEmails_ImagesAndExamples_Dropped(t *testing.T) {
 	assert.Empty(t, Emails("logo@2x.png you@example.com", nil))
 }
 
+func TestEmails_FunctionalMailboxes_Dropped(t *testing.T) {
+	text := "Need help? accommodations@coinbase.com, candidate_accessibility@elastic.co, privacy@acme.io, name@acme.io. Recruiter: anna@acme.io"
+	assert.Equal(t, []string{"anna@acme.io"}, Emails(text, nil))
+	assert.Equal(t, []string{"security-careers@acme.io", "support-hiring@acme.io"},
+		Emails("CV to security-careers@acme.io or support-hiring@acme.io", nil), "a function word inside a recruiter mailbox is fine")
+}
+
+func TestNormalize_EmployerBoard_NoContactsAndNoGuessedCompany(t *testing.T) {
+	ats := models.Posting{Source: "greenhouse", ExternalID: "acme/1", Title: "Backend Engineer", Company: "Acme",
+		Text: "Write Go. Questions: recruiting@acme.io, privacy@acme.io or @acme_hr"}
+	assert.Empty(t, Normalize(ats, Noise{}).Contacts,
+		"an ATS listing's addresses count only when the text asks to apply by email")
+
+	djinni := models.Posting{Source: "djinni", ExternalID: "1", Title: "Senior Go Developer",
+		Text: "Requirements\nКомерційний досвід з Go від 4 років\nPostgreSQL"}
+	assert.Equal(t, "", Normalize(djinni, Noise{}).Company, "a section heading is not an employer")
+}
+
 func TestIsGo_Sources_Decided(t *testing.T) {
 	tests := []struct {
 		name  string
@@ -64,6 +82,21 @@ func TestIsGo_Sources_Decided(t *testing.T) {
 		{"go-only channel without mention", models.Posting{Source: "telegram", GoOnly: true, Text: "Ищем бэкендера в финтех"}, "Backend Developer", true},
 		{"go-only channel other language title", models.Posting{Source: "telegram", GoOnly: true, Text: "Ищем фронтендера"}, "Frontend Developer", false},
 		{"tag golang", models.Posting{Source: "remoteok", Tags: []string{"golang"}}, "Software Engineer", true},
+		{"go to market title", models.Posting{Source: "greenhouse", Text: "Own our sales motion."}, "Go To Market Manager, Brazil", false},
+		{"go-to-market title", models.Posting{Source: "greenhouse", Text: "Own our sales motion."}, "Go-To-Market Engineer", false},
+		{"go to market with unicode hyphens", models.Posting{Source: "greenhouse", Text: "Sales."}, "Go\u2011To\u2011Market Lead", false},
+		{"go live title", models.Posting{Source: "greenhouse", Text: "Launch coordination."}, "Go Live Coordinator", false},
+		{"game name", models.Posting{Source: "greenhouse", Text: "Live ops for our hit game."}, "Live Ops Manager, Monopoly Go!", false},
+		{"go engineer title still counts", models.Posting{Source: "greenhouse", Text: "Platform team."}, "Senior Go Engineer", true},
+		{"go team lead", models.Posting{Source: "greenhouse", Text: "Platform."}, "Go Team Lead", true},
+		{"c++ role mentioning go", models.Posting{Source: "greenhouse", Text: "C++ mostly, some Go tooling, Go scripts."}, "Software Engineer C++", false},
+		{"sales engineer", models.Posting{Source: "greenhouse", Text: "Demo our Go SDK. Go and Python."}, "Sales Engineer, Enterprise", false},
+		{"all caps spanish", models.Posting{Source: "greenhouse", Text: "Servicios en Go."}, "DESARROLLADOR GO SENIOR", true},
+		{"all caps short", models.Posting{Source: "greenhouse", Text: "Platform."}, "SENIOR GO", true},
+		{"caps GO in prose is not the language", models.Posting{Source: "greenhouse", Text: "We are READY TO GO and love sales."}, "Account Executive", false},
+		{"go back-end developer", models.Posting{Source: "greenhouse", Text: "Platform."}, "Senior Go Back-End Developer", true},
+		{"go on-call engineer", models.Posting{Source: "greenhouse", Text: "Platform."}, "Go On-Call Engineer", true},
+		{"enthusiastic Go!", models.Posting{Source: "telegram", Text: "Стек: Go! PostgreSQL, Kafka. Требования: опыт от 3 лет."}, "Backend Developer", true},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -192,4 +225,54 @@ func TestNormalize_TelegramPost_Structured(t *testing.T) {
 	require.Len(t, j.Sources, 1)
 	assert.Equal(t, "telegram:rabota_golang", j.Sources[0].Feed)
 	assert.Equal(t, "go-razrabotchik-v-komandu-platezhey-"+j.ID[:6], j.Slug)
+}
+
+func TestCandidateTitle_GoToMarket_Rejected(t *testing.T) {
+	for _, title := range []string{"Go To Market Manager, Brazil", "Go-to-Market Operations Manager", "Go Live Coordinator"} {
+		assert.False(t, CandidateTitle(title), title)
+	}
+	assert.True(t, CandidateTitle("Backend Engineer"))
+	assert.True(t, CandidateTitle("Go Developer"))
+}
+
+func TestQA_Regressions_FixedOnRealCases(t *testing.T) {
+	assert.False(t, Relocation("Relocation is not available for this role."))
+	assert.True(t, Relocation("Relocation package and visa support."))
+
+	strong, words := goMentions("Join the Capital City Go-Go maintenance team")
+	assert.False(t, strong)
+	assert.Equal(t, 0, words, "a team name is not the language")
+
+	digest := "Вакансии недели:\nSenior Golang Developer — DataArt\nRust Engineer — Virtuozzo\nPython Developer — Ozon\nJava Developer — Sber\nQA Engineer — Avito\nFrontend Developer — VK\nТребования и контакты — по ссылкам. Откликайтесь!"
+	assert.False(t, IsVacancy(models.Posting{Source: "telegram", Text: digest}), "a digest is not one vacancy")
+
+	assert.Equal(t, []string{"anna_hr"}, Handles("Пишите @anna_hr, больше вакансий в @job_python и @devs_it", nil))
+
+	ats := models.Posting{Source: "greenhouse", ExternalID: "x/1", Title: "Backend Engineer", Company: "Nord Security",
+		Text: "Write Go. Apply at career@nordsec.com. Accessibility: accommodations@nordsec.com"}
+	assert.Equal(t, []models.Contact{{Kind: models.ContactEmail, Value: "career@nordsec.com"}}, Normalize(ats, Noise{}).Contacts)
+
+	intern := models.Posting{Source: "workday", ExternalID: "y/1", Title: "Senior Software Engineer",
+		Text: "Internship experience does not apply. You will write Go."}
+	assert.Equal(t, []models.Grade{models.GradeSenior}, Normalize(intern, Noise{}).Grades)
+}
+
+func TestQA2_EmployerAndClassifier_RealCases(t *testing.T) {
+	ats := func(text string) models.Posting {
+		return models.Posting{Source: "greenhouse", ExternalID: "x/1", Title: "Backend Engineer", Company: "Acme", Text: text}
+	}
+	assert.Empty(t, Normalize(ats("Go everywhere. Need an accommodation? Email RecruitingAccommodation@acme.com or careers@acme.com for privacy questions."), Noise{}).Contacts)
+	assert.Empty(t, Normalize(ats("Go services. Report phishing to recruitingops@acme.com."), Noise{}).Contacts)
+	assert.Equal(t, []models.Contact{{Kind: models.ContactEmail, Value: "career@nordsec.com"}},
+		Normalize(ats("Go services. Please send your CV to career@nordsec.com"), Noise{}).Contacts)
+
+	strong, words := goMentions("Lead the Go / No-Go decision for each launch.")
+	assert.False(t, strong)
+	assert.Equal(t, 0, words)
+	for _, title := range []string{"Technical Support Engineer", "Solutions Architect", "Mechanical Engineer, Data Center"} {
+		assert.False(t, IsGo(models.Posting{Source: "greenhouse", Text: "Some Go. More Go."}, title), title)
+	}
+
+	assert.False(t, Relocation("Relocation support is not available for this role."))
+	assert.Equal(t, ".NET Developer (moving to Go)", CleanLine(".NET Developer (moving to Go)"))
 }

@@ -242,6 +242,10 @@ input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 0;
 .status-ok { color: var(--ok); }
 .status-bad { color: var(--bad); cursor: help; }
 
+.companies { margin-top: 12px; }
+.companies summary { cursor: pointer; color: var(--accent); }
+.company-list { columns: 3 180px; padding-left: 18px; font-size: 14px; color: var(--text-2); }
+
 /* ---------------------------------------------------------------- footer */
 .site-footer { border-top: 1px solid var(--border); background: var(--surface); color: var(--muted); font-size: 13.5px; }
 .footer-row { padding-top: 18px; padding-bottom: 22px; }

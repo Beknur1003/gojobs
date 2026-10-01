@@ -18,7 +18,7 @@ var (
 	// RE2's \b is ASCII-only, so Cyrillic words get explicit [^\p{L}] edges.
 	negationRe = regexp.MustCompile(`(?:^|[^\p{L}])(?:не|no|not|без|non)[\s-]*$`)
 	// "удалёнки нет", "remote is not possible": negation after the word.
-	negationAfterRe = regexp.MustCompile(`^\p{L}*\s*(?:нет|не\s+предусмотр|невозможн|не\s+рассматрива|(?:is\s+)?not\s+(?:possible|available|an option))`)
+	negationAfterRe = regexp.MustCompile(`^\p{L}*(?:\s+\p{L}+){0,2}?\s*(?:нет|не\s+предусмотр|невозможн|не\s+рассматрива|не\s+оплачива|(?:is\s+|are\s+)?not\s+(?:possible|available|an option|offered|provided|supported))`)
 )
 
 // Formats reads the work format. Structured remote boards pass remote=true.
@@ -137,7 +137,8 @@ func Employment(s string) []models.Employment {
 
 var relocationRe = regexp.MustCompile(`релок|relocat|переезд|visa sponsor|визов\p{L}* поддерж|помощь с визой`)
 
-func Relocation(s string) bool { return relocationRe.MatchString(strings.ToLower(s)) }
+// Relocation reports offered relocation, not "relocation is not available".
+func Relocation(s string) bool { return matchNotNegated(relocationRe, strings.ToLower(s)) }
 
 // Lang reports the dominant script of the post: "ru" or "en".
 func Lang(s string) string {

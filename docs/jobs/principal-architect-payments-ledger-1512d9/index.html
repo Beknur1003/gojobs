@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="ru" data-base="/gojobs">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="/gojobs/assets/style.css">
+<link rel="icon" href="/gojobs/assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Go Jobs" href="/gojobs/feed.xml">
+
+
+<title>Principal Architect - Payments &amp; Ledger — YouTrip | Go Jobs</title>
+<meta name="description" content="Principal Architect - Payments &amp; Ledger · YouTrip. YouTrip is the leading and fastest-growing multi-currency payment platform in Asia Pacific. In 2018, we pioneered the region&#39;s first multi-currency digital wallet. Now, YouTrip is the multi-currency digital wallet trusted by millions…">
+<link rel="canonical" href="https://beknur1003.github.io/gojobs/jobs/principal-architect-payments-ledger-1512d9/">
+<meta property="og:title" content="Principal Architect - Payments &amp; Ledger — YouTrip">
+<meta property="og:description" content="Principal Architect - Payments &amp; Ledger · YouTrip. YouTrip is the leading and fastest-growing multi-currency payment platform in Asia Pacific. In 2018, we pioneered the region&#39;s first multi-currency digital wallet. Now, YouTrip is the multi-currency digital wallet trusted by millions…">
+<meta property="og:url" content="https://beknur1003.github.io/gojobs/jobs/principal-architect-payments-ledger-1512d9/">
+<meta property="og:type" content="article">
+
+
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="/gojobs/" aria-label="Go Jobs, на главную">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M7.5 12.5h5.5M10 9.5h6.5M9 15.5h5" stroke="var(--bg)" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </span>
+      <span class="brand-name">Go Jobs</span>
+    </a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="/gojobs/">Вакансии</a>
+      <a href="/gojobs/about/">О проекте</a>
+      <a href="/gojobs/feed.xml" class="nav-rss" title="RSS со свежими вакансиями">RSS</a>
+    </nav>
+  </div>
+</header>
+
+
+<main class="wrap job">
+  <a class="back" href="/gojobs/">← Все вакансии</a>
+
+  
+  
+
+  <header class="job-head">
+    <h1>Principal Architect - Payments &amp; Ledger</h1>
+    <p class="job-meta">
+      <span class="company">YouTrip</span>
+      <span>Singapore, Singapore, Singapore</span>
+      <span>опубликовано <time datetime="2026-09-29T00:00:00Z" data-ts="1790640000">29 сентября 2026</time></span>
+    </p>
+    <div class="chips">
+      
+      <span class="chip chip-grade">Lead</span>
+      
+      
+      
+    </div>
+  </header>
+
+  <div class="job-layout">
+    <article class="job-body">
+      
+      <div class="chips job-stack" aria-label="Стек"><span class="chip">FinTech</span></div>
+      
+      <div class="post">YouTrip is the leading and fastest-growing multi-currency payment platform in Asia Pacific. In 2018, we pioneered the region&#39;s first multi-currency digital wallet. Now, YouTrip is the #1 multi-currency digital wallet trusted by millions across the region, processing over US$15 billion in total payment value annually.
+
+Our consumer and business propositions – YouTrip and YouBiz – empower individuals and businesses with inclusive, accessible, and affordable financial solutions. YouTrip has raised over US$110 million to date, including its recent Series B round led by global venture capital firm Lightspeed Venture Partners—underscoring strong investor confidence in its mission to transform digital financial services across the Asia Pacific.
+
+Recognised as World Economic Forum’s Global Innovator 2025, CNBC’s World’s Top Fintech Companies (2025, 2024), and LinkedIn’s Top Startup (2024, 2023), YouTrip is dedicated to creating the next generation of digital finance services for consumers and businesses.
+
+Valuing an entrepreneurial culture of diversity and inclusion, we are seeking driven individuals to join our fast-growing regional team as we push the boundaries of innovative fintech solutions.
+
+Job Description: Principal Architect, Payments &amp; Ledger
+
+You&#39;ll own the architectural direction for money movement end to end: multi-currency wallets and balances, the core ledger, card issuing and authorisation, in-app FX, overseas transfers and payouts, treasury and pre-funding, settlement and reconciliation, and the shared platform services underneath them. Your remit covers both YouTrip (consumer) and YouBiz (business), across every market we operate in.
+
+Responsibilities:
+
+• The Ledger - Double-entry design, chart of accounts, sub-ledger boundaries, immutability and correction rules, multi-currency representation, precision and rounding policy, and how balances are derived or stored. You&#39;ll define how we handle authorisation holds, reversals, partial and incremental captures, refunds, FX revaluation and unreconciled positions, and you&#39;ll be able to explain and defend those choices to Finance, auditors and regulators.
+
+• Money movement correctness - Idempotency, exactly-once outcomes on top of at-least-once messaging, clear state machines for every transaction type, and well-defined failure, retry, timeout and compensation paths. For every integration, the question &#34;what happens if the partner succeeds and we fail?&#34; should have a written answer that you own.
+
+• Card issuing - Architecture for authorisation, clearing and settlement as a Mastercard Principal Member, including real-time authorisation on the scheme&#39;s critical path, stand-in processing, authorisation expiry, disputes and chargebacks, tokenisation for Apple Pay and Google Pay, virtual and physical card lifecycle, and the strict latency and availability targets that come with it.
+
+• FX and multi-currency wallets - Rate sourcing, quoting and rate locking, spread and exposure management, in-app currency exchange across our wallet currencies, and pre-funding and liquidity models that keep customers&#39; balances safe and available.
+
+• Cross-border transfers - Corridor architecture, payout rail integrations (local real-time rails, bank transfers, SWIFT and partner networks), pre-funding and nostro design, and sanctions and AML screening built in as a core design constraint, not an afterthought.
+
+• Reconciliation and settlement - We treat reconciliation as an architecture problem, not an operations task. You&#39;ll design systems where breaks are rare, spotted within minutes, and traceable to a clear cause, across multiple time zones, currencies and partners.
+
+• Non-functional requirements - Latency, throughput, availability and cost as design targets with numbers attached. Clear, written decisions on where eventual consistency is acceptable and where it isn&#39;t. Recovery, replay and backfill as built-in capabilities.
+
+• Standards and technical judgement - Engineering and coding standards, architecture reviews for significant changes, and architecture documentation that engineers actually build from. You&#39;ll write decision records that capture the reasoning and the options rejected, and keep them current.
+
+• Partners and vendors - Technical evaluation and ongoing oversight of card processors, scheme connectivity, banking and settlement partners, FX liquidity providers, payout partners, KYC and screening vendors, and core infrastructure. You&#39;ll know their systems&#39; failure modes as well as their own architects do.
+
+• Growing technical leaders - You&#39;ll mentor tech leads and senior engineers from day one and lead mostly through influence. As the function matures, you&#39;ll build and lead a small architecture group.
+
+Requirements
+
+• Deep payments and ledger experience (essential) - You&#39;ve designed or substantially rebuilt a production financial ledger. You can speak from real experience about journal design, posting models, balance consistency and correction strategies, including what happens when they go wrong.
+
+• Card issuing expertise - Hands-on experience with card scheme integrations (ideally Mastercard), issuer processing, authorisation flows, clearing files, and disputes.
+
+• A builder, not just an advisor - You&#39;ve written production code at scale, and your work sits behind systems that handled real traffic and real money. Your authority comes from having shipped.
+
+• Range from system to field level - You&#39;re equally comfortable designing distributed settlement flows and deciding the type and precision of a single amount field, often in the same week.
+
+• Regulated-environment fluency - Experience with safeguarding and customer fund segregation, payment and e-money licensing, data residency, auditability and technology risk requirements, ideally including MAS and other Asia Pacific regulators. You design ahead of regulatory and scheme changes instead of reacting to them.
+
+• Multi-market experience - You&#39;ve built systems that operate across several countries, currencies and regulators at once.
+
+• Strong writing - Clear, structured, opinionated documents that remain useful long after the meeting ends. Documentation is part of the work, not a follow-up task.
+
+• Opinions you can defend - Clear positions on design patterns, standards and trade-offs, explained just as well to a new graduate as to the board.
+
+• Credibility with partners - You can tell when a vendor&#39;s recommendation serves them more than us, and you can make that case with evidence.
+
+• Experience with Golang, event-driven architectures and cloud-native infrastructure is a plus.
+
+What This Role Is Not
+
+This isn&#39;t a diagramming role, and it isn&#39;t a review gate that approves other people&#39;s work without contributing to it. It&#39;s also not an engineering management role with large headcount or delivery ownership, though its influence is comparable. If you&#39;re looking to run a large organisation, we have other roles for that.
+
+What You Can Expect From Us
+
+• The chance to shape the core money platform of Asia Pacific&#39;s leading multi-currency wallet, used by millions of people and businesses.
+
+• Some of the most interesting payments challenges in the region, across multiple markets, currencies, partners and regulators.
+
+• A company that is committed to getting the architecture right, not just shipping fast.
+
+• A culture that values technical craft, direct feedback and getting things done.
+
+To Apply
+
+If you&#39;re interested in this role, click Apply Now and send us your CV. Due to the high volume of applications, only shortlisted candidates will be contacted.</div>
+      <p class="caution">Вакансия собрана автоматически из открытого источника. Перед тем как отправлять документы, проверьте компанию. Никогда не платите за трудоустройство и не устанавливайте программы по просьбе «рекрутера».</p>
+    </article>
+
+    <aside class="job-side">
+      
+
+      <section class="side-box apply">
+        <h2 class="side-title">Как откликнуться</h2>
+        
+        
+        
+        <a class="btn" href="https://apply.workable.com/j/D7FFDB43B6?utm_source=freehire.me" target="_blank" rel="noopener">
+          <span class="btn-label">Откликнуться на сайте</span><span class="btn-value">apply.workable.com ↗</span>
+        </a>
+        
+        
+        
+      </section>
+
+      <section class="side-box">
+        <h2 class="side-title">Источник</h2>
+        <ul class="sources">
+          
+          <li><a href="https://freehire.me/jobs/principal-architect-payments-ledger-youtrip-2yy6yy7e" target="_blank">freehire · workable ↗</a><span class="muted"> · <time data-ts="1790640000">29 сентября 2026</time></span></li>
+          
+        </ul>
+      </section>
+    </aside>
+  </div>
+  
+</main>
+
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <p>Бесплатно и без регистрации. Вакансии собраны из открытых источников; у каждой есть ссылка на оригинал.</p>
+    <p>
+      
+      <a href="/gojobs/about/">Источники и статус</a> ·
+      <a href="https://github.com/Beknur1003/gojobs">Код на GitHub</a> ·
+      <a href="https://github.com/Beknur1003/gojobs/issues/new?title=Добавить+источник">Предложить канал</a>
+    </p>
+  </div>
+</footer>
+
+<script src="/gojobs/assets/app.js" defer></script>
+</body>
+</html>

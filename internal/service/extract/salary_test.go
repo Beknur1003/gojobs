@@ -29,6 +29,11 @@ func TestSalary_Formats_Parsed(t *testing.T) {
 		{"kzt million", "Оклад 1.5-2 млн тенге", 1500000, 2000000, "KZT", models.PeriodMonth},
 		{"usdt", "Оплата 3000-4000 USDT", 3000, 4000, "USDT", models.PeriodMonth},
 		{"multiline picks pay line", "Опыт от 3 лет\nЗарплата 5000-7000 $", 5000, 7000, "USD", models.PeriodMonth},
+		{"cents after thousands", "The base pay range is $203,101.00 - $225,668.00 per year", 203101, 225668, "USD", models.PeriodYear},
+		{"between and", "Salary between $159,000 and $305,000", 159000, 305000, "USD", models.PeriodYear},
+		{"code after dollar range", "The salary range is $234,000-$275,000 CAD", 234000, 275000, "CAD", models.PeriodYear},
+		{"danish kroner monthly", "Salary: DKK 53283-66608 gross per month", 53283, 66608, "DKK", models.PeriodMonth},
+		{"taka monthly", "Salary: BDT 220,000-285,000 monthly", 220000, 285000, "BDT", models.PeriodMonth},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -49,6 +54,9 @@ func TestSalary_NotPay_Empty(t *testing.T) {
 		{"phone", "+7 777 123 45 67"},
 		{"bare number no context", "Мы обрабатываем 5000 запросов в секунду"},
 		{"small dollar figure without period", "We raised $10M from investors and give a $10 credit"},
+		{"funding round", "Backed by $400 million in funding from top investors"},
+		{"brazilian perk", "Auxílio creche de R$500 por mês (daycare allowance)"},
+		{"learning budget", "Annual learning budget of $1,500 and a $500 home office stipend"},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

@@ -54,6 +54,12 @@ func New(cfg Config) (*Builder, error) {
 	return b, nil
 }
 
+// BoardsSummary is the state of company-board discovery, for the about page.
+type BoardsSummary struct {
+	Checked int // boards probed at least once
+	Active  int // boards with Go roles at their last check
+}
+
 type Result struct {
 	Feed  int // jobs in the feed
 	Pages int // vacancy pages written
@@ -61,7 +67,7 @@ type Result struct {
 
 // Build renders everything into a fresh directory and swaps it in at the end,
 // so a failed build leaves the previous site untouched.
-func (b *Builder) Build(jobs []models.Job, feeds map[string]models.FeedStatus, updated time.Time) (Result, error) {
+func (b *Builder) Build(jobs []models.Job, feeds map[string]models.FeedStatus, boards BoardsSummary, updated time.Time) (Result, error) {
 	out := filepath.Clean(b.cfg.OutDir)
 	if err := checkOutDir(out); err != nil {
 		return Result{}, err
@@ -80,10 +86,15 @@ func (b *Builder) Build(jobs []models.Job, feeds map[string]models.FeedStatus, u
 	w.copyAssets()
 
 	w.render(b.tmpl, "index.html", "index.html", indexPage{basePage: page, Jobs: cardsOf(feed, 30), Total: len(feed), Stats: statsOf(feed)})
-	w.render(b.tmpl, "about/index.html", "about.html", aboutPage{basePage: page, Feeds: feedRows(feeds)})
+	main, companies := feedRows(feeds)
+	w.render(b.tmpl, "about/index.html", "about.html", aboutPage{basePage: page, Feeds: main, Companies: companies, Boards: boards})
 	w.render(b.tmpl, "404.html", "404.html", page)
+	// Vacancy pages carry no build date, so a daily rebuild leaves the
+	// thousands of pages that did not change byte-identical.
+	stable := page
+	stable.Updated = time.Time{}
 	for _, j := range pages {
-		w.render(b.tmpl, "jobs/"+j.Slug+"/index.html", "job.html", jobPage{basePage: page, Job: viewOf(j), InFeed: inFeed(j, feed)})
+		w.render(b.tmpl, "jobs/"+j.Slug+"/index.html", "job.html", jobPage{basePage: stable, Job: viewOf(j), InFeed: inFeed(j, feed)})
 	}
 	w.json("data/jobs.json", feedJSON{Updated: updated, Jobs: cardsOf(feed, len(feed))})
 	w.file("sitemap.xml", b.sitemap(feed))
@@ -99,17 +110,34 @@ func (b *Builder) Build(jobs []models.Job, feeds map[string]models.FeedStatus, u
 	return Result{Feed: len(feed), Pages: len(pages)}, nil
 }
 
-// split returns the feed (open, recent, newest first) and all pages to write.
+// split returns the feed (open, newest first) and all pages to write. A post
+// in a channel stays in the feed for FeedDays; a listing on a company or job
+// board stays as long as the board still shows it, however old it is.
 func (b *Builder) split(jobs []models.Job) (feed, pages []models.Job) {
 	cutoff := b.now().Add(-time.Duration(b.cfg.FeedDays) * 24 * time.Hour)
 	pages = append(pages, jobs...)
 	sort.SliceStable(pages, func(i, k int) bool { return pages[i].PostedAt.After(pages[k].PostedAt) })
+	now := b.now()
 	for _, j := range pages {
-		if !j.Closed && j.PostedAt.After(cutoff) {
+		if !j.Closed && (j.PostedAt.After(cutoff) || listed(j, now)) {
 			feed = append(feed, j)
 		}
 	}
 	return feed, pages
+}
+
+// listedWithin is how fresh a board's confirmation must be. Boards with Go
+// roles are read daily, so three days covers a missed run or two.
+const listedWithin = 72 * time.Hour
+
+// listed reports a job that a board confirmed recently.
+func listed(j models.Job, now time.Time) bool {
+	for _, s := range j.Sources {
+		if s.Listing() && now.Sub(s.LastSeen) < listedWithin {
+			return true
+		}
+	}
+	return false
 }
 
 func inFeed(j models.Job, feed []models.Job) bool {

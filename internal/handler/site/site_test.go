@@ -44,7 +44,7 @@ func TestBuild_Jobs_FeedAndPages(t *testing.T) {
 	closed := sampleJob("aaa111", "Closed Go Developer", now.Add(-24*time.Hour))
 	closed.Closed = true
 
-	res, err := newBuilder(t, "docs").Build([]models.Job{fresh, old, closed}, nil, now)
+	res, err := newBuilder(t, "docs").Build([]models.Job{fresh, old, closed}, nil, BoardsSummary{}, now)
 	require.NoError(t, err)
 	assert.Equal(t, Result{Feed: 1, Pages: 3}, res)
 
@@ -80,7 +80,7 @@ func TestBuild_ForeignDir_Refused(t *testing.T) {
 	require.NoError(t, os.MkdirAll(out, 0o755))
 	require.NoError(t, os.WriteFile(filepath.Join(out, "important.md"), []byte("mine"), 0o644))
 
-	_, err := newBuilder(t, "docs").Build(nil, nil, time.Now())
+	_, err := newBuilder(t, "docs").Build(nil, nil, BoardsSummary{}, time.Now())
 
 	require.Error(t, err)
 	assert.FileExists(t, filepath.Join(out, "important.md"))

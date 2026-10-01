@@ -15,7 +15,8 @@ import (
 // filter, and the site labels every converted figure as approximate. Refresh
 // it when a currency moves enough to matter.
 var usdPerUnit = map[string]float64{
-	"USD": 1, "USDT": 1, "EUR": 1.08, "GBP": 1.27, "CHF": 1.12, "CAD": 0.73, "AUD": 0.66,
+	"USD": 1, "USDT": 1, "BRL": 0.18, "SGD": 0.74, "DKK": 0.145, "NOK": 0.093, "JPY": 0.0067, "BDT": 0.0083,
+	"MXN": 0.055, "ZAR": 0.055, "HKD": 0.128, "NZD": 0.6, "KRW": 0.00073, "HUF": 0.0027, "RON": 0.22, "EUR": 1.08, "GBP": 1.27, "CHF": 1.12, "CAD": 0.73, "AUD": 0.66,
 	"RUB": 1.0 / 82, "KZT": 1.0 / 510, "UAH": 1.0 / 41, "BYN": 1.0 / 3.3, "PLN": 0.25,
 	"AMD": 1.0 / 390, "GEL": 0.37, "AED": 0.27, "TRY": 1.0 / 34, "RSD": 1.0 / 108, "UZS": 1.0 / 12700,
 	"ILS": 0.27, "CZK": 0.043, "SEK": 0.095, "INR": 0.012,
@@ -27,6 +28,23 @@ var currencyWords = []struct {
 	code string
 }{
 	{regexp.MustCompile(`(?i)usdt`), "USDT"},
+	// Dollar-sign currencies other than USD come before "$" is read as USD.
+	{regexp.MustCompile(`(?i)r\$|\bbrl\b|reais`), "BRL"},
+	{regexp.MustCompile(`(?i)a\$|au\$`), "AUD"},
+	{regexp.MustCompile(`(?i)s\$|\bsgd\b`), "SGD"},
+	{regexp.MustCompile(`(?i)\bdkk\b`), "DKK"},
+	{regexp.MustCompile(`(?i)\bnok\b`), "NOK"},
+	{regexp.MustCompile(`(?i)\bsek\b`), "SEK"},
+	{regexp.MustCompile(`(?i)\bjpy\b|¥|yen\b`), "JPY"},
+	{regexp.MustCompile(`(?i)\bbdt\b|৳`), "BDT"},
+	{regexp.MustCompile(`(?i)\bmxn\b`), "MXN"},
+	{regexp.MustCompile(`(?i)\bzar\b`), "ZAR"},
+	{regexp.MustCompile(`(?i)\bhkd\b|hk\$`), "HKD"},
+	{regexp.MustCompile(`(?i)\bnzd\b|nz\$`), "NZD"},
+	{regexp.MustCompile(`(?i)\bkrw\b|₩`), "KRW"},
+	{regexp.MustCompile(`(?i)\bhuf\b`), "HUF"},
+	{regexp.MustCompile(`(?i)\bron\b`), "RON"},
+	{regexp.MustCompile(`(?i)\binr\b|₹`), "INR"},
 	{regexp.MustCompile(`(?i)\$|usd\b|долл\p{L}*|бакс\p{L}*`), "USD"},
 	{regexp.MustCompile(`(?i)€|eur\b|euro\b|евро`), "EUR"},
 	{regexp.MustCompile(`(?i)£|gbp\b`), "GBP"},
@@ -44,16 +62,17 @@ var currencyWords = []struct {
 }
 
 const (
-	num = `\d{1,3}(?:[ \x{00A0}\x{202F}.,’']\d{3})+|\d+(?:[.,]\d{1,2})?`
+	// Thousands groups may carry cents: "$203,101.00".
+	num = `\d{1,3}(?:[ \x{00A0}\x{202F}.,’']\d{3})+(?:[.,]\d{1,2})?|\d+(?:[.,]\d{1,2})?`
 	// Multipliers are validated after matching (see mult): RE2 has no
 	// lookahead, and "300 команд" must not read as 300 thousand.
-	mult = `(?:\s?(?:тыс\.?|тысяч\p{L}*|thousand|млн\.?|mln|kk|кк|k|к|m))?`
-	cur  = `(?:usdt|usd|eur|gbp|rub|rur|kzt|uah|byn|pln|chf|cad|aed|gel|amd|rsd|\$|€|£|₽|₸|₴|₾|руб\p{L}*|р\.|долл\p{L}*|бакс\p{L}*|евро|тенге|тг\.?|грн|лари|драм|динар\p{L}*)`
+	mult = `(?:\s?(?:тыс\.?|тысяч\p{L}*|thousand|million|billion|млн\.?|млрд\.?|mln|mio|bn|mn|kk|кк|k|к|m))?`
+	cur  = `(?:usdt|usd|r\$|a\$|au\$|s\$|hk\$|nz\$|brl|sgd|dkk|nok|sek|jpy|¥|bdt|৳|mxn|zar|hkd|nzd|krw|₩|huf|ron|inr|₹|eur|gbp|rub|rur|kzt|uah|byn|pln|chf|cad|aed|gel|amd|rsd|\$|€|£|₽|₸|₴|₾|руб\p{L}*|р\.|долл\p{L}*|бакс\p{L}*|евро|тенге|тг\.?|грн|лари|драм|динар\p{L}*)`
 )
 
 var (
 	// [cur] num[mult] [cur] (- | – | to | до) [cur] num[mult] [cur]
-	rangeRe = regexp.MustCompile(`(?i)(` + cur + `)?\s?(` + num + `)(` + mult + `)\s?(` + cur + `)?\s*(?:-|–|—|to|до|\.\.)\s*(` + cur + `)?\s?(` + num + `)(` + mult + `)\s?(` + cur + `)?`)
+	rangeRe = regexp.MustCompile(`(?i)(` + cur + `)?\s?(` + num + `)(` + mult + `)\s?(` + cur + `)?\s*(?:-|–|—|to|до|and|\.\.)\s*(` + cur + `)?\s?(` + num + `)(` + mult + `)\s?(` + cur + `)?`)
 	// "от 300 000 ₽", "до $150k", "up to 6000 EUR", "from €4k", or a bare "5000$"
 	singleRe = regexp.MustCompile(`(?i)(от|from|до|up to|upto|starting at|min\.?)?\s*(` + cur + `)?\s?(` + num + `)(` + mult + `)\s?(` + cur + `)?`)
 
@@ -74,10 +93,24 @@ func Salary(s string) models.Salary {
 	return models.Salary{}
 }
 
+// explicitCode returns an ISO code the line spells out next to "$" figures,
+// for dollar-sign currencies other than USD.
+func explicitCode(line string) string {
+	if !strings.Contains(line, "$") {
+		return ""
+	}
+	for _, code := range []string{"CAD", "AUD", "SGD", "NZD", "HKD", "MXN"} {
+		if regexp.MustCompile(`\b` + code + `\b`).MatchString(strings.ToUpper(line)) {
+			return code
+		}
+	}
+	return ""
+}
+
 // moneyHints are cheap substring checks that gate the expensive regexes: a
 // line with no digit, no currency mark and no pay word cannot hold a salary.
 var moneyHints = []string{
-	"$", "€", "£", "₽", "₸", "₴", "₾", "usd", "eur", "gbp", "rub", "rur", "kzt", "uah", "byn", "pln", "chf", "cad", "aed",
+	"$", "€", "£", "₽", "₸", "₴", "₾", "¥", "₩", "₹", "৳", "dkk", "nok", "sek", "jpy", "bdt", "usd", "eur", "gbp", "rub", "rur", "kzt", "uah", "byn", "pln", "chf", "cad", "aed",
 	"gel", "amd", "rsd", "руб", "р.", "тенге", "тг", "грн", "долл", "бакс", "евро", "лари", "драм", "динар", "zł",
 	"зп", "з/п", "зарплат", "оклад", "вилк", "доход", "компенсац", "оплат", "ставк", "salary", "compensation", "pay",
 	"rate", "budget", "бюджет", "gross", "net", "на руки", "base",
@@ -96,8 +129,20 @@ func mayHoldSalary(line string) bool {
 	return false
 }
 
+// notPay are lines with money that is not the salary: funding, perks and
+// allowances. They are skipped unless they also name the pay itself.
+var (
+	notPay  = regexp.MustCompile(`(?i)funding|raised|valuation|revenue|\barr\b|series [a-e]\b|allowance|stipend|reimburs|perk|voucher|gift card|credit|learning budget|education budget|equipment|home office|daycare|childcare|gym|wellness|insurance|401\(?k|pension|bonus|equity|stock|опцион|бонус|компенсаци\p{L}* (?:спорт|обуч|питан|фитнес)`)
+	payWord = regexp.MustCompile(`(?i)salary|base pay|pay range|compensation range|annual (?:base|pay)|wage|зарплат|вилк|оклад|(?:^|[^\p{L}])зп(?:[^\p{L}]|$)|з/п|на руки`)
+)
+
 func salaryInLine(line string) (models.Salary, bool) {
 	if !mayHoldSalary(line) {
+		return models.Salary{}, false
+	}
+	// A code stated once for the whole line ("$130,000-150,000 CAD").
+	lineCode := explicitCode(line)
+	if notPay.MatchString(line) && !payWord.MatchString(line) {
 		return models.Salary{}, false
 	}
 	ctx := salaryContext.MatchString(line)
@@ -109,6 +154,9 @@ func salaryInLine(line string) (models.Salary, bool) {
 	for _, m := range rangeRe.FindAllStringSubmatchIndex(line, -1) {
 		g := groups(line, m)
 		code := firstCurrency(g[1], g[4], g[5], g[8])
+		if code == "USD" && lineCode != "" {
+			code = lineCode
+		}
 		if code == "" && !ctx {
 			continue
 		}
@@ -244,7 +292,9 @@ func parseAmount(n, multiplier string) int {
 	m := strings.ToLower(strings.TrimSpace(multiplier))
 	switch {
 	case m == "":
-	case strings.HasPrefix(m, "млн") || m == "mln" || m == "m" || m == "kk" || m == "кк":
+	case m == "billion" || m == "bn" || strings.HasPrefix(m, "млрд"):
+		v *= 1_000_000_000 // "$2 billion raised": implausible, so dropped
+	case strings.HasPrefix(m, "млн") || m == "mln" || m == "m" || m == "mn" || m == "mio" || m == "million" || m == "kk" || m == "кк":
 		v *= 1_000_000
 	default:
 		v *= 1000
@@ -252,9 +302,17 @@ func parseAmount(n, multiplier string) int {
 	return int(math.Round(v))
 }
 
+// firstCurrency names the currency of a figure. An explicit code anywhere
+// around it beats a bare "$": "$130,000-150,000 CAD" is Canadian dollars.
 func firstCurrency(parts ...string) string {
+	dollar := false
 	for _, p := range parts {
+		p = strings.TrimSpace(p)
 		if p == "" {
+			continue
+		}
+		if p == "$" {
+			dollar = true
 			continue
 		}
 		for _, c := range currencyWords {
@@ -262,6 +320,9 @@ func firstCurrency(parts ...string) string {
 				return c.code
 			}
 		}
+	}
+	if dollar {
+		return "USD"
 	}
 	return ""
 }

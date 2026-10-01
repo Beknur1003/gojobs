@@ -11,3 +11,14 @@
 
 # macOS
 .DS_Store
+
+# Downloaded-description cache for company boards: rebuilt if lost.
+/cache/
+
+# The full store with every description (~40 MB, rewritten daily). It lives on
+# the machine that runs the job and can be rebuilt from the sources; the
+# registry of company boards (data/boards.json) and the site are committed.
+/data/jobs.json
+
+# Session handoff notes for the next Claude Code session (local only).
+/HANDOFF.md

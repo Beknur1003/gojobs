@@ -30,7 +30,7 @@
   <div class="wrap footer-row">
     <p>Бесплатно и без регистрации. Вакансии собраны из открытых источников; у каждой есть ссылка на оригинал.</p>
     <p>
-      Обновлено {{date .Updated}} ·
+      {{if not .Updated.IsZero}}Обновлено {{date .Updated}} ·{{end}}
       <a href="{{path "/about/"}}">Источники и статус</a>{{if .Repo}} ·
       <a href="{{.Repo}}">Код на GitHub</a> ·
       <a href="{{.Repo}}/issues/new?title=Добавить+источник">Предложить канал</a>{{end}}

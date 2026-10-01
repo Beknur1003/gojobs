@@ -12,7 +12,7 @@ export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/local/go/bin:$HOME/go/bin:$PA
 
 go run ./cmd/gojobs run
 
-git add data/jobs.json docs
+git add data docs
 if git diff --cached --quiet; then
   echo "nothing changed"
   exit 0

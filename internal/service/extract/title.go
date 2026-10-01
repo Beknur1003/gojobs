@@ -11,7 +11,7 @@ var (
 	titleLabel  = regexp.MustCompile(`(?i)^(?:вакансия|позиция|должность|роль|position|role|job title|title|vacancy|open position)\s*[:—–-]\s*(.+)$`)
 	companyLbl  = regexp.MustCompile(`(?i)^(?:компания|company|работодатель|employer|наниматель)\s*[:—–-]\s*(.+)$`)
 	roleLine    = regexp.MustCompile(`(?i)developer|разработчик|engineer|инженер|программист|golang|\bgo\b|lead|лид|backend|бэкенд|бекенд|architect|архитектор|\bsre\b|devops|\bcto\b|head of|руководител|стаж[её]р|intern`)
-	leadingJunk = regexp.MustCompile(`^[\s•·*\-–—>|:.,!#]+`)
+	leadingJunk = regexp.MustCompile(`^[\s•·*\-–—>|:,!#]+`) // not "." : ".NET"
 
 	// "Title - Company" on one line: the tail is a short name.
 	titleCompany = regexp.MustCompile(`^(.{6,}?)\s+[-–—]\s+([^-–—]{2,30})$`)

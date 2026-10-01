@@ -231,10 +231,9 @@ func (s *Himalayas) Fetch(ctx context.Context) ([]models.Posting, error) {
 		var resp himalayasPage
 		u := "https://himalayas.app/jobs/api/search?q=golang&page=" + strconv.Itoa(page)
 		if err := s.http.GetJSON(ctx, u, &resp); err != nil {
-			if len(out) > 0 {
-				return out, nil // keep what the earlier pages gave
-			}
-			return nil, fmt.Errorf("himalayas.Fetch: %w", err)
+			// Keep what earlier pages gave, but report the failure: the roles
+			// on the unread pages must not look closed.
+			return out, fmt.Errorf("himalayas.Fetch page %d: %w", page, err)
 		}
 
 		for _, j := range resp.Jobs {
@@ -269,10 +268,11 @@ func (s *Himalayas) Fetch(ctx context.Context) ([]models.Posting, error) {
 		}
 
 		if len(resp.Jobs) == 0 || resp.Offset+len(resp.Jobs) >= resp.TotalCount {
-			break
+			return out, nil
 		}
 	}
-	return out, nil
+	// Ran out of pages before the end: the unread roles must not look closed.
+	return out, fmt.Errorf("himalayas.Fetch: read %d pages of a larger result", himalayasMaxPages)
 }
 
 // ---------------------------------------------------------------- Jobicy

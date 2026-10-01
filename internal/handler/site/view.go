@@ -47,7 +47,9 @@ type jobPage struct {
 
 type aboutPage struct {
 	basePage
-	Feeds []feedRow
+	Feeds     []feedRow // channels and job boards
+	Companies []feedRow // company boards that hold jobs now
+	Boards    BoardsSummary
 }
 
 type feedJSON struct {
@@ -129,10 +131,12 @@ func kindOf(source string) string {
 	switch source {
 	case "telegram", "hn":
 		return source
-	case "greenhouse", "lever", "ashby":
+	case "freehire-stream":
+		return "telegram"
+	case "greenhouse", "lever", "ashby", "workday", "freehire":
 		return "company"
 	default:
-		return "board"
+		return "board" // includes "freehire-board": hh, Habr Career and the like via freehire
 	}
 }
 
@@ -169,7 +173,8 @@ type feedRow struct {
 	OK               bool
 }
 
-func feedRows(feeds map[string]models.FeedStatus) []feedRow {
+// feedRows splits feeds into channels and job boards, and company boards.
+func feedRows(feeds map[string]models.FeedStatus) (main, companies []feedRow) {
 	rows := make([]feedRow, 0, len(feeds))
 	for name, st := range feeds {
 		kind, id, _ := strings.Cut(name, ":")
@@ -177,8 +182,9 @@ func feedRows(feeds map[string]models.FeedStatus) []feedRow {
 		switch kind {
 		case "telegram":
 			r.Name, r.Link = "@"+id, "https://t.me/s/"+id
-		case "greenhouse", "lever", "ashby":
-			r.Name = id + " · " + kind
+		case "greenhouse", "lever", "ashby", "workday":
+			name, _, _ := strings.Cut(id, "|")
+			r.Name = name + " · " + kind
 		default:
 			r.Name, r.Link = boardNames[kind], boardLinks[kind]
 		}
@@ -190,25 +196,37 @@ func feedRows(feeds map[string]models.FeedStatus) []feedRow {
 		}
 		return rows[i].Name < rows[k].Name
 	})
-	return rows
+	for _, r := range rows {
+		if kindOrder(r.Kind) == 2 {
+			companies = append(companies, r)
+		} else {
+			main = append(main, r)
+		}
+	}
+	return main, companies
 }
 
 var boardNames = map[string]string{
 	"remoteok": "Remote OK", "remotive": "Remotive", "himalayas": "Himalayas", "jobicy": "Jobicy",
-	"hn": "HN: Who is hiring", "weworkremotely": "We Work Remotely",
+	"hn": "HN: Who is hiring", "weworkremotely": "We Work Remotely", "djinni": "Djinni",
+	"golangprojects": "Golang Projects", "arbeitnow": "Arbeitnow", "workingnomads": "Working Nomads",
+	"freehire": "freehire (сайты компаний через открытый API)",
 }
 
 var boardLinks = map[string]string{
 	"remoteok": "https://remoteok.com/remote-golang-jobs", "remotive": "https://remotive.com",
 	"himalayas": "https://himalayas.app/jobs/golang", "jobicy": "https://jobicy.com",
 	"hn": "https://news.ycombinator.com/submitted?id=whoishiring", "weworkremotely": "https://weworkremotely.com",
+	"djinni": "https://djinni.co/jobs/?primary_keyword=Golang", "golangprojects": "https://www.golangprojects.com",
+	"arbeitnow": "https://www.arbeitnow.com", "workingnomads": "https://www.workingnomads.com",
+	"freehire": "https://freehire.me",
 }
 
 func kindOrder(k string) int {
 	switch k {
 	case "telegram":
 		return 0
-	case "greenhouse", "lever", "ashby":
+	case "greenhouse", "lever", "ashby", "workday":
 		return 2
 	default:
 		return 1

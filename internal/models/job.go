@@ -36,6 +36,11 @@ type Posting struct {
 	// GoOnly marks sources that already filtered to Go (a Go channel, an API
 	// queried with tag=golang). Rules still check the text, just less strictly.
 	GoOnly bool
+
+	// Stub means the source only confirmed that a listing it served before is
+	// still open; its description was not downloaded again. A stub refreshes
+	// a known job and is otherwise ignored.
+	Stub bool
 }
 
 // Job is a normalized vacancy as it is stored and published. Several postings
@@ -79,16 +84,28 @@ type SourceRef struct {
 	Name       string
 	ExternalID string
 	URL        string
-	PostedAt   time.Time
-	LastSeen   time.Time // last run whose fetch of Feed still returned it
+	// ApplyURL is this copy's own link to the posting. A merged job keeps one
+	// ApplyURL for its button, but every copy's link stays here so all the
+	// posting ids the job stands for remain known to deduplication.
+	ApplyURL string
+	PostedAt time.Time
+	LastSeen time.Time // last run whose fetch of Feed still returned it
 }
 
-// Listing reports whether the source is a live list of open roles (a board,
-// a company page) rather than a stream of posts (a channel, a thread).
-// Only listings can tell that a vacancy has closed.
-func (s SourceRef) Listing() bool {
-	return s.Source != "telegram" && s.Source != "hn"
+// streams are sources read as a window of recent posts, not as the complete
+// list of open roles: a role missing from today's window may still be open.
+// Channels and threads, but also feeds whose API only serves the newest page
+// or few (Arbeitnow, RSS feeds, Remote OK's latest-100).
+var streams = map[string]bool{
+	"telegram": true, "hn": true, "arbeitnow": true, "workingnomads": true, "djinni": true,
+	"golangprojects": true, "weworkremotely": true, "remoteok": true,
+	"freehire-stream": true, // channel posts relayed by freehire
 }
+
+// Listing reports whether the source is a complete, live list of open roles
+// (a company board, a searchable job board) rather than a stream of posts.
+// Only a listing can tell that a vacancy has closed; stream posts age out.
+func (s SourceRef) Listing() bool { return !streams[s.Source] }
 
 // HasDirectContact reports whether a candidate can write to a human directly,
 // which is the main reason this board exists.
@@ -169,4 +186,16 @@ type FeedStatus struct {
 	LastRun time.Time
 	Count   int // postings the last successful fetch returned
 	Error   string
+}
+
+// BoardStatus is the last check of one company board in the discovery
+// registry: thousands of boards are probed in rotation, and only those that
+// had Go roles at their last check are fetched every day.
+type BoardStatus struct {
+	Checked  time.Time
+	OK       bool // false: the board is gone or failed
+	Postings int  // listings the board returned
+	Go       int  // of those, Go vacancies
+	Fails    int  // consecutive failed checks
+	Error    string
 }

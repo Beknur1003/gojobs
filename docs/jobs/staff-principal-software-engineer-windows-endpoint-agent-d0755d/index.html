@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="ru" data-base="/gojobs">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="/gojobs/assets/style.css">
+<link rel="icon" href="/gojobs/assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Go Jobs" href="/gojobs/feed.xml">
+
+
+<title>Staff/Principal Software Engineer-Windows Endpoint Agent — cloudzero | Go Jobs</title>
+<meta name="description" content="Staff/Principal Software Engineer-Windows Endpoint Agent · cloudzero · $220 000 – $290 000/год · Удалёнка. About the Role CloudZero&#39;s AI cost intelligence starts at the endpoint. Our macOS collector already captures what coding agents and AI workloads actually cost on the developer&#39;s machine: token usage, cost per workflow, latency, and where…">
+<link rel="canonical" href="https://beknur1003.github.io/gojobs/jobs/staff-principal-software-engineer-windows-endpoint-agent-d0755d/">
+<meta property="og:title" content="Staff/Principal Software Engineer-Windows Endpoint Agent — cloudzero">
+<meta property="og:description" content="Staff/Principal Software Engineer-Windows Endpoint Agent · cloudzero · $220 000 – $290 000/год · Удалёнка. About the Role CloudZero&#39;s AI cost intelligence starts at the endpoint. Our macOS collector already captures what coding agents and AI workloads actually cost on the developer&#39;s machine: token usage, cost per workflow, latency, and where…">
+<meta property="og:url" content="https://beknur1003.github.io/gojobs/jobs/staff-principal-software-engineer-windows-endpoint-agent-d0755d/">
+<meta property="og:type" content="article">
+
+
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="/gojobs/" aria-label="Go Jobs, на главную">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M7.5 12.5h5.5M10 9.5h6.5M9 15.5h5" stroke="var(--bg)" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </span>
+      <span class="brand-name">Go Jobs</span>
+    </a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="/gojobs/">Вакансии</a>
+      <a href="/gojobs/about/">О проекте</a>
+      <a href="/gojobs/feed.xml" class="nav-rss" title="RSS со свежими вакансиями">RSS</a>
+    </nav>
+  </div>
+</header>
+
+
+<main class="wrap job">
+  <a class="back" href="/gojobs/">← Все вакансии</a>
+
+  
+  
+
+  <header class="job-head">
+    <h1>Staff/Principal Software Engineer-Windows Endpoint Agent</h1>
+    <p class="job-meta">
+      <span class="company">cloudzero</span>
+      <span>Remote</span>
+      <span>опубликовано <time datetime="2026-08-31T19:29:26Z" data-ts="1788204566">31 августа 2026</time></span>
+    </p>
+    <div class="chips">
+      <span class="chip chip-format">Удалёнка</span>
+      <span class="chip chip-grade">Lead</span>
+      <span class="chip">Полная занятость</span>
+      
+      
+    </div>
+  </header>
+
+  <div class="job-layout">
+    <article class="job-body">
+      
+      <div class="chips job-stack" aria-label="Стек"><span class="chip">C&#43;&#43;</span><span class="chip">TypeScript</span><span class="chip">AI/LLM</span></div>
+      
+      <div class="post">About the Role
+
+CloudZero&#39;s AI cost intelligence starts at the endpoint. Our macOS collector already captures what coding agents and AI workloads actually cost on the developer&#39;s machine: token usage, cost per workflow, latency, and where the value goes. Windows is next, and it is the platform most of our enterprise customers run on.
+
+We are not starting from zero. We have a working proof of concept, a Windows Filtering Platform callout driver that redirects AI provider traffic to a user-mode relay, and that relay shares the same Go capture core as our macOS agent. What we need now is an engineer who can take that from a test-signed lab prototype to something we can sign, ship, and run on customer machines without ever getting in the user&#39;s way.
+
+This is real Windows systems work. You will own the kernel-mode driver, the user-mode service, the signing and packaging story, and the fail-open behavior that keeps a customer&#39;s network working even when our agent does not. A bug here can blue-screen a machine or break someone&#39;s connectivity, so the bar for care is high and the ownership is real. You will set the pattern that every endpoint after Windows follows.
+
+What You’ll Do
+
+•
+Take the Windows agent from proof of concept to a signed, installable, auto-updating product that runs on Windows.
+
+•
+Own the WFP callout driver (KMDF, C/C++) and the user-mode Go relay that reuses our shared capture core, and keep the two in lockstep as both evolve
+
+•
+Solve production kernel-mode driver signing, EV certificate, Microsoft attestation, Secure Boot, without weakening code integrity on the customer&#39;s machine
+
+•
+Build the installer, update, and clean uninstall path (MSI or MSIX), and the enterprise deployment story
+
+•
+Design for fail-open. Non-AI traffic must never touch our code, and a driver or service failure must never break the endpoint
+
+•
+Manage local CA trust and TLS interception, so it is safe, transparent, and fully reversible
+
+•
+Build the endpoint client in Electron and TypeScript, and work directly with product on what the Windows agent exposes to the customer and where it needs to reach parity with macOS
+
+•
+Raise the bar for the engineers around you through code review, design feedback, and direct mentorship
+
+What You Bring
+
+•
+Deep Windows systems experience. You have shipped software that runs as a service, a driver, or an endpoint agent on Windows, not just applications on top of it
+
+•
+Kernel-mode or low-level Windows development. KMDF or WDM, the Windows Driver Kit, and comfort debugging with WinDbg
+
+•
+Working knowledge of Windows networking internals, the Windows Filtering Platform or a comparable traffic interception approach
+
+•
+Proficiency in C or C++ for the driver side, in Go or another systems language for the user-mode side. You can read and reason about code in a language you did not write
+
+•
+Comfort spanning the stack from a kernel driver to a desktop UI, or the self-awareness to say which end is your strength and where you will lean on the team
+
+•
+Hands-on experience with Windows code signing and the realities of shipping a signed kernel driver, Authenticode, EV certificates, and Microsoft&#39;s attestation or WHQL process
+
+•
+A track record of shipping endpoint software to machines you do not control, with the instinct to design for failure, cleanup, and least privilege
+
+•
+The judgment to know when a kernel-level solution is worth it and when it is not, and the ability to explain that tradeoff to engineers, product, and leadership
+
+•
+A track record of shipping, not just designing
+
+Bonus If You Have...
+
+•
+Built endpoint security, EDR, DLP, or network monitoring agents at enterprise scale
+
+•
+Experience with TLS interception, MITM proxies, or certificate trust management
+
+•
+Packaging and distribution experience with MSIX, MSI or WiX, or auto-update frameworks
+
+•
+Familiarity with enterprise Windows deployment through Intune, MDM, or Group Policy
+
+•
+Cross-platform endpoint experience spanning Windows and macOS
+
+•
+You use AI coding tools in your own work and can describe your workflow and where they fail you
+
+About CloudZero
+CloudZero is the AI ROI Company. We built the financial control plane for AI: the system finance, IT, and engineering use to connect every AI dollar to the outcome it produced. Across every provider. In real time.
+AI spend is the fastest-growing line on enterprise P&amp;Ls and the least understood. Only 14% of CFOs can prove AI ROI today. CloudZero answers the question no one else can: what did it cost to produce this outcome, for this customer, on this model.
+The largest cloud spenders on the planet already run on CloudZero, including Coinbase, Duolingo, DoorDash, and Shutterstock. We processed 14 trillion billing events in the last twelve months. We&#39;re the first listed partner on Anthropic&#39;s cost and usage API. We&#39;ve raised over $119 million, including a $56 million Series C backed by leading venture capital firms.
+
+Why Join Our Team?
+At CloudZero, you’ll find a collaborative, fast-moving environment where your work makes a direct impact. We’re a team that values ownership, creativity, and curiosity — and we’re tackling some of the most complex challenges in the cloud space. If you’re excited by working with cutting-edge technology, driving meaningful outcomes, and growing with a company that’s scaling fast, we’d love to hear from you!</div>
+      <p class="caution">Вакансия собрана автоматически из открытого источника. Перед тем как отправлять документы, проверьте компанию. Никогда не платите за трудоустройство и не устанавливайте программы по просьбе «рекрутера».</p>
+    </article>
+
+    <aside class="job-side">
+      
+      <section class="side-box">
+        <h2 class="side-title">Зарплата</h2>
+        <p class="salary-big">$220 000 – $290 000/год</p>
+        <p class="muted">≈ $18 300 – 24 200 в месяц, по фиксированному курсу</p>
+      </section>
+      
+
+      <section class="side-box apply">
+        <h2 class="side-title">Как откликнуться</h2>
+        
+        
+        
+        <a class="btn" href="https://jobs.ashbyhq.com/cloudzero/c88a68f3-8d84-4925-b7bb-95f7cf45ae9a/application" target="_blank" rel="noopener">
+          <span class="btn-label">Откликнуться на сайте</span><span class="btn-value">jobs.ashbyhq.com ↗</span>
+        </a>
+        
+        
+        
+      </section>
+
+      <section class="side-box">
+        <h2 class="side-title">Источник</h2>
+        <ul class="sources">
+          
+          <li><a href="https://jobs.ashbyhq.com/cloudzero/c88a68f3-8d84-4925-b7bb-95f7cf45ae9a" target="_blank">cloudzero (Ashby) ↗</a><span class="muted"> · <time data-ts="1788204566">31 августа 2026</time></span></li>
+          
+        </ul>
+      </section>
+    </aside>
+  </div>
+  
+</main>
+
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <p>Бесплатно и без регистрации. Вакансии собраны из открытых источников; у каждой есть ссылка на оригинал.</p>
+    <p>
+      
+      <a href="/gojobs/about/">Источники и статус</a> ·
+      <a href="https://github.com/Beknur1003/gojobs">Код на GitHub</a> ·
+      <a href="https://github.com/Beknur1003/gojobs/issues/new?title=Добавить+источник">Предложить канал</a>
+    </p>
+  </div>
+</footer>
+
+<script src="/gojobs/assets/app.js" defer></script>
+</body>
+</html>

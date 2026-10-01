@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="ru" data-base="/gojobs">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="/gojobs/assets/style.css">
+<link rel="icon" href="/gojobs/assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Go Jobs" href="/gojobs/feed.xml">
+
+
+<title>Software Engineer, Networking &amp; Linux Systems — Avride | Go Jobs</title>
+<meta name="description" content="Software Engineer, Networking &amp; Linux Systems · Avride. About the Team We build the foundational system software and embedded Linux platform that run our autonomous vehicles and delivery robots. Modern autonomous platforms are essentially rolling, edge data centers: high-throughput cameras…">
+<link rel="canonical" href="https://beknur1003.github.io/gojobs/jobs/software-engineer-networking-linux-systems-2998a6/">
+<meta property="og:title" content="Software Engineer, Networking &amp; Linux Systems — Avride">
+<meta property="og:description" content="Software Engineer, Networking &amp; Linux Systems · Avride. About the Team We build the foundational system software and embedded Linux platform that run our autonomous vehicles and delivery robots. Modern autonomous platforms are essentially rolling, edge data centers: high-throughput cameras…">
+<meta property="og:url" content="https://beknur1003.github.io/gojobs/jobs/software-engineer-networking-linux-systems-2998a6/">
+<meta property="og:type" content="article">
+
+
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="/gojobs/" aria-label="Go Jobs, на главную">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M7.5 12.5h5.5M10 9.5h6.5M9 15.5h5" stroke="var(--bg)" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </span>
+      <span class="brand-name">Go Jobs</span>
+    </a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="/gojobs/">Вакансии</a>
+      <a href="/gojobs/about/">О проекте</a>
+      <a href="/gojobs/feed.xml" class="nav-rss" title="RSS со свежими вакансиями">RSS</a>
+    </nav>
+  </div>
+</header>
+
+
+<main class="wrap job">
+  <a class="back" href="/gojobs/">← Все вакансии</a>
+
+  
+  
+
+  <header class="job-head">
+    <h1>Software Engineer, Networking &amp; Linux Systems</h1>
+    <p class="job-meta">
+      <span class="company">Avride</span>
+      <span>Austin, Texas</span>
+      <span>опубликовано <time datetime="2026-08-05T15:34:17Z" data-ts="1785944057">5 августа 2026</time></span>
+    </p>
+    <div class="chips">
+      
+      
+      
+      
+      <span class="chip chip-format">Релокация</span>
+    </div>
+  </header>
+
+  <div class="job-layout">
+    <article class="job-body">
+      
+      <div class="chips job-stack" aria-label="Стек"><span class="chip">Linux</span><span class="chip">Python</span><span class="chip">C&#43;&#43;</span><span class="chip">AI/LLM</span></div>
+      
+      <div class="post">About the Team
+
+We build the foundational system software and embedded Linux platform that run our autonomous vehicles and delivery robots. Modern autonomous platforms are essentially rolling, edge data centers: high-throughput cameras, LiDARs, compute nodes, and managed switches must communicate with ultra-low latency and microsecond-level time synchronization. Simultaneously, the vehicle must maintain robust, high-availability connectivity to the cloud via cellular and Wi-Fi networks while moving through unpredictable physical environments. Our team owns this foundation end-to-end: the on-board network architecture, customized Linux images, fleet-wide OS updates, and the connectivity daemons that keep our fleet online. When our layer works seamlessly, the autonomy stack above it doesn&#39;t have to think about hardware, packets, or clocks — and that is exactly the goal.
+
+About the Role
+
+We are looking for a Senior Systems &amp; Networking Engineer to own, scale, and harden the communication fabric of our autonomous vehicles. You will focus deeply on both our complex, multi-gigabit internal network (connecting safety-critical sensors and high-compute nodes using the latest Automotive Ethernet and TSN standards) and external connectivity (high-throughput 5G telemetry), debugging complex issues across the Linux stack and target hardware.
+
+This is a high-impact, hands-on role with broad technical ownership. You will collaborate closely with core platform and hardware engineers to evolve our networking architecture. Your work spans the entire systems stack — from low-level optimizations like NIC ring buffer tuning and microsecond PTP/gPTP synchronization, to architecting high-performance Go daemons for multi-carrier cellular bonding and failover.
+
+What you&#39;ll do
+
+Internal Networking &amp; Time Synchronization
+
+•
+
+Safety-Critical Infrastructure: Architect, configure, and optimize the internal fault-tolerant network linking on-board compute nodes, controllers, and high-bandwidth sensors (LiDARs, cameras).
+
+•
+
+Clock Synchronization: Drive the design and reliability of vehicle-wide time synchronization utilizing PTP / IEEE 802.1AS (gPTP) for safety-critical data paths.
+
+•
+
+Switch &amp; Hardware Management: Configure and troubleshoot managed automotive/industrial switches (e.g., Marvell, Broadcom), VLAN segmentation, and Automotive Ethernet to ensure deterministic traffic isolation.
+
+External Connectivity &amp; Platform Systems
+
+•
+
+Engineered Connectivity: Design robust failover mechanisms and network bonding frameworks (aggregating multiple LTE/5G carriers) to ensure zero-drop external links.
+
+•
+
+Linux Performance Tuning: Debug and tune low-level networking parameters (NIC buffers, hardware offloads, interrupt handling, and NAPI behavior) for high-throughput, low-latency performance.
+
+•
+
+Systems Software Development: Write and maintain reliable system-level software, telemetry agents, and daemons in Go and Python for x86_64 and ARM64 (NVIDIA) platforms.
+
+•
+
+Hardware-Software Integration: Assist the embedded Linux team with hardware bring-up, debugging physical interfaces (PCIe, Ethernet), and integrating networking components into our custom OS deployment.
+
+•
+
+Observability: Build end-to-end monitoring for the networking stack, exporting granular performance metrics so the fleet&#39;s connectivity health is debuggable at scale.
+
+What you&#39;ll need
+
+•
+
+Systems Programming Depth: Strong track record in system-level software development with deep expertise in Linux systems and networking fundamentals (roughly mid to senior level — we care about depth, not a year count).
+
+•
+
+Advanced Networking Expertise: Hands-on experience with IP routing, VLANs, firewalling (nftables/iptables), and expert-level packet troubleshooting (tcpdump, Wireshark, etc.).
+
+•
+
+Language Proficiency: Solid experience programming in Go and Python, with a willingness to work interchangeably between them. Comfort reading and understanding C/C++ for lower-level driver and kernel debugging.
+
+•
+
+Hardware-Boundary Debugging: A methodical approach to debugging complex problems that span across user-space code, Linux kernels, drivers, and physical hardware interfaces.
+
+•
+
+Location: Austin, TX (On-site / Hybrid. This role requires close collaboration with real hardware and lab tools in our Austin facility).
+
+Nice to have
+
+•
+
+Automotive / Edge Networking: Prior experience with Automotive Ethernet (100/1000BASE-T1) and TSN (Time-Sensitive Networking).
+
+•
+
+Time-Sync Expertise: Hands-on exposure to implementing or debugging PTP, ptp4l, and hardware timestamping in distributed systems.
+
+•
+
+Embedded / Hardware Tools: Comfort using lab tools (serial consoles, JTAG, I2C/SPI) to isolate hardware faults vs. software bugs on ARM64 platforms.
+
+•
+
+Real-Time Linux: Experience with real-time OS tuning, cgroups, CPU pinning, and scheduling priorities.
+
+•
+
+Nix / NixOS Experience: Familiarity with the Nix ecosystem (our deployment platform is built on NixOS).
+
+#LI-MS1
+
+Candidates are required to be authorized to work in the U.S. The employer is not offering relocation, sponsorship, and remote work options are not available.
+
+Avride is an equal opportunity employer and committed to providing reasonable accommodations to qualified applicants and employees with disabilities to ensure they have equal access to employment opportunities. Avride complies with the Americans with Disabilities Act (ADA), if you need a reasonable accommodation to assist with the application or hiring process, or to perform the essential functions of a job, please email <a href="mailto:jobs@avride.ai">jobs@avride.ai</a>.</div>
+      <p class="caution">Вакансия собрана автоматически из открытого источника. Перед тем как отправлять документы, проверьте компанию. Никогда не платите за трудоустройство и не устанавливайте программы по просьбе «рекрутера».</p>
+    </article>
+
+    <aside class="job-side">
+      
+
+      <section class="side-box apply">
+        <h2 class="side-title">Как откликнуться</h2>
+        
+        
+        
+        <a class="btn" href="https://job-boards.greenhouse.io/avride/jobs/4354179009" target="_blank" rel="noopener">
+          <span class="btn-label">Откликнуться на сайте</span><span class="btn-value">job-boards.greenhouse.io ↗</span>
+        </a>
+        
+        
+        
+      </section>
+
+      <section class="side-box">
+        <h2 class="side-title">Источник</h2>
+        <ul class="sources">
+          
+          <li><a href="https://job-boards.greenhouse.io/avride/jobs/4354179009" target="_blank">Avride (Greenhouse) ↗</a><span class="muted"> · <time data-ts="1785944057">5 августа 2026</time></span></li>
+          
+        </ul>
+      </section>
+    </aside>
+  </div>
+  
+</main>
+
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <p>Бесплатно и без регистрации. Вакансии собраны из открытых источников; у каждой есть ссылка на оригинал.</p>
+    <p>
+      
+      <a href="/gojobs/about/">Источники и статус</a> ·
+      <a href="https://github.com/Beknur1003/gojobs">Код на GitHub</a> ·
+      <a href="https://github.com/Beknur1003/gojobs/issues/new?title=Добавить+источник">Предложить канал</a>
+    </p>
+  </div>
+</footer>
+
+<script src="/gojobs/assets/app.js" defer></script>
+</body>
+</html>

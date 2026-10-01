@@ -35,12 +35,14 @@ func Normalize(p models.Posting, noise Noise) models.Job {
 	}
 	links = DropFooterLinks(links, strings.TrimSpace(removed), text)
 
+	// Free-form posts (a channel, an HN comment) have no fields: both title
+	// and company are read from the text. A source that supplies a title has
+	// already said what it knows; guessing its company from the body turns
+	// section headings ("Requirements") into employers.
 	title, company := strings.TrimSpace(p.Title), strings.TrimSpace(p.Company)
-	if title == "" || company == "" {
+	if title == "" {
 		t, c := TitleAndCompany(text)
-		if title == "" {
-			title = t
-		}
+		title = t
 		if company == "" {
 			company = c
 		}
@@ -55,6 +57,12 @@ func Normalize(p models.Posting, noise Noise) models.Job {
 	}
 
 	withURLs := p.Source == "telegram" || p.Source == "hn"
+	var contacts []models.Contact
+	if employerSources[p.Source] {
+		contacts = hiringInboxes(text, links)
+	} else {
+		contacts = Contacts(text, links, noise.Contacts, withURLs)
+	}
 	id := ID(p.Source, p.ExternalID)
 
 	return models.Job{
@@ -66,20 +74,60 @@ func Normalize(p models.Posting, noise Noise) models.Job {
 		Summary:    Summary(text, title, company, summaryLen),
 		Salary:     salary,
 		Formats:    Formats(head, p.Remote),
-		Grades:     Grades(title, p.Hints+"\n"+firstRunes(text, 500)),
+		Grades:     Grades(title, gradeHead(p, text)),
 		Employment: Employment(head),
 		English:    English(p.Hints + "\n" + text),
 		Stack:      Stack(title + "\n" + text + "\n" + strings.Join(p.Tags, " ")),
 		Location:   strings.TrimSpace(p.Location),
 		Relocation: Relocation(head + "\n" + text),
 		Lang:       Lang(text),
-		Contacts:   Contacts(text, links, noise.Contacts, withURLs),
+		Contacts:   contacts,
 		ApplyURL:   p.ApplyURL,
 		Sources: []models.SourceRef{{
-			Source: p.Source, Feed: p.Feed, Name: p.SourceName, ExternalID: p.ExternalID, URL: p.URL, PostedAt: p.PostedAt,
+			Source: p.Source, Feed: p.Feed, Name: p.SourceName, ExternalID: p.ExternalID, URL: p.URL,
+			ApplyURL: p.ApplyURL, PostedAt: p.PostedAt,
 		}},
 		PostedAt: p.PostedAt,
 	}
+}
+
+// gradeHead is where a seniority is read when the title has none. A channel
+// post states it at the top ("#senior"); a company description mentions
+// grades in passing ("Internship experience does not apply"), so there only
+// the source's structured hints count.
+func gradeHead(p models.Posting, text string) string {
+	if p.Title == "" || p.Source == "telegram" || p.Source == "hn" {
+		return p.Hints + "\n" + firstRunes(text, 500)
+	}
+	return p.Hints
+}
+
+// applyByEmail is how an employer's posting asks for an application by
+// email ("send your CV to", "apply by emailing"). Without it an address on a
+// career page is an accessibility, privacy or anti-phishing desk.
+var applyByEmail = regexp.MustCompile(`(?i)(?:send|e-?mail|submit|forward)\s+(?:us\s+)?(?:your\s+)?(?:cv|resume|résumé|application|portfolio)|apply\s+(?:by|via)\s+e-?mail|apply\s+(?:at|to|via|by)(?:\s+e-?mail)?\s*:?\s*$|applications?\s+(?:to|at)\s*:?\s*$|резюме|присыла|отправ\p{L}*\s+(?:резюме|cv)`)
+
+// hiringInboxes keeps, from an employer's own posting, only addresses the
+// text explicitly asks applicants to write to.
+func hiringInboxes(text string, links []string) []models.Contact {
+	var out []models.Contact
+	for _, e := range Emails(text, links) {
+		at := strings.Index(strings.ToLower(text), e)
+		if at < 0 {
+			continue
+		}
+		if applyByEmail.MatchString(text[max(0, at-100):at]) {
+			out = append(out, models.Contact{Kind: models.ContactEmail, Value: e})
+		}
+	}
+	return out
+}
+
+// employerSources are career pages read straight from the employer's ATS.
+// Their apply path is the ATS itself; addresses in their text are almost
+// always accessibility, privacy or anti-fraud inboxes, not a recruiter.
+var employerSources = map[string]bool{
+	"greenhouse": true, "lever": true, "ashby": true, "workday": true, "freehire": true,
 }
 
 // StripNoise drops lines that the channel repeats under every post and

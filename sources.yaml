@@ -32,6 +32,23 @@ telegram:
     - { name: jobs_for_it }
     - { name: remocate }
     - { name: backend_vacancy }
+    # Added 2026-10-01 after `gojobs channels`: live, with Go vacancies on the last page.
+    - { name: runello_rus_goland, go_only: true }
+    - { name: cryptoDevJobs }
+    - { name: job_web3 }
+    - { name: appsec_job }
+    - { name: runello_rus_backend }
+    - { name: young_relocate }
+    - { name: backend_frontend_jobs }
+    - { name: DevOpsSRE_Jobs }
+    - { name: juniors_intern_developers }
+    - { name: infosec_work }
+    - { name: devopssjob }
+    - { name: opento_dev }
+    - { name: juno_jobs }
+    - { name: alljvmjobs }
+    - { name: careernoborders }
+    - { name: jobs_juniors_remote }
 
 apis:
   remoteok: true
@@ -40,8 +57,18 @@ apis:
   jobicy: true
   weworkremotely: true
   hn: true
+  djinni: true          # Ukrainian and remote Go roles
+  golangprojects: true  # Go-only board
+  arbeitnow: true       # European board, every role: Go ones are filtered
+  workingnomads: true
+  # freehire.me: open-source (MIT) catalogue of company career pages on ~90
+  # ATS platforms, read through its public keyless API. Affiliate feeds and
+  # boards listed above are skipped there (see internal/repository/sources/boards/freehire.go).
+  freehire: true
 
-# Company career pages. The slug is the part of the board URL after the host:
+# Company career pages fetched every run. Thousands more are found by
+# discovery below; list a company here only to read it daily no matter what.
+# The slug is the part of the board URL after the host:
 # boards.greenhouse.io/<slug>, jobs.lever.co/<slug>, jobs.ashbyhq.com/<slug>.
 greenhouse:
   - cloudflare
@@ -78,6 +105,24 @@ ashby:
   - clickhouse
   - railway
 
+# Discovery probes every board listed in data/seeds/<kind>.txt in rotation and
+# keeps those with Go roles in data/boards.json. Boards with Go roles at their
+# last check are fetched every run; the rest wait recheck_days.
+discovery:
+  enabled: true
+  recheck_days: 30
+  per_run:            # boards probed per daily run: a full cycle takes ~a month
+    greenhouse: 300
+    lever: 150
+    ashby: 110
+    workday: 450
+  workday_query: golang
+
 http:
   timeout_seconds: 40
   delay_millis: 700   # pause between requests to the same host
+  host_delay_millis:  # job-board APIs built for machine traffic
+    boards-api.greenhouse.io: 150
+    api.lever.co: 250
+    api.ashbyhq.com: 250
+    freehire.me: 400

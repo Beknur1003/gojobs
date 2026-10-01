@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="ru" data-base="/gojobs">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="/gojobs/assets/style.css">
+<link rel="icon" href="/gojobs/assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Go Jobs" href="/gojobs/feed.xml">
+
+
+<title>Staff Data Engineer — sarvam | Go Jobs</title>
+<meta name="description" content="Staff Data Engineer · sarvam · Офис. About Sarvam Sarvam is building the bedrock of Sovereign AI for India. The company is developing India&#39;s full-stack sovereign AI platform, building across research, models, infrastructure and applications with a singular focus on making AI…">
+<link rel="canonical" href="https://beknur1003.github.io/gojobs/jobs/staff-data-engineer-c68431/">
+<meta property="og:title" content="Staff Data Engineer — sarvam">
+<meta property="og:description" content="Staff Data Engineer · sarvam · Офис. About Sarvam Sarvam is building the bedrock of Sovereign AI for India. The company is developing India&#39;s full-stack sovereign AI platform, building across research, models, infrastructure and applications with a singular focus on making AI…">
+<meta property="og:url" content="https://beknur1003.github.io/gojobs/jobs/staff-data-engineer-c68431/">
+<meta property="og:type" content="article">
+
+
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="/gojobs/" aria-label="Go Jobs, на главную">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M7.5 12.5h5.5M10 9.5h6.5M9 15.5h5" stroke="var(--bg)" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </span>
+      <span class="brand-name">Go Jobs</span>
+    </a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="/gojobs/">Вакансии</a>
+      <a href="/gojobs/about/">О проекте</a>
+      <a href="/gojobs/feed.xml" class="nav-rss" title="RSS со свежими вакансиями">RSS</a>
+    </nav>
+  </div>
+</header>
+
+
+<main class="wrap job">
+  <a class="back" href="/gojobs/">← Все вакансии</a>
+
+  
+  
+
+  <header class="job-head">
+    <h1>Staff Data Engineer</h1>
+    <p class="job-meta">
+      <span class="company">sarvam</span>
+      <span>Bengaluru</span>
+      <span>опубликовано <time datetime="2026-05-05T09:41:06Z" data-ts="1777974066">5 мая 2026</time></span>
+    </p>
+    <div class="chips">
+      <span class="chip chip-format">Офис</span>
+      <span class="chip chip-grade">Lead</span>
+      
+      
+      
+    </div>
+  </header>
+
+  <div class="job-layout">
+    <article class="job-body">
+      
+      <div class="chips job-stack" aria-label="Стек"><span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">ClickHouse</span><span class="chip">Kafka</span><span class="chip">gRPC</span><span class="chip">AI/LLM</span></div>
+      
+      <div class="post">About Sarvam
+
+Sarvam is building the bedrock of Sovereign AI for India. The company is developing India&#39;s full-stack sovereign AI platform, building across research, models, infrastructure and applications with a singular focus on making AI genuinely work for India. Sarvam works with leading enterprises and public institutions and is backed by Lightspeed, Peak XV, and Khosla Ventures. Sarvam partners with India&#39;s leading brands, including Tata Capital, SBI Life, CRED, IDFC, and LIC.
+
+The Role
+
+We&#39;re hiring a Staff Engineer to design and build Sarvam&#39;s Data &amp; Analytics Platform from the ground up. This is a high-ownership, high-leverage role — you will be the technical owner of a system that every Sarvam product writes to and every Sarvam customer reads from.
+
+The platform has three jobs:
+
+1. Ingest every meaningful event from every Sarvam product — outbound calls, agent turns, user turns, knowledge-base lookups, lead creation, deployments, model invocations, and more — through a clean API layer that handles auto schema evolution and dynamic table creation per event type.
+
+2. Replicate product databases into the analytics store via CDC, so operational data stays queryable alongside event streams without putting load on transactional systems.
+
+3. Expose the data through a tenant-aware query API and a no-code dashboarding layer — powering customer-facing product analytics, internal BI, and the source-of-truth feed for our finance team&#39;s billing pipeline.
+
+You will own architecture, build the core systems hands-on, set the engineering bar, and shape the team that grows around this platform. Databases, Kafka, and internal stores are never exposed directly — every read and write goes through APIs you design.
+
+What you&#39;ll build
+
+- A high-throughput event ingestion API in Go that accepts arbitrary event payloads, validates them, and lands them in ClickHouse with automatic table creation, column addition, and safe schema evolution as event shapes change.
+
+- CDC pipelines using Debezium and Kafka to mirror product Postgres/MySQL databases into ClickHouse, with deduplication, ordering guarantees, and replay tooling.
+
+- A multi-tenant query API with strict RBAC, per-tenant isolation, query budgets, and the same surface powering customer-facing dashboards, internal analytics, and the finance team&#39;s billing extracts.
+
+- A no-code dashboard layer that lets customers build product-analytics views without writing SQL — and lets internal teams ship dashboards in hours, not days.
+
+- The operational backbone: ClickHouse cluster design (sharding, replication, MergeTree families, materialized views), capacity planning, cost controls, observability, on-call playbooks, and SLOs.
+
+- The engineering culture for this team — design reviews, RFC process, testing standards, and the bar that future hires will be measured against.
+
+What we&#39;re looking for
+
+Experience
+
+- 5+ years of backend / data-platform engineering, with a meaningful chunk spent designing and operating analytics systems in production.
+
+- Track record of building 0-to-1 platforms that other engineering teams depend on.
+
+Must-haves
+
+- ClickHouse in production at scale — sharding, replication, MergeTree variants, materialized views, projection design, query tuning, and operational know-how (backups, upgrades, capacity planning).
+
+- Golang for high-throughput backend services — strong grasp of concurrency, performance, and API design (REST/gRPC).
+
+- Kafka as a primary streaming backbone — partitioning strategy, consumer groups, exactly-once / idempotency patterns, schema registry.
+
+- Debezium-based CDC — you&#39;ve built and operated CDC pipelines from transactional databases into analytical stores.
+
+- Strong systems instincts: you reason about throughput, latency, cost, and failure modes before you write code.
+
+Nice-to-haves
+
+- Spark + Airflow for batch enrichment, backfills, and scheduled aggregations.
+
+- Experience building multi-tenant SaaS platforms with row-level security, per-tenant quotas, and tenant-aware RBAC.
+
+- Worked on or integrated with BI / dashboarding tools (Superset, Metabase, Cube, or similar) — bonus if you&#39;ve built embedded customer-facing analytics.
+
+- Exposure to billing / metering data feeds where correctness is non-negotiable.
+
+You&#39;ll thrive here if you
+
+- Want to be the technical owner of a foundational platform, not a feature contributor on someone else&#39;s system.
+
+- Like writing code as much as writing design docs — and refuse to do one without the other.
+
+- Care about cost-per-query and dollar-per-event, not just p99 latency.
+
+- Are comfortable making decisions with imperfect information, and revisiting them when the data changes.
+
+- Want to work on-site in Bengaluru with a small team of senior builders, shipping fast.</div>
+      <p class="caution">Вакансия собрана автоматически из открытого источника. Перед тем как отправлять документы, проверьте компанию. Никогда не платите за трудоустройство и не устанавливайте программы по просьбе «рекрутера».</p>
+    </article>
+
+    <aside class="job-side">
+      
+
+      <section class="side-box apply">
+        <h2 class="side-title">Как откликнуться</h2>
+        
+        
+        
+        <a class="btn" href="https://jobs.ashbyhq.com/sarvam/7ee2ff5d-32a2-4b0a-9ae9-117ba8b626d1?utm_source=freehire.me" target="_blank" rel="noopener">
+          <span class="btn-label">Откликнуться на сайте</span><span class="btn-value">jobs.ashbyhq.com ↗</span>
+        </a>
+        
+        
+        
+      </section>
+
+      <section class="side-box">
+        <h2 class="side-title">Источник</h2>
+        <ul class="sources">
+          
+          <li><a href="https://freehire.me/jobs/staff-data-engineer-sarvam-syjiugnx" target="_blank">freehire · ashby ↗</a><span class="muted"> · <time data-ts="1777974066">5 мая 2026</time></span></li>
+          
+        </ul>
+      </section>
+    </aside>
+  </div>
+  
+</main>
+
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <p>Бесплатно и без регистрации. Вакансии собраны из открытых источников; у каждой есть ссылка на оригинал.</p>
+    <p>
+      
+      <a href="/gojobs/about/">Источники и статус</a> ·
+      <a href="https://github.com/Beknur1003/gojobs">Код на GitHub</a> ·
+      <a href="https://github.com/Beknur1003/gojobs/issues/new?title=Добавить+источник">Предложить канал</a>
+    </p>
+  </div>
+</footer>
+
+<script src="/gojobs/assets/app.js" defer></script>
+</body>
+</html>

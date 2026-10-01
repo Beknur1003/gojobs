@@ -1,6 +1,7 @@
 package store
 
 import (
+	"os"
 	"path/filepath"
 	"testing"
 	"time"
@@ -46,4 +47,28 @@ func TestLoad_MissingFile_EmptyState(t *testing.T) {
 	require.NoError(t, err)
 	assert.Empty(t, st.Jobs)
 	assert.NotNil(t, st.Feeds)
+}
+
+func TestSaveLoadBoards_Registry_RoundTrip(t *testing.T) {
+	path := filepath.Join(t.TempDir(), "boards.json")
+	at := time.Date(2026, 10, 1, 9, 0, 0, 0, time.UTC)
+	in := map[string]models.BoardStatus{
+		"greenhouse:stripe": {Checked: at, OK: true, Postings: 714, Go: 3},
+		"lever:gone":        {Checked: at, Error: "not found"},
+	}
+	require.NoError(t, SaveBoards(path, in))
+
+	out, err := LoadBoards(path)
+	require.NoError(t, err)
+	assert.Equal(t, in, out)
+}
+
+func TestLoadSeeds_Files_DedupedWithComments(t *testing.T) {
+	dir := t.TempDir()
+	require.NoError(t, os.WriteFile(filepath.Join(dir, "lever.txt"), []byte("# header\nneon\n\nbinance  # trading\nneon\n"), 0o644))
+
+	seeds, err := LoadSeeds(dir, []string{"lever", "ashby"})
+
+	require.NoError(t, err)
+	assert.Equal(t, map[string][]string{"lever": {"neon", "binance"}}, seeds)
 }

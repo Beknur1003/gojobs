@@ -4,6 +4,7 @@ package pipeline
 
 import (
 	"context"
+	"errors"
 	"log/slog"
 	"sort"
 	"strings"
@@ -11,6 +12,7 @@ import (
 	"time"
 
 	"github.com/Beknur1003/gojobs/internal/models"
+	"github.com/Beknur1003/gojobs/internal/repository/httpx"
 	"github.com/Beknur1003/gojobs/internal/service/dedupe"
 	"github.com/Beknur1003/gojobs/internal/service/extract"
 )
@@ -29,7 +31,15 @@ type Pipeline struct {
 }
 
 func New(log *slog.Logger, keepDays int) *Pipeline {
-	return &Pipeline{log: log, now: time.Now, keep: time.Duration(keepDays) * 24 * time.Hour, parallel: 6}
+	return &Pipeline{log: log, now: time.Now, keep: time.Duration(keepDays) * 24 * time.Hour, parallel: 8}
+}
+
+// SetParallel changes how many feeds are fetched at once. Per-host pacing in
+// the HTTP client still applies, so more workers only help across hosts.
+func (p *Pipeline) SetParallel(n int) {
+	if n > 0 {
+		p.parallel = n
+	}
 }
 
 type Stats struct {
@@ -38,21 +48,44 @@ type Stats struct {
 	New      int
 	Merged   int // new postings of an already known vacancy
 	Updated  int // postings seen again
+	Seen     int // known listings a board confirmed without a new download
 	Pruned   int
 	Failed   []string
+
+	// Feeds is the outcome per feed, for the discovery registry.
+	Feeds map[string]FeedResult
+}
+
+type FeedResult struct {
+	Postings int
+	Go       int // Go vacancies this feed holds now
+	Err      error
 }
 
 // Run merges a fresh fetch into jobs and returns the new state of both.
 func (p *Pipeline) Run(ctx context.Context, sources []Source, jobs []models.Job, feeds map[string]models.FeedStatus) ([]models.Job, map[string]models.FeedStatus, Stats) {
 	now := p.now().UTC()
-	var stats Stats
+	stats := Stats{Feeds: map[string]FeedResult{}}
 
 	results := p.fetchAll(ctx, sources)
 
 	var accepted []models.Job
+	var stubs []models.Posting
 	for _, r := range results {
+		stats.Feeds[r.name] = FeedResult{Postings: len(r.posts), Err: r.err}
 		status := feeds[r.name]
 		status.LastRun = now
+		if errors.Is(r.err, httpx.ErrNotFound) && len(r.posts) == 0 && companyBoard(r.name) {
+			// The company left this ATS: an empty answer, so its listings
+			// close instead of lingering as open. An aggregator's 404 is
+			// more likely a moved API and stays an ordinary failure.
+			p.log.Warn("board gone, closing its listings", "feed", r.name)
+			status.Error = "not found"
+			status.LastOK = now
+			status.Count = 0
+			feeds = withStatus(feeds, r.name, status)
+			continue
+		}
 		if r.err != nil {
 			status.Error = r.err.Error()
 			stats.Failed = append(stats.Failed, r.name)
@@ -67,6 +100,10 @@ func (p *Pipeline) Run(ctx context.Context, sources []Source, jobs []models.Job,
 		stats.Fetched += len(r.posts)
 		noise := learnNoise(r.name, r.posts)
 		for _, post := range r.posts {
+			if post.Stub {
+				stubs = append(stubs, post)
+				continue
+			}
 			if job, ok := p.accept(post, noise, now); ok {
 				accepted = append(accepted, job)
 			}
@@ -93,8 +130,28 @@ func (p *Pipeline) Run(ctx context.Context, sources []Source, jobs []models.Job,
 		stats.New++
 	}
 
+	goPerFeed := map[string]int{}
+	for _, j := range accepted {
+		goPerFeed[j.Sources[0].Feed]++
+	}
+	// A stub of a listing that is already a job keeps it open. A stub of
+	// anything else was a role checked before and found not to be Go.
+	for _, st := range stubs {
+		if i, ok := ix.FindSource(models.SourceRef{Source: st.Source, ExternalID: st.ExternalID}); ok {
+			ix.Jobs[i] = touch(ix.Jobs[i], st, now)
+			goPerFeed[st.Feed]++
+			stats.Seen++
+		}
+	}
+	for name, fr := range stats.Feeds {
+		fr.Go = goPerFeed[name]
+		stats.Feeds[name] = fr
+	}
+
 	out := make([]models.Job, 0, len(ix.Jobs))
-	for _, j := range ix.Jobs {
+	// Jobs created apart can turn out to share a posting URL once a new
+	// source links both; fold them before publishing.
+	for _, j := range dedupe.Consolidate(ix.Jobs) {
 		if now.Sub(postedOrSeen(j)) > p.keep {
 			stats.Pruned++
 			continue
@@ -136,6 +193,27 @@ func (p *Pipeline) accept(post models.Posting, noise extract.Noise, now time.Tim
 	return job, true
 }
 
+// companyBoard reports a feed that is one company's career page on an ATS.
+func companyBoard(feed string) bool {
+	kind, _, ok := strings.Cut(feed, ":")
+	switch kind {
+	case "greenhouse", "lever", "ashby", "workday":
+		return ok
+	}
+	return false
+}
+
+// touch records that a board still lists the job.
+func touch(j models.Job, st models.Posting, now time.Time) models.Job {
+	j.LastSeen = now
+	for k := range j.Sources {
+		if j.Sources[k].Source == st.Source && j.Sources[k].ExternalID == st.ExternalID {
+			j.Sources[k].LastSeen = now
+		}
+	}
+	return j
+}
+
 // refresh applies a re-fetched posting to its job. A single-source job takes
 // the fresh extraction (the post may be edited, the rules may be better) but
 // keeps its identity; a merged job only gains what was missing.
@@ -152,11 +230,15 @@ func refresh(old, fresh models.Job) models.Job {
 
 // Closed reports a vacancy whose every listing has disappeared from a feed
 // that has been fetched successfully since.
+//
+// Stream sources (a channel post, a feed window) cannot tell either way and
+// are ignored, so an employer removing the role closes it even if a channel
+// once reposted it. A job with only stream sources never closes; it ages out.
 func Closed(j models.Job, feeds map[string]models.FeedStatus) bool {
 	listed := false
 	for _, s := range j.Sources {
 		if !s.Listing() {
-			return false // a post in a channel or thread cannot signal closing
+			continue
 		}
 		listed = true
 		if !feeds[s.Feed].LastOK.After(s.LastSeen.Add(time.Hour)) {
