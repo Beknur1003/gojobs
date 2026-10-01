@@ -1,0 +1,13 @@
+# Build leftovers of the site generator (it swaps docs.new -> docs).
+/docs.new/
+/docs.old/
+
+# Local logs of the daily run.
+/logs/
+
+# Binaries and profiles.
+/gojobs
+*.prof
+
+# macOS
+.DS_Store

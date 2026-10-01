@@ -1,0 +1,83 @@
+# Where gojobs collects vacancies from. Every source here is free and needs no
+# key. To add a channel or a company, add a line and run `make run`.
+
+site:
+  title: "Go Jobs"
+  # GitHub Pages project site. With a custom domain: base_url: https://example.com, base_path: ""
+  base_url: "https://beknur1003.github.io/gojobs"
+  base_path: "/gojobs"
+  repo: "https://github.com/Beknur1003/gojobs"
+  feed_days: 60   # how far back the feed goes
+  keep_days: 180  # how long a vacancy stays in data/jobs.json at all
+
+paths:
+  data: data/jobs.json
+  out: docs       # GitHub Pages serves /docs from main
+
+telegram:
+  backfill_pages: 10  # first read of a channel: ~200 posts of history
+  daily_pages: 3      # afterwards: ~60 newest posts, plenty for one day
+  channels:
+    # Go-only channels: every post is presumed to be about Go.
+    - { name: rabota_golang, go_only: true }
+    - { name: godevjob, go_only: true }
+    - { name: golang_job, go_only: true }
+    # Mixed channels: a post must name Go to get in.
+    - { name: forgoandrust }
+    - { name: getitrussia }
+    - { name: remotejobss }
+    - { name: devops_jobs_feed }
+    - { name: jobforjunior }
+    - { name: geekjobs }
+    - { name: jobs_for_it }
+    - { name: remocate }
+    - { name: backend_vacancy }
+
+apis:
+  remoteok: true
+  remotive: true
+  himalayas: true
+  jobicy: true
+  weworkremotely: true
+  hn: true
+
+# Company career pages. The slug is the part of the board URL after the host:
+# boards.greenhouse.io/<slug>, jobs.lever.co/<slug>, jobs.ashbyhq.com/<slug>.
+greenhouse:
+  - cloudflare
+  - grafanalabs
+  - cockroachlabs
+  - twitch
+  - monzo
+  - mongodb
+  - datadog
+  - fastly
+  - tailscale
+  - gitlab
+  - dropbox
+  - stripe
+  - reddit
+  - discord
+  - canonical
+  - planetscale
+  - vercel
+  - wolt
+
+lever:
+  - neon
+  - binance
+
+ashby:
+  - ramp
+  - linear
+  - supabase
+  - posthog
+  - replit
+  - elevenlabs
+  - resend
+  - clickhouse
+  - railway
+
+http:
+  timeout_seconds: 40
+  delay_millis: 700   # pause between requests to the same host

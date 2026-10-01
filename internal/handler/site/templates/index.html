@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ru" data-base="{{.BasePath}}">
+<head>
+{{template "head" .}}
+<title>Вакансии Go-разработчиков с прямыми контактами — {{.Title}}</title>
+<meta name="description" content="{{.Total}} {{plural .Total "вакансия" "вакансии" "вакансий"}} для Go-разработчиков за {{.FeedDays}} дней: Telegram-каналы, доски удалёнки и сайты компаний. Контакты рекрутеров открыты, бесплатно и без регистрации.">
+<link rel="canonical" href="{{abs "/"}}">
+<meta property="og:title" content="Вакансии Go-разработчиков с прямыми контактами">
+<meta property="og:description" content="{{.Stats.Direct}} вакансий с email или Telegram рекрутера. Бесплатно, без регистрации.">
+<meta property="og:url" content="{{abs "/"}}">
+<meta property="og:type" content="website">
+</head>
+<body>
+{{template "header" .}}
+
+<main class="wrap">
+  <section class="hero">
+    <h1>Вакансии Go-разработчиков <span class="nowrap">с прямыми контактами</span></h1>
+    <p class="hero-sub">Telegram-каналы, доски удалёнки и карьерные страницы компаний в одной ленте. Дубли склеены, контакты открыты, регистрации нет.</p>
+    <ul class="hero-stats" aria-label="Сводка">
+      <li><strong>{{num .Stats.Total}}</strong> {{plural .Stats.Total "вакансия" "вакансии" "вакансий"}} за {{.FeedDays}} дней</li>
+      <li><strong>{{num .Stats.Direct}}</strong> с email или Telegram</li>
+      <li><strong>{{num .Stats.WithSalary}}</strong> с зарплатой</li>
+      <li><strong>{{num .Stats.Remote}}</strong> удалённых</li>
+    </ul>
+  </section>
+
+  <div class="layout">
+    <aside class="filters-wrap">
+      <details class="filters-toggle" id="filters-details" open>
+        <summary>Фильтры <span class="filter-count" id="filter-count" hidden></span></summary>
+        <form id="filters" class="filters" autocomplete="off" onsubmit="return false">
+          <label class="field">
+            <span class="field-label">Поиск</span>
+            <input type="search" name="q" placeholder="kafka, финтех, Ozon…" aria-label="Поиск по вакансиям">
+          </label>
+
+          <fieldset class="field">
+            <legend class="field-label">Контакт</legend>
+            <label class="check"><input type="checkbox" name="direct" value="1"> Только с прямым контактом</label>
+            <div class="chips-input">
+              <label><input type="checkbox" name="ct" value="email"><span>Email</span></label>
+              <label><input type="checkbox" name="ct" value="telegram"><span>Telegram</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend class="field-label">Формат</legend>
+            <div class="chips-input">
+              <label><input type="checkbox" name="f" value="remote"><span>Удалёнка</span></label>
+              <label><input type="checkbox" name="f" value="hybrid"><span>Гибрид</span></label>
+              <label><input type="checkbox" name="f" value="office"><span>Офис</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend class="field-label">Грейд</legend>
+            <div class="chips-input">
+              <label><input type="checkbox" name="g" value="intern"><span>Стажёр</span></label>
+              <label><input type="checkbox" name="g" value="junior"><span>Junior</span></label>
+              <label><input type="checkbox" name="g" value="middle"><span>Middle</span></label>
+              <label><input type="checkbox" name="g" value="senior"><span>Senior</span></label>
+              <label><input type="checkbox" name="g" value="lead"><span>Lead</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend class="field-label">Зарплата</legend>
+            <label class="inline-input">от <input type="number" name="sal" min="0" step="500" inputmode="numeric" placeholder="3000"> $ в месяц</label>
+            <label class="check"><input type="checkbox" name="hassal" value="1"> Только с указанной зарплатой</label>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend class="field-label">Откуда</legend>
+            <div class="chips-input">
+              <label><input type="checkbox" name="src" value="telegram"><span>Telegram</span></label>
+              <label><input type="checkbox" name="src" value="company"><span>Сайты компаний</span></label>
+              <label><input type="checkbox" name="src" value="board"><span>Доски удалёнки</span></label>
+              <label><input type="checkbox" name="src" value="hn"><span>Hacker News</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend class="field-label">Язык вакансии</legend>
+            <div class="chips-input">
+              <label><input type="checkbox" name="l" value="ru"><span>Русский</span></label>
+              <label><input type="checkbox" name="l" value="en"><span>English</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend class="field-label">Ещё</legend>
+            <label class="check"><input type="checkbox" name="r" value="1"> Есть релокация</label>
+            <label class="inline-input">Опубликовано
+              <select name="days">
+                <option value="">за {{.FeedDays}} дней</option>
+                <option value="1">за сутки</option>
+                <option value="3">за 3 дня</option>
+                <option value="7">за неделю</option>
+                <option value="30">за месяц</option>
+              </select>
+            </label>
+          </fieldset>
+
+          <button type="reset" class="link-button" id="reset">Сбросить фильтры</button>
+        </form>
+      </details>
+    </aside>
+
+    <section class="results" aria-labelledby="results-title">
+      <div class="results-head">
+        <h2 id="results-title" class="results-count"><span id="count">{{.Total}}</span> <span id="count-word">{{plural .Total "вакансия" "вакансии" "вакансий"}}</span></h2>
+        <label class="sort">Сортировка
+          <select id="sort" aria-label="Сортировка">
+            <option value="new">сначала новые</option>
+            <option value="salary">по зарплате</option>
+          </select>
+        </label>
+      </div>
+
+      <div id="list" class="list">
+        {{range .Jobs}}
+        <article class="card">
+          <div class="card-top">
+            <h3 class="card-title"><a href="{{path "/jobs/"}}{{.Slug}}/">{{.Title}}</a></h3>
+            {{if .Salary}}<span class="card-salary">{{.Salary}}</span>{{end}}
+          </div>
+          <p class="card-meta">{{if .Company}}<span class="company">{{.Company}}</span>{{end}}{{if .Location}}<span>{{.Location}}</span>{{end}}<time data-ts="{{.Posted}}"></time></p>
+          {{if .Summary}}<p class="card-sum">{{.Summary}}</p>{{end}}
+          <div class="chips">
+            {{range .Formats}}<span class="chip chip-format">{{formatKey .}}</span>{{end}}
+            {{range .Grades}}<span class="chip chip-grade">{{gradeKey .}}</span>{{end}}
+            {{range .Stack}}<span class="chip">{{.}}</span>{{end}}
+          </div>
+          <div class="card-foot">
+            <span class="contacts">{{range .Contacts}}<span class="contact contact-{{.}}">{{if eq . "email"}}Email{{else if eq . "telegram"}}Telegram{{else}}Ссылка{{end}}</span>{{end}}</span>
+            <span class="src">{{.SourceName}}{{if .More}} и ещё {{.More}}{{end}}</span>
+          </div>
+        </article>
+        {{end}}
+      </div>
+      <p id="empty" class="empty" hidden>Под такие фильтры вакансий нет. Попробуйте убрать часть условий.</p>
+      <button id="more" class="more" type="button" hidden>Показать ещё</button>
+      <noscript><p class="empty">Показаны 30 самых свежих вакансий. Фильтры работают с включённым JavaScript.</p></noscript>
+    </section>
+  </div>
+</main>
+
+{{template "footer" .}}
+<script src="{{path "/assets/app.js"}}" defer></script>
+</body>
+</html>

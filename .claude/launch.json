@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "gojobs",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "cd \"$HOME/gojobs\" && go run ./cmd/gojobs serve -addr localhost:8090"],
+      "port": 8090
+    }
+  ]
+}

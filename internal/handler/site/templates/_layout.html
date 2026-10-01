@@ -1,0 +1,40 @@
+{{define "head"}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="{{path "/assets/style.css"}}">
+<link rel="icon" href="{{path "/assets/favicon.svg"}}" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="{{.Title}}" href="{{path "/feed.xml"}}">
+{{end}}
+
+{{define "header"}}
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="{{path "/"}}" aria-label="{{.Title}}, на главную">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M7.5 12.5h5.5M10 9.5h6.5M9 15.5h5" stroke="var(--bg)" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </span>
+      <span class="brand-name">{{.Title}}</span>
+    </a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="{{path "/"}}">Вакансии</a>
+      <a href="{{path "/about/"}}">О проекте</a>
+      <a href="{{path "/feed.xml"}}" class="nav-rss" title="RSS со свежими вакансиями">RSS</a>
+    </nav>
+  </div>
+</header>
+{{end}}
+
+{{define "footer"}}
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <p>Бесплатно и без регистрации. Вакансии собраны из открытых источников; у каждой есть ссылка на оригинал.</p>
+    <p>
+      Обновлено {{date .Updated}} ·
+      <a href="{{path "/about/"}}">Источники и статус</a>{{if .Repo}} ·
+      <a href="{{.Repo}}">Код на GitHub</a> ·
+      <a href="{{.Repo}}/issues/new?title=Добавить+источник">Предложить канал</a>{{end}}
+    </p>
+  </div>
+</footer>
+{{end}}

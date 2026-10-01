@@ -1,0 +1,709 @@
+<!doctype html>
+<html lang="ru" data-base="/gojobs">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="/gojobs/assets/style.css">
+<link rel="icon" href="/gojobs/assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Go Jobs" href="/gojobs/feed.xml">
+
+<title>Вакансии Go-разработчиков с прямыми контактами — Go Jobs</title>
+<meta name="description" content="283 вакансии для Go-разработчиков за 60 дней: Telegram-каналы, доски удалёнки и сайты компаний. Контакты рекрутеров открыты, бесплатно и без регистрации.">
+<link rel="canonical" href="https://beknur1003.github.io/gojobs/">
+<meta property="og:title" content="Вакансии Go-разработчиков с прямыми контактами">
+<meta property="og:description" content="37 вакансий с email или Telegram рекрутера. Бесплатно, без регистрации.">
+<meta property="og:url" content="https://beknur1003.github.io/gojobs/">
+<meta property="og:type" content="website">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="/gojobs/" aria-label="Go Jobs, на главную">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M7.5 12.5h5.5M10 9.5h6.5M9 15.5h5" stroke="var(--bg)" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </span>
+      <span class="brand-name">Go Jobs</span>
+    </a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="/gojobs/">Вакансии</a>
+      <a href="/gojobs/about/">О проекте</a>
+      <a href="/gojobs/feed.xml" class="nav-rss" title="RSS со свежими вакансиями">RSS</a>
+    </nav>
+  </div>
+</header>
+
+
+<main class="wrap">
+  <section class="hero">
+    <h1>Вакансии Go-разработчиков <span class="nowrap">с прямыми контактами</span></h1>
+    <p class="hero-sub">Telegram-каналы, доски удалёнки и карьерные страницы компаний в одной ленте. Дубли склеены, контакты открыты, регистрации нет.</p>
+    <ul class="hero-stats" aria-label="Сводка">
+      <li><strong>283</strong> вакансии за 60 дней</li>
+      <li><strong>37</strong> с email или Telegram</li>
+      <li><strong>82</strong> с зарплатой</li>
+      <li><strong>236</strong> удалённых</li>
+    </ul>
+  </section>
+
+  <div class="layout">
+    <aside class="filters-wrap">
+      <details class="filters-toggle" id="filters-details" open>
+        <summary>Фильтры <span class="filter-count" id="filter-count" hidden></span></summary>
+        <form id="filters" class="filters" autocomplete="off" onsubmit="return false">
+          <label class="field">
+            <span class="field-label">Поиск</span>
+            <input type="search" name="q" placeholder="kafka, финтех, Ozon…" aria-label="Поиск по вакансиям">
+          </label>
+
+          <fieldset class="field">
+            <legend class="field-label">Контакт</legend>
+            <label class="check"><input type="checkbox" name="direct" value="1"> Только с прямым контактом</label>
+            <div class="chips-input">
+              <label><input type="checkbox" name="ct" value="email"><span>Email</span></label>
+              <label><input type="checkbox" name="ct" value="telegram"><span>Telegram</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend class="field-label">Формат</legend>
+            <div class="chips-input">
+              <label><input type="checkbox" name="f" value="remote"><span>Удалёнка</span></label>
+              <label><input type="checkbox" name="f" value="hybrid"><span>Гибрид</span></label>
+              <label><input type="checkbox" name="f" value="office"><span>Офис</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend class="field-label">Грейд</legend>
+            <div class="chips-input">
+              <label><input type="checkbox" name="g" value="intern"><span>Стажёр</span></label>
+              <label><input type="checkbox" name="g" value="junior"><span>Junior</span></label>
+              <label><input type="checkbox" name="g" value="middle"><span>Middle</span></label>
+              <label><input type="checkbox" name="g" value="senior"><span>Senior</span></label>
+              <label><input type="checkbox" name="g" value="lead"><span>Lead</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend class="field-label">Зарплата</legend>
+            <label class="inline-input">от <input type="number" name="sal" min="0" step="500" inputmode="numeric" placeholder="3000"> $ в месяц</label>
+            <label class="check"><input type="checkbox" name="hassal" value="1"> Только с указанной зарплатой</label>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend class="field-label">Откуда</legend>
+            <div class="chips-input">
+              <label><input type="checkbox" name="src" value="telegram"><span>Telegram</span></label>
+              <label><input type="checkbox" name="src" value="company"><span>Сайты компаний</span></label>
+              <label><input type="checkbox" name="src" value="board"><span>Доски удалёнки</span></label>
+              <label><input type="checkbox" name="src" value="hn"><span>Hacker News</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend class="field-label">Язык вакансии</legend>
+            <div class="chips-input">
+              <label><input type="checkbox" name="l" value="ru"><span>Русский</span></label>
+              <label><input type="checkbox" name="l" value="en"><span>English</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend class="field-label">Ещё</legend>
+            <label class="check"><input type="checkbox" name="r" value="1"> Есть релокация</label>
+            <label class="inline-input">Опубликовано
+              <select name="days">
+                <option value="">за 60 дней</option>
+                <option value="1">за сутки</option>
+                <option value="3">за 3 дня</option>
+                <option value="7">за неделю</option>
+                <option value="30">за месяц</option>
+              </select>
+            </label>
+          </fieldset>
+
+          <button type="reset" class="link-button" id="reset">Сбросить фильтры</button>
+        </form>
+      </details>
+    </aside>
+
+    <section class="results" aria-labelledby="results-title">
+      <div class="results-head">
+        <h2 id="results-title" class="results-count"><span id="count">283</span> <span id="count-word">вакансии</span></h2>
+        <label class="sort">Сортировка
+          <select id="sort" aria-label="Сортировка">
+            <option value="new">сначала новые</option>
+            <option value="salary">по зарплате</option>
+          </select>
+        </label>
+      </div>
+
+      <div id="list" class="list">
+        
+        <article class="card">
+          <div class="card-top">
+            <h3 class="card-title"><a href="/gojobs/jobs/ai-native-go-engineer-9a3626/">AI-Native Go Engineer</a></h3>
+            <span class="card-salary">от 450 000 ₽/мес</span>
+          </div>
+          <p class="card-meta"><span class="company">Vital Partners</span><time data-ts="1790850629"></time></p>
+          <p class="card-sum">от 450 000 ₽ за месяц Формат работы: можно удалённо Чем предстоит заниматься разбираешься в бизнес-контексте общаешься с Product, Mobile, Operations устраняешь неопределённость проектируешь решение декомпозируешь работу используешь…</p>
+          <div class="chips">
+            <span class="chip chip-format">Удалёнка</span>
+            <span class="chip chip-grade">Senior</span>
+            <span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">Docker</span><span class="chip">Highload</span><span class="chip">Linux</span><span class="chip">PHP</span><span class="chip">AI/LLM</span>
+          </div>
+          <div class="card-foot">
+            <span class="contacts"><span class="contact contact-email">Email</span></span>
+            <span class="src">@rabota_golang</span>
+          </div>
+        </article>
+        
+        <article class="card">
+          <div class="card-top">
+            <h3 class="card-title"><a href="/gojobs/jobs/engineering-manager-distributed-systems-python-go-922921/">Engineering Manager - Distributed Systems, Python / Go</a></h3>
+            
+          </div>
+          <p class="card-meta"><span class="company">Canonical</span><span>Home Based - Americas; Home based - EMEA</span><time data-ts="1790848823"></time></p>
+          <p class="card-sum">Canonical is a leading provider of open source software and operating systems to the global enterprise and technology markets. Our platform, Ubuntu, is widely used in breakthrough enterprise initiatives such as public cloud, data science…</p>
+          <div class="chips">
+            <span class="chip chip-format">Удалёнка</span><span class="chip chip-format">Офис</span>
+            
+            <span class="chip">Kubernetes</span><span class="chip">Terraform</span><span class="chip">AWS</span><span class="chip">GCP</span><span class="chip">Azure</span><span class="chip">Linux</span><span class="chip">CI/CD</span><span class="chip">Python</span>
+          </div>
+          <div class="card-foot">
+            <span class="contacts"></span>
+            <span class="src">Canonical (Greenhouse)</span>
+          </div>
+        </article>
+        
+        <article class="card">
+          <div class="card-top">
+            <h3 class="card-title"><a href="/gojobs/jobs/lead-golang-developer-8ab9fe/">Lead Golang Developer</a></h3>
+            
+          </div>
+          <p class="card-meta"><span class="company">PradeepIT Consulting Services Pvt Ltd</span><span>India</span><time data-ts="1790847727"></time></p>
+          <p class="card-sum">About the job Accelerate your career with PradeepIT PradeepIT is one of the largest, globally recognized IT Consulting firm to connect India&#39;s deeply vetted talent team to global customer. Were headquartered in Bengaluru, Silicon Valley of…</p>
+          <div class="chips">
+            <span class="chip chip-format">Удалёнка</span>
+            <span class="chip chip-grade">Lead</span>
+            <span class="chip">Docker</span><span class="chip">AWS</span><span class="chip">CI/CD</span><span class="chip">Python</span>
+          </div>
+          <div class="card-foot">
+            <span class="contacts"></span>
+            <span class="src">Himalayas</span>
+          </div>
+        </article>
+        
+        <article class="card">
+          <div class="card-top">
+            <h3 class="card-title"><a href="/gojobs/jobs/software-engineer-platform-engineering-109088/">Software Engineer, Platform Engineering</a></h3>
+            
+          </div>
+          <p class="card-meta"><span class="company">Mural</span><span>Argentina</span><time data-ts="1790832532"></time></p>
+          <p class="card-sum">ABOUT THE TEAM The Platform Engineering team builds the tools and services that accelerate the software development life cycle of the software engineers at Mural. We work on tools that provide a reliable development environment, on tools…</p>
+          <div class="chips">
+            <span class="chip chip-format">Удалёнка</span>
+            
+            <span class="chip">Kubernetes</span><span class="chip">Docker</span><span class="chip">Terraform</span><span class="chip">Azure</span><span class="chip">Linux</span><span class="chip">CI/CD</span><span class="chip">Python</span><span class="chip">TypeScript</span>
+          </div>
+          <div class="card-foot">
+            <span class="contacts"></span>
+            <span class="src">Jobicy</span>
+          </div>
+        </article>
+        
+        <article class="card">
+          <div class="card-top">
+            <h3 class="card-title"><a href="/gojobs/jobs/backend-developer-go-ffbdd0/">Backend Developer – Go</a></h3>
+            <span class="card-salary">$100 000 – $150 000/год</span>
+          </div>
+          <p class="card-meta"><span class="company">Bright Vision Technologies</span><span>United States</span><time data-ts="1790831302"></time></p>
+          <p class="card-sum">Bright Vision Technologies is a technology consulting and software development company delivering cloud, AI, data, and enterprise solutions across the United States. This is a fantastic opportunity to join an established and well-respected…</p>
+          <div class="chips">
+            <span class="chip chip-format">Удалёнка</span>
+            <span class="chip chip-grade">Senior</span>
+            <span class="chip">PostgreSQL</span><span class="chip">Redis</span><span class="chip">Kafka</span><span class="chip">NATS</span><span class="chip">gRPC</span><span class="chip">Kubernetes</span><span class="chip">Docker</span><span class="chip">Microservices</span>
+          </div>
+          <div class="card-foot">
+            <span class="contacts"></span>
+            <span class="src">Himalayas</span>
+          </div>
+        </article>
+        
+        <article class="card">
+          <div class="card-top">
+            <h3 class="card-title"><a href="/gojobs/jobs/senior-software-engineer-fullstack-b97fdf/">Senior Software Engineer (Fullstack)</a></h3>
+            
+          </div>
+          <p class="card-meta"><span class="company">Teachable</span><span>Brazil</span><time data-ts="1790826610"></time></p>
+          <p class="card-sum">What is Teachable? Teachable is the platform for experts and businesses who take education seriously. In a world where anyone can ask AI for information, we&#39;re the home for those who educate with purpose, modernity, and humanity. We help…</p>
+          <div class="chips">
+            <span class="chip chip-format">Удалёнка</span>
+            <span class="chip chip-grade">Senior</span>
+            <span class="chip">Python</span><span class="chip">TypeScript</span><span class="chip">React</span><span class="chip">AI/LLM</span>
+          </div>
+          <div class="card-foot">
+            <span class="contacts"></span>
+            <span class="src">Jobicy</span>
+          </div>
+        </article>
+        
+        <article class="card">
+          <div class="card-top">
+            <h3 class="card-title"><a href="/gojobs/jobs/full-stack-developer-golang-angular-16c41a/">Full Stack Developer (Golang-Angular)</a></h3>
+            
+          </div>
+          <p class="card-meta"><span class="company">2brains</span><span>Chile</span><time data-ts="1790826379"></time></p>
+          <p class="card-sum">2Brains es una consultora tecnológica que impulsa el crecimiento y la evolución de organizaciones líderes en Latinoamérica. Diseñamos y construimos el futuro digital de nuestros clientes a través de una integración profunda y estratégica…</p>
+          <div class="chips">
+            <span class="chip chip-format">Удалёнка</span>
+            <span class="chip chip-grade">Middle</span><span class="chip chip-grade">Lead</span>
+            <span class="chip">PostgreSQL</span>
+          </div>
+          <div class="card-foot">
+            <span class="contacts"></span>
+            <span class="src">Himalayas</span>
+          </div>
+        </article>
+        
+        <article class="card">
+          <div class="card-top">
+            <h3 class="card-title"><a href="/gojobs/jobs/senior-golang-blockchain-protocol-developer-1ad8eb/">Senior Golang Blockchain Protocol Developer</a></h3>
+            
+          </div>
+          <p class="card-meta"><span class="company">PradeepIT Consulting Services Pvt Ltd</span><span>India</span><time data-ts="1790824159"></time></p>
+          <p class="card-sum">Accelerate your career with PradeepIT PradeepIT is one of the largest, globally recognized IT Consulting firm to connect India&#39;s deeply vetted talent team to global customer. Were headquartered in Bengaluru, Silicon Valley of India…</p>
+          <div class="chips">
+            <span class="chip chip-format">Удалёнка</span>
+            <span class="chip chip-grade">Senior</span>
+            <span class="chip">Blockchain</span>
+          </div>
+          <div class="card-foot">
+            <span class="contacts"></span>
+            <span class="src">Himalayas</span>
+          </div>
+        </article>
+        
+        <article class="card">
+          <div class="card-top">
+            <h3 class="card-title"><a href="/gojobs/jobs/backend-engineer-12674b/">Backend Engineer</a></h3>
+            
+          </div>
+          <p class="card-meta"><span class="company">ioet</span><span>Ecuador</span><time data-ts="1790820022"></time></p>
+          <p class="card-sum">Atioet, a leading software company with a talented team across LATAM, we provide Software Engineering as a service to clients worldwide. Join us for exciting professional challenges, working on projects ranging from innovative startups to…</p>
+          <div class="chips">
+            <span class="chip chip-format">Удалёнка</span>
+            <span class="chip chip-grade">Junior</span>
+            <span class="chip">AWS</span><span class="chip">Python</span><span class="chip">TypeScript</span><span class="chip">React</span>
+          </div>
+          <div class="card-foot">
+            <span class="contacts"></span>
+            <span class="src">Himalayas</span>
+          </div>
+        </article>
+        
+        <article class="card">
+          <div class="card-top">
+            <h3 class="card-title"><a href="/gojobs/jobs/full-stack-developer-with-fluttter-and-golang-remote-8b5dd0/">Full Stack Developer with Fluttter and GoLang |Remote</a></h3>
+            
+          </div>
+          <p class="card-meta"><span class="company">PradeepIT Consulting Services Pvt Ltd</span><span>United States</span><time data-ts="1790816364"></time></p>
+          <p class="card-sum">Job Description We are seeking a proactive and skilled Full Stack Developer with 3 to 4 years of experience in Flutter and GoLang. The selected candidate will contribute to the development of a healthcare-focused platform, involving…</p>
+          <div class="chips">
+            <span class="chip chip-format">Удалёнка</span>
+            <span class="chip chip-grade">Middle</span>
+            <span class="chip">React</span>
+          </div>
+          <div class="card-foot">
+            <span class="contacts"></span>
+            <span class="src">Himalayas</span>
+          </div>
+        </article>
+        
+        <article class="card">
+          <div class="card-top">
+            <h3 class="card-title"><a href="/gojobs/jobs/lead-developer-golang-1140f4/">Lead Developer - Golang</a></h3>
+            
+          </div>
+          <p class="card-meta"><span class="company">PradeepIT Consulting Services Pvt Ltd</span><span>United States</span><time data-ts="1790810466"></time></p>
+          <p class="card-sum">About PradeepIT Accelerate your career with PradeepIT PradeepIT is one of the largest, globally recognized IT Consulting firm to connect India&#39;s deeply vetted talent team to global customer. Were headquartered in Bengaluru, Silicon Valley…</p>
+          <div class="chips">
+            <span class="chip chip-format">Удалёнка</span>
+            <span class="chip chip-grade">Lead</span>
+            <span class="chip">MySQL</span><span class="chip">Redis</span><span class="chip">Elasticsearch</span><span class="chip">Docker</span><span class="chip">AWS</span><span class="chip">Microservices</span>
+          </div>
+          <div class="card-foot">
+            <span class="contacts"></span>
+            <span class="src">Himalayas</span>
+          </div>
+        </article>
+        
+        <article class="card">
+          <div class="card-top">
+            <h3 class="card-title"><a href="/gojobs/jobs/lead-golang-aws-developer-latam-remote-72c27b/">Lead GoLang AWS Developer - LATAM Remote</a></h3>
+            
+          </div>
+          <p class="card-meta"><span class="company">Workstate</span><span>Colombia</span><time data-ts="1790801873"></time></p>
+          <p class="card-sum">Workstate seeks a Lead GoLang AWS Developer to join our team! In this role, you will be responsible for providing hands on agile tech leadership for our team developing and managing cloud-based applications using Go and AWS technologies…</p>
+          <div class="chips">
+            <span class="chip chip-format">Удалёнка</span>
+            <span class="chip chip-grade">Lead</span><span class="chip chip-grade">Senior</span>
+            <span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">Kafka</span><span class="chip">AWS</span><span class="chip">Microservices</span><span class="chip">CI/CD</span>
+          </div>
+          <div class="card-foot">
+            <span class="contacts"></span>
+            <span class="src">Himalayas и ещё 1</span>
+          </div>
+        </article>
+        
+        <article class="card">
+          <div class="card-top">
+            <h3 class="card-title"><a href="/gojobs/jobs/golang-lead-remote-dubai-92bd9a/">Golang Lead (Remote, Dubai)</a></h3>
+            
+          </div>
+          <p class="card-meta"><span class="company">TalPods</span><span>United Arab Emirates</span><time data-ts="1790800965"></time></p>
+          <p class="card-sum">At TalPod, we are a team of exceptional Software Engineers who thrive on solving complex software challenges. Our passion lies in not only building great software but also nurturing the brightest talent to become world-class engineers…</p>
+          <div class="chips">
+            <span class="chip chip-format">Удалёнка</span>
+            <span class="chip chip-grade">Lead</span>
+            <span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">MongoDB</span><span class="chip">Kubernetes</span><span class="chip">Docker</span><span class="chip">AWS</span><span class="chip">GCP</span><span class="chip">Azure</span>
+          </div>
+          <div class="card-foot">
+            <span class="contacts"></span>
+            <span class="src">Himalayas</span>
+          </div>
+        </article>
+        
+        <article class="card">
+          <div class="card-top">
+            <h3 class="card-title"><a href="/gojobs/jobs/backend-engineer-mta-184f2a/">Backend Engineer, MTA</a></h3>
+            <span class="card-salary">$150 000 – $170 000/год</span>
+          </div>
+          <p class="card-meta"><span class="company">resend</span><span>Europe</span><time data-ts="1790795143"></time></p>
+          <p class="card-sum">Resend is building the most accessible email platform for developers. As we’ve grown to 4M&#43; users and continue to onboard thousands of new users every day, the pressure of maintaining a safe place for good senders continues to build. This…</p>
+          <div class="chips">
+            <span class="chip chip-format">Удалёнка</span>
+            
+            <span class="chip">PostgreSQL</span><span class="chip">AWS</span><span class="chip">TypeScript</span>
+          </div>
+          <div class="card-foot">
+            <span class="contacts"></span>
+            <span class="src">resend (Ashby)</span>
+          </div>
+        </article>
+        
+        <article class="card">
+          <div class="card-top">
+            <h3 class="card-title"><a href="/gojobs/jobs/senior-manager-engineering-99c0a1/">Senior Manager, Engineering</a></h3>
+            
+          </div>
+          <p class="card-meta"><span class="company">MongoDB</span><span>Bengaluru</span><time data-ts="1790779509"></time></p>
+          <p class="card-sum">We are seeking an Engineering Manager to join our growing Bengaluru Product &amp; Technology team to provide technical direction, direct architecture, and implement core parts of a new platform we are building to make it easier for customers…</p>
+          <div class="chips">
+            
+            <span class="chip chip-grade">Senior</span>
+            <span class="chip">MongoDB</span><span class="chip">Kubernetes</span><span class="chip">AWS</span><span class="chip">GCP</span><span class="chip">Azure</span><span class="chip">Python</span><span class="chip">Rust</span><span class="chip">Java</span>
+          </div>
+          <div class="card-foot">
+            <span class="contacts"></span>
+            <span class="src">MongoDB (Greenhouse)</span>
+          </div>
+        </article>
+        
+        <article class="card">
+          <div class="card-top">
+            <h3 class="card-title"><a href="/gojobs/jobs/senior-backend-engineer-go-0e3eeb/">Senior Backend Engineer (Go)</a></h3>
+            
+          </div>
+          <p class="card-meta"><span class="company">Block Labs</span><span>Albania, Bulgaria, Croatia, Greece, Ireland, Italy, Kosovo, Malta, Montenegro, Portugal, Romania, Serbia, Spain</span><time data-ts="1790774378"></time></p>
+          <p class="card-sum">About Block Labs Block Labs is a premier technology studio operating at the bleeding edge of Web3, Artificial Intelligence, and iGaming. We don&#39;t just ship features; we engineer high-scale, production-grade platforms that power the next…</p>
+          <div class="chips">
+            <span class="chip chip-format">Удалёнка</span>
+            <span class="chip chip-grade">Senior</span>
+            <span class="chip">Kafka</span><span class="chip">gRPC</span><span class="chip">Microservices</span><span class="chip">React</span><span class="chip">Blockchain</span><span class="chip">AI/LLM</span><span class="chip">FinTech</span>
+          </div>
+          <div class="card-foot">
+            <span class="contacts"></span>
+            <span class="src">Himalayas</span>
+          </div>
+        </article>
+        
+        <article class="card">
+          <div class="card-top">
+            <h3 class="card-title"><a href="/gojobs/jobs/posledniy-den-dlya-razrabotchikov-25ee56/">Последний день для разработчиков</a></h3>
+            
+          </div>
+          <p class="card-meta"><time data-ts="1790766573"></time></p>
+          <p class="card-sum">AI уже пишет код. Теперь важнее научиться встраивать его в разработку так, чтобы он действительно экономил время. На курсе «ИИ для разработчиков» собираете AI-workflow на своём проекте: от задачи и планирования до тестов, ревью и PR…</p>
+          <div class="chips">
+            
+            
+            <span class="chip">AI/LLM</span>
+          </div>
+          <div class="card-foot">
+            <span class="contacts"><span class="contact contact-url">Ссылка</span></span>
+            <span class="src">@godevjob</span>
+          </div>
+        </article>
+        
+        <article class="card">
+          <div class="card-top">
+            <h3 class="card-title"><a href="/gojobs/jobs/middle-golang-razrabotchik-e8182a/">Middle Golang-разработчик</a></h3>
+            
+          </div>
+          <p class="card-meta"><span class="company">Сбер</span><time data-ts="1790763653"></time></p>
+          <p class="card-sum">Опыт работы: от 3 лет Формат работы: гибрид (Москва) Чем предстоит заниматься разработка и поддержка микросервисов на Go участие в проектировании архитектуры новых сервисов и микросервисных систем обеспечение масштабируемости…</p>
+          <div class="chips">
+            <span class="chip chip-format">Гибрид</span>
+            <span class="chip chip-grade">Middle</span>
+            <span class="chip">PostgreSQL</span><span class="chip">Kafka</span><span class="chip">Kubernetes</span><span class="chip">Docker</span><span class="chip">Microservices</span><span class="chip">AI/LLM</span>
+          </div>
+          <div class="card-foot">
+            <span class="contacts"><span class="contact contact-url">Ссылка</span></span>
+            <span class="src">@rabota_golang</span>
+          </div>
+        </article>
+        
+        <article class="card">
+          <div class="card-top">
+            <h3 class="card-title"><a href="/gojobs/jobs/security-engineer-manager-b226c7/">Security Engineer Manager</a></h3>
+            
+          </div>
+          <p class="card-meta"><span class="company">binance</span><span>Asia</span><time data-ts="1790760083"></time></p>
+          <p class="card-sum">Binance is a leading global blockchain ecosystem behind the world’s largest cryptocurrency exchange by trading volume and registered users. We are trusted by 300&#43; million people in 100&#43; countries for our industry-leading security, user…</p>
+          <div class="chips">
+            <span class="chip chip-format">Удалёнка</span>
+            
+            <span class="chip">Python</span><span class="chip">Java</span><span class="chip">Blockchain</span><span class="chip">AI/LLM</span><span class="chip">FinTech</span>
+          </div>
+          <div class="card-foot">
+            <span class="contacts"></span>
+            <span class="src">binance (Lever)</span>
+          </div>
+        </article>
+        
+        <article class="card">
+          <div class="card-top">
+            <h3 class="card-title"><a href="/gojobs/jobs/software-engineer-partner-engineering-72679c/">Software Engineer, Partner Engineering</a></h3>
+            <span class="card-salary">$135 – $160 000/год</span>
+          </div>
+          <p class="card-meta"><span class="company">Liftoff</span><span>Canada</span><time data-ts="1790755436"></time></p>
+          <p class="card-sum">Liftoff is a leading AI-powered performance marketing platform for the mobile app economy. Our end-to-end technology stack helps app marketers acquire and retain high-value users, while enabling publishers to maximize revenue across…</p>
+          <div class="chips">
+            <span class="chip chip-format">Удалёнка</span>
+            
+            <span class="chip">Python</span><span class="chip">Java</span><span class="chip">AI/LLM</span>
+          </div>
+          <div class="card-foot">
+            <span class="contacts"></span>
+            <span class="src">Jobicy</span>
+          </div>
+        </article>
+        
+        <article class="card">
+          <div class="card-top">
+            <h3 class="card-title"><a href="/gojobs/jobs/principal-software-engineer-devops-b2af67/">Principal Software Engineer, DevOps</a></h3>
+            <span class="card-salary">$220 000 – $255 000/год</span>
+          </div>
+          <p class="card-meta"><span class="company">Legion</span><span>USA</span><time data-ts="1790755209"></time></p>
+          <p class="card-sum">Remote, United States ABOUT POSITION Are you passionate about automation, DevOps, public cloud services, Kubernetes, and observability? As a site reliability engineer at Legion, you will be responsible for building the tools…</p>
+          <div class="chips">
+            <span class="chip chip-format">Удалёнка</span>
+            <span class="chip chip-grade">Lead</span>
+            <span class="chip">MySQL</span><span class="chip">Elasticsearch</span><span class="chip">Kubernetes</span><span class="chip">Docker</span><span class="chip">Terraform</span><span class="chip">AWS</span><span class="chip">Linux</span><span class="chip">CI/CD</span>
+          </div>
+          <div class="card-foot">
+            <span class="contacts"><span class="contact contact-email">Email</span><span class="contact contact-telegram">Telegram</span></span>
+            <span class="src">Jobicy</span>
+          </div>
+        </article>
+        
+        <article class="card">
+          <div class="card-top">
+            <h3 class="card-title"><a href="/gojobs/jobs/qa-engineer-41e6ee/">QA Engineer 区块链测试工程师</a></h3>
+            
+          </div>
+          <p class="card-meta"><span class="company">Windranger Labs</span><span>APAC</span><time data-ts="1790741408"></time></p>
+          <p class="card-sum">Who we are Mantle is the entry point for institutions and traditional finance to access real-world assets on-chain. Backed by the world’s largest community-owned treasury of over $4B, Mantle combines institutional-grade infrastructure with…</p>
+          <div class="chips">
+            <span class="chip chip-format">Удалёнка</span>
+            
+            <span class="chip">Python</span><span class="chip">Blockchain</span>
+          </div>
+          <div class="card-foot">
+            <span class="contacts"></span>
+            <span class="src">Jobicy</span>
+          </div>
+        </article>
+        
+        <article class="card">
+          <div class="card-top">
+            <h3 class="card-title"><a href="/gojobs/jobs/senior-full-stack-engineer-ii-5df975/">Senior Full Stack Engineer II</a></h3>
+            
+          </div>
+          <p class="card-meta"><span class="company">Teachable</span><span>Brazil</span><time data-ts="1790740944"></time></p>
+          <p class="card-sum">What is Teachable? Teachable is the platform for experts and businesses who take education seriously. In a world where anyone can ask AI for information, we&#39;re the home for those who educate with purpose, modernity, and humanity. We help…</p>
+          <div class="chips">
+            <span class="chip chip-format">Удалёнка</span>
+            <span class="chip chip-grade">Senior</span>
+            <span class="chip">Kubernetes</span><span class="chip">Docker</span><span class="chip">Terraform</span><span class="chip">AWS</span><span class="chip">Python</span><span class="chip">AI/LLM</span>
+          </div>
+          <div class="card-foot">
+            <span class="contacts"></span>
+            <span class="src">Jobicy</span>
+          </div>
+        </article>
+        
+        <article class="card">
+          <div class="card-top">
+            <h3 class="card-title"><a href="/gojobs/jobs/cloud-senior-engineer-55ca3c/">Cloud Senior Engineer</a></h3>
+            
+          </div>
+          <p class="card-meta"><span class="company">Caylent</span><span>Brazil</span><time data-ts="1790692909"></time></p>
+          <p class="card-sum">Caylent is an AI-first cloud services company that helps organizations turn ambitious ideas into meaningful business impact. As an AWS Premier Tier Services Partner and a charter member of Anthropic’s Claude Partner Network, we combine…</p>
+          <div class="chips">
+            <span class="chip chip-format">Удалёнка</span>
+            <span class="chip chip-grade">Senior</span>
+            <span class="chip">AWS</span><span class="chip">OpenTelemetry</span><span class="chip">CI/CD</span><span class="chip">Python</span><span class="chip">Java</span><span class="chip">TypeScript</span><span class="chip">Node.js</span><span class="chip">AI/LLM</span>
+          </div>
+          <div class="card-foot">
+            <span class="contacts"><span class="contact contact-email">Email</span></span>
+            <span class="src">Jobicy</span>
+          </div>
+        </article>
+        
+        <article class="card">
+          <div class="card-top">
+            <h3 class="card-title"><a href="/gojobs/jobs/devops-infrastructure-engineer-hft-2fc27d/">DevOps / Infrastructure Engineer (HFT)</a></h3>
+            <span class="card-salary">$5 000 – $7 000/мес</span>
+          </div>
+          <p class="card-meta"><span class="company">Triple Lemniscate Research</span><time data-ts="1790687816"></time></p>
+          <p class="card-sum">Публикатор: Alina Romashka Формат: удалённо Занятость: полная Вилка: $5000–$7000 Ищем инженера в DevOps-команду. Основная задача — настраивать инстансы для HFT-систем, разбираться в причинах задержек и добиваться нужной производительности…</p>
+          <div class="chips">
+            <span class="chip chip-format">Удалёнка</span>
+            
+            <span class="chip">Kafka</span><span class="chip">Linux</span><span class="chip">CI/CD</span><span class="chip">Python</span><span class="chip">C&#43;&#43;</span>
+          </div>
+          <div class="card-foot">
+            <span class="contacts"><span class="contact contact-telegram">Telegram</span></span>
+            <span class="src">@devops_jobs_feed</span>
+          </div>
+        </article>
+        
+        <article class="card">
+          <div class="card-top">
+            <h3 class="card-title"><a href="/gojobs/jobs/ischem-go-backend-developer-seti-devops-security-bb2b1f/">Ищем Go Backend Developer (Сети, DevOps, Security)</a></h3>
+            <span class="card-salary">70 000 – 170 000 ₽/мес</span>
+          </div>
+          <p class="card-meta"><span class="company">Мы</span><time data-ts="1790603230"></time></p>
+          <p class="card-sum">Мы — технологический стартап, делаем детекцию прокси и VPN по сетевым отпечаткам и DNS-скоринг для антифрода (Не РКН). Разработка своя, продукт продаётся, есть клиенты. Название и сайт покажем на первом созвоне — не хотим, чтобы конкуренты…</p>
+          <div class="chips">
+            
+            
+            <span class="chip">Docker</span><span class="chip">Microservices</span><span class="chip">Linux</span>
+          </div>
+          <div class="card-foot">
+            <span class="contacts"><span class="contact contact-url">Ссылка</span></span>
+            <span class="src">@rabota_golang</span>
+          </div>
+        </article>
+        
+        <article class="card">
+          <div class="card-top">
+            <h3 class="card-title"><a href="/gojobs/jobs/go-backend-developer-seti-security-anti-fraud-b6401d/">Go Backend Developer — Сети / Security / Anti-fraud</a></h3>
+            <span class="card-salary">70 000 – 170 000 ₽/мес</span>
+          </div>
+          <p class="card-meta"><time data-ts="1790597774"></time></p>
+          <p class="card-sum">Удалённо · full-time · самозанятость (РФ/РБ) 70–170 тыс. ₽ на руки, возможны выплаты в USDT Технологический стартап: детекция прокси и VPN по сетевым отпечаткам и DNS-скоринг для антифрода (не РКН). Разработка своя, продукт продаётся…</p>
+          <div class="chips">
+            <span class="chip chip-format">Удалёнка</span>
+            
+            <span class="chip">Docker</span><span class="chip">Microservices</span><span class="chip">Linux</span>
+          </div>
+          <div class="card-foot">
+            <span class="contacts"><span class="contact contact-url">Ссылка</span></span>
+            <span class="src">@godevjob</span>
+          </div>
+        </article>
+        
+        <article class="card">
+          <div class="card-top">
+            <h3 class="card-title"><a href="/gojobs/jobs/golang-razrabotchik-268a63/">Golang Разработчик</a></h3>
+            
+          </div>
+          <p class="card-meta"><span class="company">USETECH</span><time data-ts="1790592078"></time></p>
+          <p class="card-sum">Опыт работы: более 6 лет Полная занятость График: 5/2 Формат работы: удалённо Чем предстоит заниматься Проектировать технические решения для интеграционных задач разного уровня сложности, тесно взаимодействия с командами мобильных клиентов…</p>
+          <div class="chips">
+            <span class="chip chip-format">Удалёнка</span>
+            <span class="chip chip-grade">Senior</span>
+            <span class="chip">PostgreSQL</span><span class="chip">Kafka</span><span class="chip">RabbitMQ</span><span class="chip">Kubernetes</span><span class="chip">Docker</span><span class="chip">Prometheus</span><span class="chip">Highload</span><span class="chip">CI/CD</span>
+          </div>
+          <div class="card-foot">
+            <span class="contacts"><span class="contact contact-email">Email</span></span>
+            <span class="src">@rabota_golang</span>
+          </div>
+        </article>
+        
+        <article class="card">
+          <div class="card-top">
+            <h3 class="card-title"><a href="/gojobs/jobs/sr-software-engineer-go-mongodb-2dff40/">Sr. Software Engineer - Go/MongoDB</a></h3>
+            
+          </div>
+          <p class="card-meta"><span class="company">Percona</span><span>Croatia, Italy, Poland, Spain</span><time data-ts="1790567624"></time></p>
+          <p class="card-sum">MongoDB Tools Team Team: MongoDB Tools (Product and Engineering) Location: Remote Projects: percona/percona-clustersync-mongodb and percona/percona-backup-mongodb About the team The MongoDB Tools Team builds Percona&#39;s open source…</p>
+          <div class="chips">
+            <span class="chip chip-format">Удалёнка</span>
+            <span class="chip chip-grade">Senior</span>
+            <span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">MongoDB</span><span class="chip">Azure</span><span class="chip">Prometheus</span><span class="chip">CI/CD</span>
+          </div>
+          <div class="card-foot">
+            <span class="contacts"></span>
+            <span class="src">Himalayas</span>
+          </div>
+        </article>
+        
+        <article class="card">
+          <div class="card-top">
+            <h3 class="card-title"><a href="/gojobs/jobs/golang-razrabotchik-18159a/">Golang-разработчик</a></h3>
+            
+          </div>
+          <p class="card-meta"><span class="company">CRT</span><time data-ts="1790505667"></time></p>
+          <p class="card-sum">Опыт работы: более 6 лет Подработка Оформление: Договор ГПХ с ИП, с физлицом График: 5/2 Формат работы: удалённо Чем предстоит заниматься Разрабатывать и развивать backend-сервисы на Go в микросервисной архитектуре Проектировать REST и…</p>
+          <div class="chips">
+            <span class="chip chip-format">Удалёнка</span>
+            <span class="chip chip-grade">Senior</span>
+            <span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">Redis</span><span class="chip">gRPC</span><span class="chip">Kubernetes</span><span class="chip">Docker</span><span class="chip">Prometheus</span><span class="chip">Grafana</span>
+          </div>
+          <div class="card-foot">
+            <span class="contacts"><span class="contact contact-email">Email</span><span class="contact contact-telegram">Telegram</span></span>
+            <span class="src">@rabota_golang</span>
+          </div>
+        </article>
+        
+      </div>
+      <p id="empty" class="empty" hidden>Под такие фильтры вакансий нет. Попробуйте убрать часть условий.</p>
+      <button id="more" class="more" type="button" hidden>Показать ещё</button>
+      <noscript><p class="empty">Показаны 30 самых свежих вакансий. Фильтры работают с включённым JavaScript.</p></noscript>
+    </section>
+  </div>
+</main>
+
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <p>Бесплатно и без регистрации. Вакансии собраны из открытых источников; у каждой есть ссылка на оригинал.</p>
+    <p>
+      Обновлено 1 октября 2026 ·
+      <a href="/gojobs/about/">Источники и статус</a> ·
+      <a href="https://github.com/Beknur1003/gojobs">Код на GitHub</a> ·
+      <a href="https://github.com/Beknur1003/gojobs/issues/new?title=Добавить+источник">Предложить канал</a>
+    </p>
+  </div>
+</footer>
+
+<script src="/gojobs/assets/app.js" defer></script>
+</body>
+</html>

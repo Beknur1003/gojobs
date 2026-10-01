@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="ru" data-base="{{.BasePath}}">
+<head>
+{{template "head" .}}
+<title>Страница не найдена — {{.Title}}</title>
+<meta name="robots" content="noindex">
+</head>
+<body>
+{{template "header" .}}
+<main class="wrap prose">
+  <h1>Такой страницы нет</h1>
+  <p>Возможно, вакансия старше полугода и была удалена из архива. Свежие вакансии — <a href="{{path "/"}}">на главной</a>.</p>
+</main>
+{{template "footer" .}}
+</body>
+</html>

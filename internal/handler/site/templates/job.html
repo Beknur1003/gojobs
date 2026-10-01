@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ru" data-base="{{.BasePath}}">
+<head>
+{{template "head" .}}
+{{with .Job}}
+<title>{{.Title}}{{if .Company}} — {{.Company}}{{end}} | {{$.Title}}</title>
+<meta name="description" content="{{seo .}}">
+<link rel="canonical" href="{{abs "/jobs/"}}{{.Slug}}/">
+<meta property="og:title" content="{{.Title}}{{if .Company}} — {{.Company}}{{end}}">
+<meta property="og:description" content="{{seo .}}">
+<meta property="og:url" content="{{abs "/jobs/"}}{{.Slug}}/">
+<meta property="og:type" content="article">
+{{if not $.InFeed}}<meta name="robots" content="noindex">{{end}}
+{{end}}
+</head>
+<body>
+{{template "header" .}}
+
+<main class="wrap job">
+  <a class="back" href="{{path "/"}}">← Все вакансии</a>
+
+  {{with .Job}}
+  {{if .Closed}}
+  <p class="banner banner-closed">Вакансия снята с публикации у источника. Страница оставлена для истории.</p>
+  {{else if not $.InFeed}}
+  <p class="banner">Вакансии больше {{$.FeedDays}} дней. Она может быть уже закрыта, но компания, скорее всего, нанимает Go-разработчиков снова.</p>
+  {{end}}
+
+  <header class="job-head">
+    <h1>{{.Title}}</h1>
+    <p class="job-meta">
+      {{if .Company}}<span class="company">{{.Company}}</span>{{end}}
+      {{if .Location}}<span>{{.Location}}</span>{{end}}
+      <span>опубликовано <time datetime="{{iso .PostedAt}}" data-ts="{{unix .PostedAt}}">{{date .PostedAt}}</time></span>
+    </p>
+    <div class="chips">
+      {{range .Formats}}<span class="chip chip-format">{{format .}}</span>{{end}}
+      {{range .Grades}}<span class="chip chip-grade">{{grade .}}</span>{{end}}
+      {{range .Employment}}<span class="chip">{{employment .}}</span>{{end}}
+      {{if .English}}<span class="chip">English {{upper .English}}</span>{{end}}
+      {{if .Relocation}}<span class="chip chip-format">Релокация</span>{{end}}
+    </div>
+  </header>
+
+  <div class="job-layout">
+    <article class="job-body">
+      {{if .Stack}}
+      <div class="chips job-stack" aria-label="Стек">{{range .Stack}}<span class="chip">{{.}}</span>{{end}}</div>
+      {{end}}
+      <div class="post">{{linkify .Text}}</div>
+      <p class="caution">Вакансия собрана автоматически из открытого источника. Перед тем как отправлять документы, проверьте компанию. Никогда не платите за трудоустройство и не устанавливайте программы по просьбе «рекрутера».</p>
+    </article>
+
+    <aside class="job-side">
+      {{if .SalaryText}}
+      <section class="side-box">
+        <h2 class="side-title">Зарплата</h2>
+        <p class="salary-big">{{.SalaryText}}</p>
+        {{if .SalaryUSD}}<p class="muted">{{.SalaryUSD}}, по фиксированному курсу</p>{{end}}
+      </section>
+      {{end}}
+
+      <section class="side-box apply">
+        <h2 class="side-title">Как откликнуться</h2>
+        {{range .Emails}}
+        <a class="btn btn-primary" href="{{mailto . $.Job.Title}}">
+          <span class="btn-label">Написать на email</span><span class="btn-value">{{.}}</span>
+        </a>
+        {{end}}
+        {{range .Telegrams}}
+        <a class="btn btn-primary" href="https://t.me/{{.}}" target="_blank" rel="noopener">
+          <span class="btn-label">Написать в Telegram</span><span class="btn-value">@{{.}}</span>
+        </a>
+        {{end}}
+        {{if .ApplyURL}}
+        <a class="btn" href="{{.ApplyURL}}" target="_blank" rel="noopener">
+          <span class="btn-label">Откликнуться на сайте</span><span class="btn-value">{{host .ApplyURL}} ↗</span>
+        </a>
+        {{end}}
+        {{range .Links}}
+        <a class="btn" href="{{.}}" target="_blank" rel="noopener">
+          <span class="btn-label">Ссылка из вакансии</span><span class="btn-value">{{short .}} ↗</span>
+        </a>
+        {{end}}
+        {{if not (or .Emails .Telegrams .ApplyURL .Links)}}
+        <p class="muted">Контакт не распознан автоматически. Он есть в оригинальном посте по ссылке ниже.</p>
+        {{end}}
+      </section>
+
+      <section class="side-box">
+        <h2 class="side-title">{{if gt (len .Sources) 1}}Опубликовано в {{len .Sources}} местах{{else}}Источник{{end}}</h2>
+        <ul class="sources">
+          {{range .Sources}}
+          <li><a href="{{.URL}}" target="_blank">{{.Name}} ↗</a><span class="muted"> · <time data-ts="{{unix .PostedAt}}">{{date .PostedAt}}</time></span></li>
+          {{end}}
+        </ul>
+      </section>
+    </aside>
+  </div>
+  {{end}}
+</main>
+
+{{template "footer" .}}
+<script src="{{path "/assets/app.js"}}" defer></script>
+</body>
+</html>
