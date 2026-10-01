@@ -40,6 +40,8 @@ func TestBuild_Jobs_FeedAndPages(t *testing.T) {
 
 	now := time.Date(2026, 10, 1, 12, 0, 0, 0, time.UTC)
 	fresh := sampleJob("a1b2c3", "Senior Go Developer", now.Add(-24*time.Hour))
+	fresh.Regions = []models.Region{models.RegionWorld, models.RegionEurope}
+	fresh.GoMain = true
 	old := sampleJob("d4e5f6", "Old Go Developer", now.Add(-90*24*time.Hour))
 	closed := sampleJob("aaa111", "Closed Go Developer", now.Add(-24*time.Hour))
 	closed.Closed = true
@@ -55,6 +57,8 @@ func TestBuild_Jobs_FeedAndPages(t *testing.T) {
 	require.Len(t, feed.Jobs, 1)
 	assert.Equal(t, "300 000 – 400 000 ₽/мес", feed.Jobs[0].Salary)
 	assert.Equal(t, []string{"email", "telegram"}, feed.Jobs[0].Contacts)
+	assert.Equal(t, []string{"world", "europe"}, feed.Jobs[0].Regions)
+	assert.True(t, feed.Jobs[0].GoMain)
 
 	page, err := os.ReadFile(filepath.Join(out, "jobs", "go-a1b2c3", "index.html"))
 	require.NoError(t, err)
@@ -63,6 +67,12 @@ func TestBuild_Jobs_FeedAndPages(t *testing.T) {
 	assert.Contains(t, html, `href="https://t.me/hr_anna"`)
 	assert.Contains(t, html, "&lt;script&gt;", "post text is escaped")
 	assert.NotContains(t, html, "<script>alert")
+	assert.Contains(t, html, "Go — основной язык")
+	assert.Contains(t, html, "Из любой страны")
+
+	index, err := os.ReadFile(filepath.Join(out, "index.html"))
+	require.NoError(t, err)
+	assert.Contains(t, string(index), `<span class="chip chip-go">Go — основной</span>`, "server-rendered card")
 
 	oldPage, err := os.ReadFile(filepath.Join(out, "jobs", "go-d4e5f6", "index.html"))
 	require.NoError(t, err)

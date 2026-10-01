@@ -52,21 +52,52 @@ func goMentions(s string) (strong bool, words int) {
 	if goStrong.MatchString(strings.ToLower(s)) {
 		return true, 0
 	}
+	return false, len(goWords(s))
+}
+
+// goWords returns the offsets of every "Go" in s that is the language.
+func goWords(s string) []int {
+	var out []int
 	// An all-caps title ("SENIOR GO", "DESARROLLADOR GO") writes the
 	// language as "GO".
-	if !strings.ContainsFunc(s, unicode.IsLower) && goUpper.MatchString(s) {
-		words++
+	if !strings.ContainsFunc(s, unicode.IsLower) {
+		if loc := goUpper.FindStringIndex(s); loc != nil {
+			out = append(out, loc[0])
+		}
 	}
-	for _, loc := range goWord.FindAllStringIndex(s, -1) {
-		rest := s[loc[1]:min(len(s), loc[1]+16)]
-		before := s[max(0, loc[0]-10):loc[0]]
+	for _, at := range goWordAt(s) {
+		rest := s[at+2 : min(len(s), at+18)]
+		before := s[max(0, at-10):at]
 		if goPhrase.MatchString(strings.ToLower(normalizeDashes(rest))) || goNotLang.MatchString(rest) ||
 			letsBefore.MatchString(before) || goGameBefore.MatchString(before) || goGoBefore.MatchString(before) {
 			continue
 		}
-		words++
+		out = append(out, at)
 	}
-	return false, words
+	return out
+}
+
+// goWordAt is goWord.FindAllStringIndex without the regexp: a leading \b
+// leaves the regexp no literal prefix to search for, which made it the
+// slowest step over long descriptions.
+func goWordAt(s string) []int {
+	var out []int
+	for from := 0; ; {
+		i := strings.Index(s[from:], "Go")
+		if i < 0 {
+			return out
+		}
+		at := from + i
+		if (at == 0 || !isWordByte(s[at-1])) && (at+2 == len(s) || !isWordByte(s[at+2])) {
+			out = append(out, at)
+		}
+		from = at + 2
+	}
+}
+
+// isWordByte is \w as RE2's \b sees it: ASCII letters, digits, underscore.
+func isWordByte(b byte) bool {
+	return b == '_' || b >= '0' && b <= '9' || b >= 'a' && b <= 'z' || b >= 'A' && b <= 'Z'
 }
 
 // MayBeGo is a cheap pre-check before full extraction: company boards return

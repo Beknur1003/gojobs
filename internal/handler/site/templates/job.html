@@ -34,6 +34,8 @@
       <span>опубликовано <time datetime="{{iso .PostedAt}}" data-ts="{{unix .PostedAt}}">{{date .PostedAt}}</time></span>
     </p>
     <div class="chips">
+      {{if .GoMain}}<span class="chip chip-go">Go — основной язык</span>{{end}}
+      {{range .Regions}}{{if eq . "world"}}<span class="chip chip-format">Из любой страны</span>{{end}}{{end}}
       {{range .Formats}}<span class="chip chip-format">{{format .}}</span>{{end}}
       {{range .Grades}}<span class="chip chip-grade">{{grade .}}</span>{{end}}
       {{range .Employment}}<span class="chip">{{employment .}}</span>{{end}}

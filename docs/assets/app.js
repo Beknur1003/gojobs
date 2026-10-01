@@ -71,6 +71,8 @@
     meta += '<time data-ts="' + j.d + '">' + ago(j.d) + "</time>";
 
     var chips = "";
+    if (j.gm) chips += '<span class="chip chip-go">Go — основной</span>';
+    if (j.rg && j.rg[0] === "world") chips += '<span class="chip chip-format">Из любой страны</span>';
     (j.f || []).forEach(function (f) { chips += '<span class="chip chip-format">' + FORMATS[f] + "</span>"; });
     (j.g || []).forEach(function (g) { chips += '<span class="chip chip-grade">' + GRADES[g] + "</span>"; });
     if (j.r) chips += '<span class="chip chip-format">Релокация</span>';
@@ -105,6 +107,8 @@
       q: (data.get("q") || "").trim().toLowerCase(),
       direct: data.get("direct") === "1",
       ct: data.getAll("ct"),
+      gm: data.get("gm") === "1",
+      rg: data.getAll("rg"),
       f: data.getAll("f"),
       g: data.getAll("g"),
       sal: +data.get("sal") || 0,
@@ -131,6 +135,8 @@
     }
     if (f.direct && !any(j.ct, ["email", "telegram"])) return false;
     if (!any(j.ct, f.ct)) return false;
+    if (f.gm && !j.gm) return false;
+    if (!any(j.rg, f.rg)) return false;
     if (!any(j.f, f.f)) return false;
     if (!any(j.g, f.g)) return false;
     if (!any([j.src], f.src)) return false;
@@ -164,7 +170,7 @@
   }
 
   function activeCount(f) {
-    return (f.q ? 1 : 0) + (f.direct ? 1 : 0) + f.ct.length + f.f.length + f.g.length + (f.sal ? 1 : 0) +
+    return (f.q ? 1 : 0) + (f.gm ? 1 : 0) + f.rg.length + (f.direct ? 1 : 0) + f.ct.length + f.f.length + f.g.length + (f.sal ? 1 : 0) +
       (f.hassal ? 1 : 0) + f.src.length + f.l.length + (f.r ? 1 : 0) + (f.days ? 1 : 0);
   }
 

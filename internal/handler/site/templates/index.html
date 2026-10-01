@@ -35,6 +35,8 @@
             <input type="search" name="q" placeholder="kafka, финтех, Ozon…" aria-label="Поиск по вакансиям">
           </label>
 
+          <label class="check check-strong"><input type="checkbox" name="gm" value="1"> Go — основной язык</label>
+
           <fieldset class="field">
             <legend class="field-label">Контакт</legend>
             <label class="check"><input type="checkbox" name="direct" value="1"> Только с прямым контактом</label>
@@ -50,6 +52,19 @@
               <label><input type="checkbox" name="f" value="remote"><span>Удалёнка</span></label>
               <label><input type="checkbox" name="f" value="hybrid"><span>Гибрид</span></label>
               <label><input type="checkbox" name="f" value="office"><span>Офис</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend class="field-label">Регион</legend>
+            <div class="chips-input">
+              <label><input type="checkbox" name="rg" value="world"><span>Из любой страны</span></label>
+              <label><input type="checkbox" name="rg" value="kz"><span>Казахстан</span></label>
+              <label><input type="checkbox" name="rg" value="cis"><span>Россия и СНГ</span></label>
+              <label><input type="checkbox" name="rg" value="europe"><span>Европа</span></label>
+              <label><input type="checkbox" name="rg" value="na"><span>США и Канада</span></label>
+              <label><input type="checkbox" name="rg" value="latam"><span>Латинская Америка</span></label>
+              <label><input type="checkbox" name="rg" value="asia"><span>Азия и Океания</span></label>
             </div>
           </fieldset>
 
@@ -128,6 +143,8 @@
           <p class="card-meta">{{if .Company}}<span class="company">{{.Company}}</span>{{end}}{{if .Location}}<span>{{.Location}}</span>{{end}}<time data-ts="{{.Posted}}"></time></p>
           {{if .Summary}}<p class="card-sum">{{.Summary}}</p>{{end}}
           <div class="chips">
+            {{if .GoMain}}<span class="chip chip-go">Go — основной</span>{{end}}
+            {{if world .Regions}}<span class="chip chip-format">Из любой страны</span>{{end}}
             {{range .Formats}}<span class="chip chip-format">{{formatKey .}}</span>{{end}}
             {{range .Grades}}<span class="chip chip-grade">{{gradeKey .}}</span>{{end}}
             {{range .Stack}}<span class="chip">{{.}}</span>{{end}}

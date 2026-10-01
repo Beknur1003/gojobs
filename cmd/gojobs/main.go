@@ -239,11 +239,15 @@ func build(log *slog.Logger, configPath string) error {
 	return render(log, cfg, st, registry)
 }
 
-// render rebuilds the site. Closed is derived, never stored, so it is
-// recomputed here for every job, whatever this run did or did not fetch.
+// render rebuilds the site. Closed, Regions and GoMain are derived, never
+// stored, so they are recomputed here for every job, whatever this run did
+// or did not fetch, and `gojobs build` applies changed rules at once.
 func render(log *slog.Logger, cfg config.Config, st store.State, registry map[string]models.BoardStatus) error {
 	for i := range st.Jobs {
-		st.Jobs[i].Closed = pipeline.Closed(st.Jobs[i], st.Feeds)
+		j := &st.Jobs[i]
+		j.Closed = pipeline.Closed(*j, st.Feeds)
+		j.Regions = extract.Regions(*j)
+		j.GoMain = extract.GoMain(j.Title, j.Text)
 	}
 	b, err := site.New(site.Config{
 		Title: cfg.Site.Title, BaseURL: cfg.Site.BaseURL, BasePath: cfg.Site.BasePath,

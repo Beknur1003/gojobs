@@ -74,7 +74,25 @@ type Job struct {
 	// Closed is derived on every run, never stored: a listing vanished from
 	// the board that published it. Telegram posts never close, they age out.
 	Closed bool
+
+	// Regions and GoMain are derived on every build, never stored, like
+	// Closed: their rules can change without collecting anything again.
+	Regions []Region // where the role can be worked from; empty when unknown
+	GoMain  bool     // Go is the main language of the role, not one of several
 }
+
+// Region is a coarse area a vacancy can be worked from, for the region filter.
+type Region string
+
+const (
+	RegionWorld  Region = "world" // remote from any country
+	RegionKZ     Region = "kz"
+	RegionCIS    Region = "cis" // Russia and the CIS, Kazakhstan included
+	RegionEurope Region = "europe"
+	RegionNA     Region = "na" // the USA and Canada
+	RegionLatAm  Region = "latam"
+	RegionAsia   Region = "asia" // Asia, the Middle East and Oceania
+)
 
 // SourceRef points back to one place the vacancy was published. Every source
 // is linked on the site: that is both honest and required by the APIs' terms.

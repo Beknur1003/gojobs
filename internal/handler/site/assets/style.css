@@ -127,6 +127,7 @@ select { width: auto; }
 input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 0; border-color: transparent; }
 .check { display: flex; gap: 8px; align-items: center; font-size: 14px; cursor: pointer; }
 .check input { accent-color: var(--accent); width: 16px; height: 16px; margin: 0; }
+.check-strong { font-weight: 600; }
 .inline-input { display: flex; align-items: center; gap: 8px; font-size: 14px; flex-wrap: wrap; }
 .chips-input { display: flex; flex-wrap: wrap; gap: 6px; }
 .chips-input label { cursor: pointer; }
@@ -182,6 +183,7 @@ input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 0;
 }
 .chip-format { background: var(--accent-soft); color: var(--accent-strong); border-color: transparent; }
 .chip-grade { background: var(--grade-bg); color: var(--grade-text); border-color: transparent; }
+.chip-go { background: var(--accent); color: var(--accent-text-on); border-color: transparent; font-weight: 600; }
 .card-foot { display: flex; justify-content: space-between; gap: 12px; margin-top: 10px; font-size: 13px; color: var(--muted); flex-wrap: wrap; }
 .contacts { display: flex; gap: 10px; }
 .contact { display: inline-flex; align-items: center; gap: 4px; color: var(--text-2); font-weight: 550; }

@@ -73,6 +73,8 @@ type card struct {
 	Stack      []string `json:"k,omitempty"`
 	Lang       string   `json:"l"`
 	Location   string   `json:"loc,omitempty"`
+	Regions    []string `json:"rg,omitempty"` // world | kz | cis | europe | na | latam | asia
+	GoMain     bool     `json:"gm,omitempty"` // Go is the main language
 	Relocation bool     `json:"r,omitempty"`
 	Contacts   []string `json:"ct,omitempty"` // contact kinds present
 	Kind       string   `json:"src"`          // telegram | board | company | hn
@@ -111,7 +113,7 @@ func cardsOf(jobs []models.Job, limit int) []card {
 			ID: j.ID, Slug: j.Slug, Title: j.Title, Company: j.Company, Summary: j.Summary,
 			Salary: salaryText(j.Salary), USDMin: j.Salary.MonthlyUSDMin, USDMax: j.Salary.MonthlyUSDMax,
 			Formats: strs(j.Formats), Grades: strs(j.Grades), English: j.English, Stack: firstN(j.Stack, 8),
-			Lang: j.Lang, Location: j.Location, Relocation: j.Relocation,
+			Lang: j.Lang, Location: j.Location, Regions: strs(j.Regions), GoMain: j.GoMain, Relocation: j.Relocation,
 			Kind: kindOf(j.Sources[0].Source), SourceName: j.Sources[0].Name, More: len(j.Sources) - 1,
 			Posted: j.PostedAt.Unix(),
 		}
@@ -382,11 +384,14 @@ func (b *Builder) funcs() template.FuncMap {
 		"format":     func(f models.WorkFormat) string { return formatText[string(f)] },
 		"formatKey":  func(f string) string { return formatText[f] },
 		"employment": func(e models.Employment) string { return employmentText[string(e)] },
-		"upper":      strings.ToUpper,
-		"linkify":    linkify,
-		"host":       hostOf,
-		"short":      shortURL,
-		"num":        groupThousands,
+		"world": func(rs []string) bool {
+			return len(rs) > 0 && rs[0] == string(models.RegionWorld)
+		},
+		"upper":   strings.ToUpper,
+		"linkify": linkify,
+		"host":    hostOf,
+		"short":   shortURL,
+		"num":     groupThousands,
 		"mailto": func(addr, title string) string {
 			return "mailto:" + addr + "?subject=" + url.PathEscape("Отклик: "+title)
 		},
