@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="ru" data-base="/gojobs">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="/gojobs/assets/style.css">
+<link rel="icon" href="/gojobs/assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Go Jobs" href="/gojobs/feed.xml">
+
+
+<title>Senior Data Platform Engineer — Kafka &amp; PostgreSQL — mirantis | Go Jobs</title>
+<meta name="description" content="Senior Data Platform Engineer — Kafka &amp; PostgreSQL · mirantis · Удалёнка. We are looking for an experienced Senior Data Platform Engineer to own the event-streaming, transactional database, and custom connectivity backbone driving the k0rdent-ai platform — our multi-tenant control plane for enterprise GPU…">
+<link rel="canonical" href="https://beknur1003.github.io/gojobs/jobs/senior-data-platform-engineer-kafka-postgresql-7a1783/">
+<meta property="og:title" content="Senior Data Platform Engineer — Kafka &amp; PostgreSQL — mirantis">
+<meta property="og:description" content="Senior Data Platform Engineer — Kafka &amp; PostgreSQL · mirantis · Удалёнка. We are looking for an experienced Senior Data Platform Engineer to own the event-streaming, transactional database, and custom connectivity backbone driving the k0rdent-ai platform — our multi-tenant control plane for enterprise GPU…">
+<meta property="og:url" content="https://beknur1003.github.io/gojobs/jobs/senior-data-platform-engineer-kafka-postgresql-7a1783/">
+<meta property="og:type" content="article">
+
+
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="/gojobs/" aria-label="Go Jobs, на главную">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M7.5 12.5h5.5M10 9.5h6.5M9 15.5h5" stroke="var(--bg)" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </span>
+      <span class="brand-name">Go Jobs</span>
+    </a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="/gojobs/">Вакансии</a>
+      <a href="/gojobs/about/">О проекте</a>
+      <a href="/gojobs/feed.xml" class="nav-rss" title="RSS со свежими вакансиями">RSS</a>
+    </nav>
+  </div>
+</header>
+
+
+<main class="wrap job">
+  <a class="back" href="/gojobs/">← Все вакансии</a>
+
+  
+  
+
+  <header class="job-head">
+    <h1>Senior Data Platform Engineer — Kafka &amp; PostgreSQL</h1>
+    <p class="job-meta">
+      <span class="company">mirantis</span>
+      <span>Remote, REMOTE, us</span>
+      <span>опубликовано <time datetime="2026-09-18T17:42:08Z" data-ts="1789753328">18 сентября 2026</time></span>
+    </p>
+    <div class="chips">
+      <span class="chip chip-go">Go — основной язык</span>
+      
+      <span class="chip chip-format">Удалёнка</span>
+      <span class="chip chip-grade">Senior</span>
+      <span class="chip">Полная занятость</span>
+      
+      
+    </div>
+  </header>
+
+  <div class="job-layout">
+    <article class="job-body">
+      
+      <div class="chips job-stack" aria-label="Стек"><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">Redis</span><span class="chip">Kafka</span><span class="chip">Elasticsearch</span><span class="chip">Kubernetes</span><span class="chip">Terraform</span><span class="chip">AWS</span><span class="chip">GCP</span><span class="chip">Azure</span><span class="chip">AI/LLM</span></div>
+      
+      <div class="post">We are looking for an experienced Senior Data Platform Engineer to own the event-streaming, transactional database, and custom connectivity backbone driving the k0rdent-ai platform — our multi-tenant control plane for enterprise GPU infrastructure. Every cluster provisioned, every GPU-hour consumed, and every tenant action produces high-cardinality metadata that must be transactionally recorded and securely isolated.
+
+You will architect the core pipeline connecting our streaming data plane (Apache Kafka via Strimzi) to our relational data tier (Open Source PostgreSQL via CloudNativePG), which runs across both elastic Kubernetes clusters and high-performance bare metal hardware. Beyond standard administration, a substantial focus of this role is custom ecosystem engineering: deep Go (Golang) systems programming to build custom open-source clients and connectors, design specialized integration libraries, and develop proprietary middleware that bridges our database multi-tenancy with enterprise identity planes like Active Directory (AD)/LDAP.
+
+Because this system is the transactional record of every tenant action across the platform, this role also owns its disaster-recovery posture — designing how the platform survives a full region or cluster loss, not just a single-node failure.
+
+Main Responsibilities
+
+•
+Hybrid Database Architecture: Design, deploy, and operate high-availability Open Source PostgreSQL topologies (via CloudNativePG on Kubernetes and native Patroni-style topologies on bare metal) and distributed Apache Kafka clusters (via Strimzi), across both containerized Kubernetes environments and high-performance bare metal hardware.
+
+•
+Custom Client &amp; Connector Development: Write custom, enterprise-grade open-source Kafka clients, standalone connector services, and utility libraries from scratch using preferably Go (Golang) to extend data capabilities where off-the-shelf tooling falls short.
+
+•
+Enterprise Identity &amp; Data Integration: Architect and build system integrations connecting PostgreSQL authentication and row-level security (RLS) policy evaluation to enterprise Active Directory (AD), LDAP, and OIDC identity providers — via role-mapping and session-context layers (e.g., mapped Postgres roles, JWT claims consumed by RLS policies) rather than a direct connection.
+
+•
+Transactional Architecture &amp; CDC: Scale high-throughput Change Data Capture (CDC) pipelines via Debezium and Kafka Connect. Implement resilient architectural patterns to maintain absolute data integrity between databases and topics without dual-write risk.
+
+•
+Cross-Region Resilience &amp; Disaster Recovery: Design and operate cross-region failover and disaster-recovery orchestration for both PostgreSQL and Kafka — including replication topology (sync vs. async trade-offs), split-brain prevention via quorum/witness mechanisms, and explicit RPO/RTO targets for a full region or cluster loss, not just single-node HA.
+
+•
+PostgreSQL &amp; Infra Tuning: Optimize PostgreSQL instances for heavy ingestion and zero-downtime operations. Tune Write-Ahead Logs (WAL), logical replication streams, connection pooling (PgBouncer), and configure underlying Kubernetes infrastructure primitives (CSI storage volumes and CNI network paths) to eliminate replication lag and unnecessary cross-node latency.
+
+•
+GitOps &amp; Self-Service Platforming: Maintain a strictly declarative infrastructure-as-code (IaC) culture using Terraform and ArgoCD, creating self-service workflows so internal product teams can securely provision databases, topics, schemas, and ACLs through code.
+
+•
+Security &amp; Isolation: Implement strict multi-tenant isolation, combining database-level row-level security (RLS) with CNI network policies, mTLS, and Kafka topic-level RBAC.
+
+We don&#39;t expect any one candidate to check every box below — if your experience is strong across most of these areas, we encourage you to apply.
+
+Must Have
+
+Platform Seniority: 10+ years in systems, software, data, or platform engineering, with a track record of owning large-scale, business-critical data infrastructure.
+
+• Programming: Go (Golang) or similar engineering skills — comfortable writing clean, concurrent systems code, building custom client libraries, and interacting directly with database/network APIs.
+
+•
+Open Source PostgreSQL Expertise: 5+ years managing native PostgreSQL. Deep knowledge of database internals (WAL streams, logical replication, publications/subscriptions, and connection architectures) across both Kubernetes stateful environments and bare metal physical nodes.
+
+•
+Production PostgreSQL-on-Kubernetes: Hands-on experience running PostgreSQL on Kubernetes via a mature Postgres operator — CloudNativePG (CNPG) preferred, but equivalent experience with Zalando&#39;s postgres-operator or a comparable operator is acceptable. What matters is depth with declarative cluster lifecycle, failover, and backup/PITR management, not the specific product name.
+
+•
+Production Kafka: Strong experience managing Apache Kafka at scale on Kubernetes via a declarative operator — Strimzi preferred, but equivalent experience with Confluent for Kubernetes, Koperator, or a comparable operator is acceptable. What matters is depth with operator-managed broker lifecycle and scaling, not the specific product name.
+
+•
+Custom Data Movement &amp; CDC: Proven experience tuning Kafka Connect and Debezium pipelines. Experience writing or contributing to open-source database connectors, Kafka client libraries, or integration frameworks.
+
+•
+Enterprise Identity Planes: Hands-on experience building integrations connecting distributed systems to an enterprise IAM/SSO provider — Active Directory, LDAP, Okta, Azure AD, or a generic OIDC provider all count; the specific product matters less than real experience integrating application-level authorization with an enterprise identity system.
+
+•
+Kubernetes &amp; Cloud Infrastructure: Strong grasp of K8s primitives (Pod lifecycles, Operators, CSI storage layers, and CNI overlay routing), backed by production experience in AWS or GCP.
+
+Nice to Have
+
+•
+Experience designing and operating cross-region disaster recovery and failover orchestration for stateful systems (Postgres and/or Kafka), including split-brain prevention and RPO/RTO trade-off decisions.
+
+•
+Active contributions to open-source Kafka connectors, PostgreSQL operators (e.g., CloudNativePG, Zalando), or Go-based database libraries.
+
+•
+Experience with schema governance for event streams (e.g., Karapace or Confluent Schema Registry) and compatibility-mode management for evolving event contracts.
+
+•
+Familiarity with high-cardinality telemetry ingestion using Apache Flink or Kafka Streams.
+
+•
+Familiarity with US enterprise compliance benchmarks (SOC 2, ISO 27001).
+
+•
+Hands-on knowledge of open-source Redis (caching, pub/sub, or as a lightweight data store) — a huge plus.
+
+•
+Hands-on knowledge of open-source MongoDB (document modeling, replication, sharding) — a huge plus.
+
+Education and Experience
+
+Bachelor&#39;s degree in Computer Science &amp; Engineering (or a related field), or 10+ years of equivalent related experience.
+
+What does Mirantis offer you?
+
+• Work with an established Silicon Valley leader in the cloud infrastructure industry;
+
+• Work with exceptionally passionate, talented and engaging colleagues, helping Fortune 500 and Global 2000 customers implement next-generation cloud technologies;
+
+• Be a part of cutting-edge, open-source innovation;
+
+• Thrive in the high-energy environment of a young company where openness, collaboration, risk-taking, and continuous growth are valued;
+
+• Professional development and training;
+
+• Attend conferences and working groups;
+
+• Company outings, happy hours, hackathons, and tech talks;
+
+• Receive a competitive compensation package with a strong benefits plan.
+
+We are a Leader for Container Management in G2 (#2 after AWS)!</div>
+      <p class="caution">Вакансия собрана автоматически из открытого источника. Перед тем как отправлять документы, проверьте компанию. Никогда не платите за трудоустройство и не устанавливайте программы по просьбе «рекрутера».</p>
+    </article>
+
+    <aside class="job-side">
+      
+
+      <section class="side-box apply">
+        <h2 class="side-title">Как откликнуться</h2>
+        
+        
+        
+        <a class="btn" href="https://jobs.smartrecruiters.com/Mirantis/744000150430585-senior-data-platform-engineer-kafka-postgresql?utm_source=freehire.me" target="_blank" rel="noopener">
+          <span class="btn-label">Откликнуться на сайте</span><span class="btn-value">jobs.smartrecruiters.com ↗</span>
+        </a>
+        
+        
+        
+      </section>
+
+      <section class="side-box">
+        <h2 class="side-title">Источник</h2>
+        <ul class="sources">
+          
+          <li><a href="https://freehire.me/jobs/senior-data-platform-engineer-kafka-postgresql-mirantis-bee33w3q" target="_blank">freehire · smartrecruiters ↗</a><span class="muted"> · <time data-ts="1789753328">18 сентября 2026</time></span></li>
+          
+        </ul>
+      </section>
+    </aside>
+  </div>
+  
+</main>
+
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <p>Бесплатно и без регистрации. Вакансии собраны из открытых источников; у каждой есть ссылка на оригинал.</p>
+    <p>
+      
+      <a href="/gojobs/about/">Источники и статус</a> ·
+      <a href="https://github.com/Beknur1003/gojobs">Код на GitHub</a> ·
+      <a href="https://github.com/Beknur1003/gojobs/issues/new?title=Добавить+источник">Предложить канал</a>
+    </p>
+  </div>
+</footer>
+
+<script src="/gojobs/assets/app.js" defer></script>
+</body>
+</html>
