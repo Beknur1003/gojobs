@@ -10,11 +10,11 @@
 <link rel="alternate" type="application/rss+xml" title="Go Jobs" href="/gojobs/feed.xml">
 
 
-<title>Staff Engineer - Distributed Systems — gohighlevel | Go Jobs</title>
-<meta name="description" content="Staff Engineer - Distributed Systems · gohighlevel · Удалёнка. About HighLevel HighLevel is an AI-powered business operating system that gives agencies, entrepreneurs and SMBs the infrastructure to build, automate and scale. Today, HighLevel supports SMBs across 150&#43; countries, fueling…">
+<title>Staff Engineer - CRM &amp; Automation — gohighlevel | Go Jobs</title>
+<meta name="description" content="Staff Engineer - CRM &amp; Automation · gohighlevel · Удалёнка. About HighLevel HighLevel is an AI-powered business operating system that gives agencies, entrepreneurs and SMBs the infrastructure to build, automate and scale. Today, HighLevel supports SMBs across 150&#43; countries, fueling…">
 <link rel="canonical" href="https://beknur1003.github.io/gojobs/jobs/staff-engineer-distributed-systems-d601b2/">
-<meta property="og:title" content="Staff Engineer - Distributed Systems — gohighlevel">
-<meta property="og:description" content="Staff Engineer - Distributed Systems · gohighlevel · Удалёнка. About HighLevel HighLevel is an AI-powered business operating system that gives agencies, entrepreneurs and SMBs the infrastructure to build, automate and scale. Today, HighLevel supports SMBs across 150&#43; countries, fueling…">
+<meta property="og:title" content="Staff Engineer - CRM &amp; Automation — gohighlevel">
+<meta property="og:description" content="Staff Engineer - CRM &amp; Automation · gohighlevel · Удалёнка. About HighLevel HighLevel is an AI-powered business operating system that gives agencies, entrepreneurs and SMBs the infrastructure to build, automate and scale. Today, HighLevel supports SMBs across 150&#43; countries, fueling…">
 <meta property="og:url" content="https://beknur1003.github.io/gojobs/jobs/staff-engineer-distributed-systems-d601b2/">
 <meta property="og:type" content="article">
 
@@ -46,7 +46,7 @@
   
 
   <header class="job-head">
-    <h1>Staff Engineer - Distributed Systems</h1>
+    <h1>Staff Engineer - CRM &amp; Automation</h1>
     <p class="job-meta">
       <span class="company">gohighlevel</span>
       <span>India</span>
@@ -82,171 +82,95 @@ Learn more about us on our YouTube Channel or Blog Posts
 
 What are we hiring for?
 
-Thousands of pods. 50+ kinds of deployments. Four databases. Three teams shipping fast. And until now, nobody whose whole job is the system itself.
+Our teams are strong at building and scaling products. Every service has an owner, every feature has engineers behind it, and every database has deep expertise. What we need now is someone who can look across all of them — someone who understands how the entire distributed system works together and can identify risks that may not be visible within an individual service.
 
-Our teams are excellent at building products. Each service has owners, each feature has engineers, each database has experts. What we don&#39;t have is the person who holds the entire distributed system in their head, who sees that the retry policy in one service and the queue configuration two hops away are, together, a cascading failure waiting for Black Friday.
+A retry policy in one service, combined with a queue configuration several hops downstream, can become a cascading failure under peak load. Your role is to identify those risks before they reach production.
 
-That&#39;s the seat. Your job is to find the failure before it finds production.
+You’ll start with Workflows, HighLevel’s automation engine and one of the largest systems in the company. It handles 3.1 billion enrollments and 21.5 billion action executions every month, with traffic peaking at 28,000+ requests per second. The platform runs across thousands of pods on GCP and uses Pub/Sub, Cloud Tasks, Redis, and multiple database engines.
 
-You start with Workflows, HighLevel&#39;s automation engine, and one of the largest systems in the company: 3.1 billion enrollments and 21.5 billion action executions every month, traffic peaking at 28,000+ requests per second, running across thousands of pods on GCP with Pub/Sub, Cloud Tasks, Redis, and multiple database engines underneath. From there, your blast radius grows, into Conversations (2.6 billion messages a month) and a brand-new Ticketing system being built right now, where you get to make sure it&#39;s born right instead of fixed later.
+From there, your scope will expand into Conversations, which processes 2.6 billion messages every month, as well as our new Ticketing platform. With Ticketing, you’ll have the opportunity to influence the architecture early — building resilience and scalability into the system from the start rather than addressing them later.
 
-This is not an architect role where you draw boxes and hand them to someone else. And it&#39;s not a feature role where you own a backlog. It&#39;s the role in between that most companies never create, and most staff engineers spend their careers wishing existed.
+This is not a traditional architect role where you design systems and hand them over for implementation. It is also not a feature-focused engineering role with a defined product backlog.
+
+This role sits across systems and teams, with a clear mandate: understand how the platform behaves as a whole, identify systemic risks, and make sure our architecture can continue to scale reliably.
 
 Responsibilities:
 
-•
+• Own the architecture health of a billion-scale distributed system, its failure modes, capacity limits, consistency guarantees, and the interactions between 50+ deployments that no single team can see
 
-Own the architecture health of a billion-scale distributed system, its failure modes, capacity limits, consistency guarantees, and the interactions between 50+ deployments that no single team can see
+• Approve critical-path designs. Changes that touch the system&#39;s core go through you, not as bureaucracy, but as the person accountable for the whole staying sound. When there&#39;s a disagreement, you make your case on merit
 
-•
+• Hunt gaps proactively, single points of failure, unbounded queues, missing idempotency, thundering herds, quiet data-loss windows, and drive the fixes before they become incidents
 
-Approve critical-path designs. Changes that touch the system&#39;s core go through you, not as bureaucracy, but as the person accountable for the whole staying sound. When there&#39;s a disagreement, you make your case on merit
+• Build the parts nobody else can. No sprint tickets. You prototype the risky architectural bets yourself, ship the remediation after serious incidents, and pair into the gnarliest cross-team bugs, roughly a quarter to a third of your time in code, all of it on the hardest problems
 
-•
+• Make resilience a property of the system, not a heroic act, degradation strategies, backpressure, isolation boundaries, capacity models that survive 10%+ month-over-month growth
 
-Hunt gaps proactively, single points of failure, unbounded queues, missing idempotency, thundering herds, quiet data-loss windows, and drive the fixes before they become incidents
+• Raise the teams around you. Design reviews that teach, post-mortems that change architecture (not just add alerts), and patterns that 80+ engineers build on
 
-•
-
-Build the parts nobody else can. No sprint tickets. You prototype the risky architectural bets yourself, ship the remediation after serious incidents, and pair into the gnarliest cross-team bugs, roughly a quarter to a third of your time in code, all of it on the hardest problems
-
-•
-
-Make resilience a property of the system, not a heroic act, degradation strategies, backpressure, isolation boundaries, capacity models that survive 10%+ month-over-month growth
-
-•
-
-Raise the teams around you. Design reviews that teach, post-mortems that change architecture (not just add alerts), and patterns that 80+ engineers build on
-
-•
-
-Set the standard for how AI-assisted engineering works safely on systems this critical, where a bad merge doesn&#39;t cost a demo, it costs real businesses their revenue
+• Set the standard for how AI-assisted engineering works safely on systems this critical, where a bad merge doesn&#39;t cost a demo, it costs real businesses their revenue
 
 The terrain:
 
-•
+• Runtime: Node.js (TypeScript), Go, thousands of pods on GKE
 
-Runtime: Node.js (TypeScript), Go, thousands of pods on GKE
+• Messaging &amp; async: GCP Pub/Sub, Cloud Tasks, Redis
 
-•
+• Storage: MongoDB, Firestore, ClickHouse, ElasticSearch
 
-Messaging &amp; async: GCP Pub/Sub, Cloud Tasks, Redis
-
-•
-
-Storage: MongoDB, Firestore, ClickHouse, ElasticSearch
-
-•
-
-Scale: 21.5B automation actions/month, 2.6B messages/month, 28.5K req/s peaks, ~226B async events across the org
+• Scale: 21.5B automation actions/month, 2.6B messages/month, 28.5K req/s peaks, ~226B async events across the org
 
 Requirements:
 
-•
+• 10+ years of engineering experience with deep, hands-on ownership of large-scale distributed systems, comparable scale strongly preferred: hundreds of services or thousands of instances, billions of daily events
 
-•
+• You&#39;ve carried sole accountability for a production system through real failures, not adjacent to it, not advising on it. Owned it
 
-•
+• Deep command of queueing and async architectures, delivery semantics, ordering, backpressure, idempotency, exactly-once myths and at-least-once realities
 
-10+ years of engineering experience with deep, hands-on ownership of large-scale distributed systems, comparable scale strongly preferred: hundreds of services or thousands of instances, billions of daily events
+• Strong with multiple storage engines (SQL and NoSQL), you reason about consistency models, indexing at scale, and when each engine is the wrong choice
 
-•
+• Expert-level depth in Redis or comparable in-memory systems, including their failure modes under memory pressure and network partition
 
-You&#39;ve carried sole accountability for a production system through real failures, not adjacent to it, not advising on it. Owned it
+• Production experience on Kubernetes at scale, resource limits, autoscaling behavior, what actually happens when a node pool dies
 
-•
+• Exceptional design communication, docs, diagrams, and RCAs that drive decisions across multiple teams
 
-Deep command of queueing and async architectures, delivery semantics, ordering, backpressure, idempotency, exactly-once myths and at-least-once realities
-
-•
-
-Strong with multiple storage engines (SQL and NoSQL), you reason about consistency models, indexing at scale, and when each engine is the wrong choice
-
-•
-
-Expert-level depth in Redis or comparable in-memory systems, including their failure modes under memory pressure and network partition
-
-•
-
-Production experience on Kubernetes at scale, resource limits, autoscaling behavior, what actually happens when a node pool dies
-
-•
-
-Exceptional design communication, docs, diagrams, and RCAs that drive decisions across multiple teams
-
-•
-
-Fluent in Node.js and/or Go, enough to prototype your own proposals and ship fixes on the critical path
+• Fluent in Node.js and/or Go, enough to prototype your own proposals and ship fixes on the critical path
 
 What Success Looks Like
 
-•
+• The critical paths of Workflows have named owners, capacity models, and tested failure modes, because you made it so
 
-The critical paths of Workflows have named owners, capacity models, and tested failure modes, because you made it so
+• Incident count trends down while traffic grows double-digit percent month over month
 
-•
+• Your design reviews are the ones engineers want their proposals to survive
 
-Incident count trends down while traffic grows double-digit percent month over month
-
-•
-
-Your design reviews are the ones engineers want their proposals to survive
-
-•
-
-Your scope has expanded on results, more systems, more surface, more trust
+• Your scope has expanded on results, more systems, more surface, more trust
 
 What you&#39;re built for
 
-•
+• You&#39;ve been injured in production. A lot. You&#39;ve owned distributed systems at serious scale, through the outages, the migrations, the 3 AM discoveries, and every scar changed how you design
 
-•
+• You&#39;ve operated at staff scope, whatever your title said, the engineer everyone routed the hardest systems questions to
 
-•
+• You think in failure modes by default: when you see a design, you instinctively ask what happens at the tail, under partition, at 10x load
 
-You&#39;ve been injured in production. A lot. You&#39;ve owned distributed systems at serious scale, through the outages, the migrations, the 3 AM discoveries, and every scar changed how you design
+• You write design docs and RCAs that people reference years later, clear trade-offs, honest risks, real recommendations
 
-•
+• You can disagree with a team and still make them better, influence through rigor and respect, not title
 
-You&#39;ve operated at staff scope, whatever your title said, the engineer everyone routed the hardest systems questions to
-
-•
-
-You think in failure modes by default: when you see a design, you instinctively ask what happens at the tail, under partition, at 10x load
-
-•
-
-You write design docs and RCAs that people reference years later, clear trade-offs, honest risks, real recommendations
-
-•
-
-You can disagree with a team and still make them better, influence through rigor and respect, not title
-
-•
-
-You&#39;d rather prevent ten incidents quietly than be the hero of one loudly
+• You&#39;d rather prevent ten incidents quietly than be the hero of one loudly
 
 Bonus Points
 
-•
+• You&#39;ve made AI agents genuinely productive on complex systems, and know how to keep AI-generated code from becoming AI-generated incidents
 
-•
+• GCP-native experience: Pub/Sub, Cloud Tasks, GKE, Firestore
 
-•
+• You&#39;ve done this job before under another name, &#34;the systems person,&#34; principal engineer, architect-who-still-codes
 
-You&#39;ve made AI agents genuinely productive on complex systems, and know how to keep AI-generated code from becoming AI-generated incidents
-
-•
-
-GCP-native experience: Pub/Sub, Cloud Tasks, GKE, Firestore
-
-•
-
-You&#39;ve done this job before under another name, &#34;the systems person,&#34; principal engineer, architect-who-still-codes
-
-•
-
-Experience taking a 0→1 system to production alongside hardening mature ones
+• Experience taking a 0→1 system to production alongside hardening mature ones
 
 #LI-Remote #LI-HB1
 
