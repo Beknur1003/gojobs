@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="ru" data-base="/gojobs">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="/gojobs/assets/style.css">
+<link rel="icon" href="/gojobs/assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Go Jobs" href="/gojobs/feed.xml">
+
+
+<title>DevOps Engineer Kafka &amp; PostgreSQL — mirantis | Go Jobs</title>
+<meta name="description" content="DevOps Engineer Kafka &amp; PostgreSQL · mirantis · Удалёнка. Mirantis, an IREN company, is the Kubernetes-native AI infrastructure company, enabling organizations to build and operate scalable, secure, and sovereign infrastructure for modern AI, machine learning, and data-intensive applications. By…">
+<link rel="canonical" href="https://beknur1003.github.io/gojobs/jobs/devops-engineer-kafka-postgresql-1abc27/">
+<meta property="og:title" content="DevOps Engineer Kafka &amp; PostgreSQL — mirantis">
+<meta property="og:description" content="DevOps Engineer Kafka &amp; PostgreSQL · mirantis · Удалёнка. Mirantis, an IREN company, is the Kubernetes-native AI infrastructure company, enabling organizations to build and operate scalable, secure, and sovereign infrastructure for modern AI, machine learning, and data-intensive applications. By…">
+<meta property="og:url" content="https://beknur1003.github.io/gojobs/jobs/devops-engineer-kafka-postgresql-1abc27/">
+<meta property="og:type" content="article">
+
+
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="/gojobs/" aria-label="Go Jobs, на главную">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M7.5 12.5h5.5M10 9.5h6.5M9 15.5h5" stroke="var(--bg)" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </span>
+      <span class="brand-name">Go Jobs</span>
+    </a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="/gojobs/">Вакансии</a>
+      <a href="/gojobs/about/">О проекте</a>
+      <a href="/gojobs/feed.xml" class="nav-rss" title="RSS со свежими вакансиями">RSS</a>
+    </nav>
+  </div>
+</header>
+
+
+<main class="wrap job">
+  <a class="back" href="/gojobs/">← Все вакансии</a>
+
+  
+  
+
+  <header class="job-head">
+    <h1>DevOps Engineer Kafka &amp; PostgreSQL</h1>
+    <p class="job-meta">
+      <span class="company">mirantis</span>
+      <span>Delhi, DL, in</span>
+      <span>опубликовано <time datetime="2026-10-23T15:37:31Z" data-ts="1792769851">23 октября 2026</time></span>
+    </p>
+    <div class="chips">
+      <span class="chip chip-go">Go — основной язык</span>
+      
+      <span class="chip chip-format">Удалёнка</span>
+      <span class="chip chip-grade">Senior</span>
+      <span class="chip">Полная занятость</span>
+      
+      
+    </div>
+  </header>
+
+  <div class="job-layout">
+    <article class="job-body">
+      
+      <div class="chips job-stack" aria-label="Стек"><span class="chip">PostgreSQL</span><span class="chip">Kafka</span><span class="chip">Kubernetes</span><span class="chip">Terraform</span><span class="chip">AWS</span><span class="chip">GCP</span><span class="chip">Azure</span><span class="chip">Prometheus</span><span class="chip">Grafana</span><span class="chip">OpenTelemetry</span><span class="chip">CI/CD</span><span class="chip">Python</span><span class="chip">AI/LLM</span></div>
+      
+      <div class="post">Mirantis, an IREN company, is the Kubernetes-native AI infrastructure company, enabling organizations to build and operate scalable, secure, and sovereign infrastructure for modern AI, machine learning, and data-intensive applications. By combining open-source innovation with deep expertise in Kubernetes orchestration, Mirantis empowers platform engineering teams to deliver composable, production-ready developer platforms across any environment — on-premises, in the cloud, at the edge, or in sovereign data centers.
+
+As enterprises navigate the growing complexity of AI-driven workloads, Mirantis delivers the automation, GPU orchestration, and policy-driven control needed to manage infrastructure with confidence and agility. Committed to open standards and freedom from lock-in, Mirantis ensures that customers retain full control of their infrastructure strategy.
+
+Job Description
+
+We are looking for an experienced DevOps Engineer to own the deployment, release, and reliability backbone of the k0rdent-ai platform — our multi-tenant control plane for enterprise GPU infrastructure. The platform’s core services — identity (Keycloak), API gateway (Kong), workflow engine (Temporal), a suite of Go APIs, and the PostgreSQL databases behind them — run on every control-plane and regional cluster we operate, and must be upgraded safely, observed continuously, and recovered quickly.
+
+You will run this platform across both cloud Kubernetes (AWS) and bare-metal clusters in our data centers, delivering it through Helm charts and k0rdent ServiceTemplates and MultiClusterServices. Beyond day-to-day operations, a substantial focus of this role is engineering the foundations that stateful services depend on: snapshot-capable storage (CSI drivers, StorageClasses, volume snapshots), CloudNativePG backups and point-in-time recovery, and the CI/CD and bare-metal end-to-end pipelines that validate every change before it reaches customers.
+
+Because this platform holds the record of every tenant, user, and cluster action, this role also owns its operational readiness — runbooks, restore drills, and the upgrade and rollback paths that keep a failed release from turning into data loss.
+
+Main Responsibilities
+
+•
+Multi-Environment Kubernetes Operations: Deploy, upgrade, and operate k0s / k0rdent-managed Kubernetes clusters on AWS and on bare-metal hardware, across a global control plane and multiple regions — cluster lifecycle, node maintenance, capacity planning, and version upgrades.
+
+•
+Helm &amp; Service Delivery: Author and maintain Helm charts and k0rdent ServiceTemplates and MultiClusterServices for core services (Keycloak, Kong, Temporal, CloudNativePG, and in-house Go APIs), including dependency ordering, health gating, versioning, and zero-downtime upgrade paths.
+
+•
+Storage &amp; Snapshot Engineering: Design and run Kubernetes storage for each environment — AWS EBS CSI in the cloud; OpenEBS LocalPV, Longhorn, or Ceph on bare metal — including StorageClasses, reclaim policies, the CSI snapshot controller, and VolumeSnapshotClasses, so stateful services can be snapshotted and restored reliably.
+
+•
+Database Backup &amp; Recovery: Operate CloudNativePG backup and recovery end to end — scheduled volume snapshots, continuous WAL archiving to object storage, point-in-time recovery, and replica clusters — with defined RPO/RTO targets and regular restore drills.
+
+•
+CI/CD &amp; End-to-End Testing: Build and maintain GitHub Actions pipelines for linting, chart unit tests, artifact packaging and publishing to OCI registries, and on-demand bare-metal end-to-end environments; keep them fast, reliable, and easy to debug.
+
+•
+GitOps &amp; Infrastructure as Code: Maintain a strictly declarative infrastructure-as-code (IaC) culture using Terraform and Argo CD (or Flux), keeping every environment — from developer labs to production — reproducible and reviewable through code.
+
+•
+Observability &amp; Incident Response: Build monitoring and alerting (Prometheus, Grafana, OpenTelemetry) for service health, database replication and backup status, and capacity; join the on-call rotation, lead troubleshooting, and drive post-incident improvements.
+
+•
+Security &amp; Air-Gapped Delivery: Manage TLS and certificate lifecycle (cert-manager), secrets, network policies, and least-privilege RBAC, and support private-registry and air-gapped installations for sovereign customers.
+
+Qualifications
+
+Must Have
+
+•
+Platform Experience: 8+ years in DevOps, SRE, or platform engineering, including 3+ years operating production Kubernetes for business-critical services.
+
+•
+Kubernetes Depth: Strong grasp of Kubernetes primitives — workloads and StatefulSets, operators and CRDs, persistent volumes and CSI storage, RBAC, and network policies — with hands-on experience upgrading and troubleshooting clusters in production.
+
+•
+Helm &amp; Release Engineering: Hands-on authoring of non-trivial Helm charts — templating, values design, chart dependencies, and testing with helm-unittest or chart-testing. Experience with k0rdent, Cluster API, or a multi-cluster delivery tool (Argo CD ApplicationSets, Fleet, Sveltos) is preferred, but what matters is depth with Helm, not the specific delivery tool.
+
+•
+Kubernetes Storage: Practical experience with CSI drivers, StorageClasses, and volume snapshots — AWS EBS CSI preferred, but equivalent experience with Longhorn, Ceph (Rook), OpenEBS, or another cloud CSI driver is acceptable. What matters is understanding how storage behaves when pods, nodes, and clusters fail.
+
+•
+PostgreSQL on Kubernetes: Hands-on experience running PostgreSQL through a Kubernetes operator — CloudNativePG (CNPG) preferred, but Zalando’s postgres-operator, Crunchy PGO, or a comparable operator is acceptable — including backups, restores, and point-in-time recovery.
+
+•
+Cloud Infrastructure: Production experience in AWS (EC2, EBS, VPC, IAM, S3; EKS a plus); equivalent GCP or Azure experience also counts.
+
+•
+CI/CD &amp; Automation: Designing and maintaining GitHub Actions (or GitLab CI) pipelines, with solid scripting in Bash plus Python or Go (Golang).
+
+•
+Collaboration: Clear written and spoken English and comfort working across time zones, with regular overlap with US and European teams.
+
+Nice to Have
+
+•
+Experience with bare-metal provisioning (Metal3, Ironic, PXE) and GPU or AI infrastructure.
+
+•
+Familiarity with Kong Gateway or the Kubernetes Gateway API, and Keycloak / OIDC identity integration.
+
+•
+Experience operating Temporal or other workflow engines in production.
+
+•
+Experience delivering software into air-gapped or sovereign environments using private registries and mirrored artifacts.
+
+•
+Experience designing cross-region disaster recovery for stateful services, including RPO/RTO trade-off decisions.
+
+•
+Certifications such as CKA / CKS or AWS Certified DevOps Engineer – Professional — a plus.
+
+•
+Contributions to open-source infrastructure projects (Helm charts, Kubernetes operators, CNCF projects) — a huge plus.
+
+Education and Experience
+
+Bachelor’s degree in Computer Science &amp; Engineering (or a related field), or 8+ years of equivalent related experience.
+
+We offer:
+
+• Operate some of the most advanced AI infrastructure environments in production today.
+
+• Work with the latest NVIDIA GPU technologies, Kubernetes platforms, and high-performance networking environments.
+
+• Help define operational standards and reliability practices for next-generation AI infrastructure services.
+
+• Influence the adoption of AI-powered operational capabilities through k0rdent AI.
+
+• Work alongside highly skilled engineers solving complex infrastructure and platform challenges at scale.
+
+• Join a growing organisation investing heavily in AI infrastructure, platform services, and operational innovation.
+
+It is understood that Mirantis, Inc. may use automated decision-making technology (ADMT) for specific employment-related decisions. Opting out of ADMT use is requested for decisions about evaluation and review connected with the specific employment decision for the position applied for. You also have the right to appeal any decisions made by ADMT by sending your request to <a href="mailto:isamoylova@mirantis.com">isamoylova@mirantis.com</a>
+
+By submitting your resume, you consent to the processing and storage of your personal data in accordance with applicable data protection laws, for the purposes of considering your application for current and future job opportunities.
+
+We are a Leader for Container Management in G2 (#2 after AWS)!</div>
+      <p class="caution">Вакансия собрана автоматически из открытого источника. Перед тем как отправлять документы, проверьте компанию. Никогда не платите за трудоустройство и не устанавливайте программы по просьбе «рекрутера».</p>
+    </article>
+
+    <aside class="job-side">
+      
+
+      <section class="side-box apply">
+        <h2 class="side-title">Как откликнуться</h2>
+        
+        
+        
+        <a class="btn" href="https://jobs.smartrecruiters.com/Mirantis/744000157513511-devops-engineer-kafka-postgresql?utm_source=freehire.me" target="_blank" rel="noopener">
+          <span class="btn-label">Откликнуться на сайте</span><span class="btn-value">jobs.smartrecruiters.com ↗</span>
+        </a>
+        
+        
+        
+      </section>
+
+      <section class="side-box">
+        <h2 class="side-title">Источник</h2>
+        <ul class="sources">
+          
+          <li><a href="https://freehire.me/jobs/devops-engineer-kafka-postgresql-mirantis-e5ep7vuf" target="_blank">freehire · smartrecruiters ↗</a><span class="muted"> · <time data-ts="1792769851">23 октября 2026</time></span></li>
+          
+        </ul>
+      </section>
+    </aside>
+  </div>
+  
+</main>
+
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <p>Бесплатно и без регистрации. Вакансии собраны из открытых источников; у каждой есть ссылка на оригинал.</p>
+    <p>
+      
+      <a href="/gojobs/about/">Источники и статус</a> ·
+      <a href="https://github.com/Beknur1003/gojobs">Код на GitHub</a> ·
+      <a href="https://github.com/Beknur1003/gojobs/issues/new?title=Добавить+источник">Предложить канал</a>
+    </p>
+  </div>
+</footer>
+
+<script src="/gojobs/assets/app.js" defer></script>
+</body>
+</html>
