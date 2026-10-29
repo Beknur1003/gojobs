@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="ru" data-base="/gojobs">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="/gojobs/assets/style.css">
+<link rel="icon" href="/gojobs/assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Go Jobs" href="/gojobs/feed.xml">
+
+
+<title>Staff Engineer, Crusoe Managed Data Transfer (Distributed Systems) — crusoe | Go Jobs</title>
+<meta name="description" content="Staff Engineer, Crusoe Managed Data Transfer (Distributed Systems) · crusoe · Офис. Crusoe is on a mission to accelerate the abundance of energy and intelligence. As the only vertically integrated AI infrastructure company built from the ground up, we own and operate each layer of the stack — from electrons to tokens — to…">
+<link rel="canonical" href="https://beknur1003.github.io/gojobs/jobs/staff-engineer-crusoe-managed-data-transfer-distributed-syst-9b4c87/">
+<meta property="og:title" content="Staff Engineer, Crusoe Managed Data Transfer (Distributed Systems) — crusoe">
+<meta property="og:description" content="Staff Engineer, Crusoe Managed Data Transfer (Distributed Systems) · crusoe · Офис. Crusoe is on a mission to accelerate the abundance of energy and intelligence. As the only vertically integrated AI infrastructure company built from the ground up, we own and operate each layer of the stack — from electrons to tokens — to…">
+<meta property="og:url" content="https://beknur1003.github.io/gojobs/jobs/staff-engineer-crusoe-managed-data-transfer-distributed-syst-9b4c87/">
+<meta property="og:type" content="article">
+
+
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="/gojobs/" aria-label="Go Jobs, на главную">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M7.5 12.5h5.5M10 9.5h6.5M9 15.5h5" stroke="var(--bg)" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </span>
+      <span class="brand-name">Go Jobs</span>
+    </a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="/gojobs/">Вакансии</a>
+      <a href="/gojobs/about/">О проекте</a>
+      <a href="/gojobs/feed.xml" class="nav-rss" title="RSS со свежими вакансиями">RSS</a>
+    </nav>
+  </div>
+</header>
+
+
+<main class="wrap job">
+  <a class="back" href="/gojobs/">← Все вакансии</a>
+
+  
+  
+
+  <header class="job-head">
+    <h1>Staff Engineer, Crusoe Managed Data Transfer (Distributed Systems)</h1>
+    <p class="job-meta">
+      <span class="company">crusoe</span>
+      <span>San Francisco, CA - US</span>
+      <span>опубликовано <time datetime="2026-10-28T22:03:29Z" data-ts="1793225009">28 октября 2026</time></span>
+    </p>
+    <div class="chips">
+      <span class="chip chip-go">Go — основной язык</span>
+      
+      <span class="chip chip-format">Офис</span>
+      <span class="chip chip-grade">Lead</span>
+      <span class="chip">Полная занятость</span>
+      
+      
+    </div>
+  </header>
+
+  <div class="job-layout">
+    <article class="job-body">
+      
+      <div class="chips job-stack" aria-label="Стек"><span class="chip">Kubernetes</span><span class="chip">AWS</span><span class="chip">GCP</span><span class="chip">AI/LLM</span></div>
+      
+      <div class="post">Crusoe is on a mission to accelerate the abundance of energy and intelligence. As the only vertically integrated AI infrastructure company built from the ground up, we own and operate each layer of the stack — from electrons to tokens — to power the world&#39;s most ambitious AI workloads. When you join Crusoe, you join a team that is building the future, faster.
+
+We&#39;re in the midst of the greatest industrial revolution of our time. The demand for AI compute is boundless, and power is a bottleneck. We&#39;re solving that — with an energy-first approach that makes AI infrastructure better for the world and faster for the people innovating with AI.
+
+We&#39;re looking for problem-solving, opportunity-finding teammates with a sense of urgency, who believe in the scale of our ambition and thrive on a path not fully paved — people who want to grow their careers alongside a team of experts across energy, manufacturing, data center construction, and cloud services.
+
+If you want to do the most meaningful work of your career, help our customers and partners advance their AI strategies, and be part of a high-performing team that believes in each other, come build with us at Crusoe.
+
+About the Role:
+
+We are looking for a Staff Engineer to be the technical lead and systems architect for Crusoe&#39;s Managed Data Transfer (MDT) service, the person who owns how its parts fit together and how MDT fits into Crusoe Cloud. MDT moves petabyte-scale training data between hyperscaler storage and Crusoe storage as a managed service, so AI labs and Physical AI companies can train on Crusoe GPUs without building their own transfer pipelines. You will design the control plane, the transfer worker fleet and the integration with Crusoe&#39;s storage and network, and set the path for adding other clouds and Crusoe-internal transfers.
+
+This is an engineering leadership role on a new team. Managed Data Transfer starts from a working prototype that already serves customers in production, so your first decisions are about what to keep, harden or replace, and how to sequence that work without disrupting the customers who depend on it. You will lead the design through Crusoe&#39;s architecture review, mentor the engineers who build it, and report to the Engineering Manager of Managed Data Transfer within Managed platform services.
+
+What You&#39;ll Be Working On:
+
+•
+Architecture Ownership: Own the end-to-end design of MDT: the job API and scheduler, the transfer workers on Kubernetes, storage integration and network paths. You decide what the system looks like and explain why.
+
+•
+Prototype Assessment and Migration: Evaluate the production prototype, decide what gets refactored, extended or replaced, and move its current users onto the managed service without interruption.
+
+•
+Throughput and Correctness: Set the data-plane strategy (sharding, concurrency, straggler handling, checksum verification) and the benchmarks that prove it, aiming for line-rate transfers over dedicated interconnects.
+
+•
+Cross-Team Contracts: Own the interfaces between MDT and Storage, Network, Kubernetes, IAM, Console, Billing and Monitoring. You define what partner teams build to and hold the line on it.
+
+•
+Extensibility and Build-versus-Buy: Design for new clouds and Crusoe-internal transfers with a pluggable transfer engine and regional worker pools, and evaluate open-source and vendor options before the team builds.
+
+•
+Operational Excellence: Set the bar for reliability, observability and on-call for every system the team ships.
+
+•
+Product Partnership: Work with Product on scope, pricing trade-offs and milestones, and surface edge cases early enough to change the plan.
+
+•
+Technical Mentorship: Raise the team&#39;s level through design reviews, RFC feedback and direct coaching, so the team runs well without depending on you.
+
+What You&#39;ll Bring to the Team:
+
+•
+Distributed Systems Depth: Hands-on experience designing and operating data-intensive distributed systems at scale, including the failure modes that only appear in production.
+
+•
+Professional Experience: 8+ years shipping production software, including leading a service from prototype to general availability.
+
+•
+Data Movement and Storage Performance: Understanding of object storage semantics, file systems and TCP throughput, and the ability to profile and fix a transfer that is slower than it should be.
+
+•
+Systems Integration Judgment: Proven ability to evolve a live system toward a better design while keeping risk to current customers low.
+
+•
+Cross-Team Influence: Experience defining API boundaries and schema contracts with partner teams, and negotiating them to agreement.
+
+•
+Operational Ownership: You have carried customer-facing on-call and built systems that are maintainable, observable and predictable.
+
+•
+Software Engineering Craft: Proficiency in Go or another modern compiled language (Go strongly preferred).
+
+•
+Communication: You can explain an architectural decision to an engineer, a PM and an EM, and you know which parts matter to each.
+
+Bonus Points
+
+•
+Experience building or operating bulk data transfer systems, such as AWS DataSync, Google Storage Transfer Service, or rclone at petabyte scale.
+
+•
+Familiarity with cloud networking and interconnects, such as AWS Direct Connect or GCP Interconnect.
+
+•
+Experience with cross-account cloud IAM and threat modeling for services that hold customer credentials.
+
+•
+Approximate nearest-neighbor (ANN) indexing in depth: HNSW, IVF, product and scalar quantization, DiskANN-style indexes that live on SSD.
+
+•
+Experience with AI, HPC or Physical AI data pipelines.
+
+Benefits:
+
+•
+Competitive compensation and equity packages
+
+•
+Restricted Stock Units
+
+•
+Paid time off, paid holidays &amp; leave of absence programs
+
+•
+Comprehensive health, dental &amp; vision insurance
+
+•
+Employer contributions to HSA account
+
+•
+Paid parental leave
+
+•
+Paid life insurance, short-term and long-term disability
+
+•
+Professional development &amp; tuition reimbursement
+
+•
+Mental health &amp; wellness support
+
+•
+Commuter benefits (parking &amp; transit)
+
+•
+Cell phone stipend
+
+•
+401(k) Retirement plan with company match up to 4% of salary
+
+•
+Volunteer time off
+
+•
+Global travel insurance &amp; emergency assistance
+
+•
+Daily meals allowance
+
+•
+Additional perks &amp; programs specific to location
+
+Compensation Range
+
+Compensation will be paid in the range of up to $215,000 -$260,000 + Bonus. Restricted Stock Units are included in all offers. Compensation to be determined by the applicant&#39;s knowledge, education, and abilities, as well as internal equity and alignment with market data.
+
+Crusoe is an Equal Opportunity Employer. Employment decisions are made without regard to race, color, religion, disability, genetic information, pregnancy, citizenship, marital status, sex/gender, sexual preference/ orientation, gender identity, age, veteran status, national origin, or any other status protected by law or regulation.</div>
+      <p class="caution">Вакансия собрана автоматически из открытого источника. Перед тем как отправлять документы, проверьте компанию. Никогда не платите за трудоустройство и не устанавливайте программы по просьбе «рекрутера».</p>
+    </article>
+
+    <aside class="job-side">
+      
+
+      <section class="side-box apply">
+        <h2 class="side-title">Как откликнуться</h2>
+        
+        
+        
+        <a class="btn" href="https://jobs.ashbyhq.com/crusoe/1d2e246c-bef2-48d1-aaf4-789120921851/application" target="_blank" rel="noopener">
+          <span class="btn-label">Откликнуться на сайте</span><span class="btn-value">jobs.ashbyhq.com ↗</span>
+        </a>
+        
+        
+        
+      </section>
+
+      <section class="side-box">
+        <h2 class="side-title">Источник</h2>
+        <ul class="sources">
+          
+          <li><a href="https://jobs.ashbyhq.com/crusoe/1d2e246c-bef2-48d1-aaf4-789120921851" target="_blank">crusoe (Ashby) ↗</a><span class="muted"> · <time data-ts="1793225009">28 октября 2026</time></span></li>
+          
+        </ul>
+      </section>
+    </aside>
+  </div>
+  
+</main>
+
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <p>Бесплатно и без регистрации. Вакансии собраны из открытых источников; у каждой есть ссылка на оригинал.</p>
+    <p>
+      
+      <a href="/gojobs/about/">Источники и статус</a> ·
+      <a href="https://github.com/Beknur1003/gojobs">Код на GitHub</a> ·
+      <a href="https://github.com/Beknur1003/gojobs/issues/new?title=Добавить+источник">Предложить канал</a>
+    </p>
+  </div>
+</footer>
+
+<script src="/gojobs/assets/app.js" defer></script>
+</body>
+</html>
