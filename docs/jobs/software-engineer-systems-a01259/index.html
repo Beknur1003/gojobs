@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="ru" data-base="/gojobs">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="/gojobs/assets/style.css">
+<link rel="icon" href="/gojobs/assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Go Jobs" href="/gojobs/feed.xml">
+
+
+<title>Software Engineer, Systems — e2b | Go Jobs</title>
+<meta name="description" content="Software Engineer, Systems · e2b · $250 000 – $350 000/год · Офис. About E2B E2B is a fast-growing Series A startup with over $37M in funding and 9-figure revenue. We are building the Agent Cloud and power the infrastructure behind AI labs and some of the most widely used consumer and enterprise agents…">
+<link rel="canonical" href="https://beknur1003.github.io/gojobs/jobs/software-engineer-systems-a01259/">
+<meta property="og:title" content="Software Engineer, Systems — e2b">
+<meta property="og:description" content="Software Engineer, Systems · e2b · $250 000 – $350 000/год · Офис. About E2B E2B is a fast-growing Series A startup with over $37M in funding and 9-figure revenue. We are building the Agent Cloud and power the infrastructure behind AI labs and some of the most widely used consumer and enterprise agents…">
+<meta property="og:url" content="https://beknur1003.github.io/gojobs/jobs/software-engineer-systems-a01259/">
+<meta property="og:type" content="article">
+
+
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="/gojobs/" aria-label="Go Jobs, на главную">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M7.5 12.5h5.5M10 9.5h6.5M9 15.5h5" stroke="var(--bg)" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </span>
+      <span class="brand-name">Go Jobs</span>
+    </a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="/gojobs/">Вакансии</a>
+      <a href="/gojobs/about/">О проекте</a>
+      <a href="/gojobs/feed.xml" class="nav-rss" title="RSS со свежими вакансиями">RSS</a>
+    </nav>
+  </div>
+</header>
+
+
+<main class="wrap job">
+  <a class="back" href="/gojobs/">← Все вакансии</a>
+
+  
+  
+
+  <header class="job-head">
+    <h1>Software Engineer, Systems</h1>
+    <p class="job-meta">
+      <span class="company">e2b</span>
+      <span>San Francisco</span>
+      <span>опубликовано <time datetime="2026-11-17T20:35:28Z" data-ts="1794947728">17 ноября 2026</time></span>
+    </p>
+    <div class="chips">
+      <span class="chip chip-go">Go — основной язык</span>
+      
+      <span class="chip chip-format">Офис</span>
+      
+      <span class="chip">Полная занятость</span>
+      
+      
+    </div>
+  </header>
+
+  <div class="job-layout">
+    <article class="job-body">
+      
+      <div class="chips job-stack" aria-label="Стек"><span class="chip">Kubernetes</span><span class="chip">AWS</span><span class="chip">GCP</span><span class="chip">Azure</span><span class="chip">Linux</span><span class="chip">Rust</span><span class="chip">C&#43;&#43;</span><span class="chip">AI/LLM</span></div>
+      
+      <div class="post">About E2B
+
+E2B is a fast-growing Series A startup with over $37M in funding and 9-figure revenue. We are building the Agent Cloud and power the infrastructure behind AI labs and some of the most widely used consumer and enterprise agents, including Manus, Genspark, Lindy, Groq, and Artificial Analysis. Our team includes original authors of Firecracker, the AWS microVM technology powering Lambda, along with alumni of Cognition, JetBrains, Zapier, and Wish.
+
+About the role
+
+E2B has started billions of Firecracker sandboxes across regions on Google Cloud, AWS and Azure. Every sandbox is a real virtual machine that has to start in well under a second, resume from a snapshot on a different host, and share a host with up to about 200 others without noticing them.
+
+Your job will be to build and own the Go service on every host that creates, pauses, resumes and tears down sandboxes, along with the Linux underneath it: host networking, memory and isolation. You&#39;ll work closely with our sandbox team in Prague, who own the Firecracker runtime, the guest kernel, sandbox storage and live migration, and with our infrastructure engineers, who put the platform together.
+
+We&#39;re hiring more than one engineer into this role, each with a different focus: some go deepest on Linux and how sandboxes run on the host, others on sandbox networking. Our runtime is open source at github.com/e2b-dev/runtime, and the sandbox package is a good place to see what you&#39;d work on.
+
+Responsibilities include:
+
+•
+Making sandboxes start fast and keeping them fast as the fleet grows to millions and later billions of sandboxes, with starts under 200ms
+
+•
+Evolving the architecture of the software that runs sandboxes on every host, so it can change without disrupting them
+
+•
+Making the sandbox lifecycle reliable under failure, so no sandbox is leaked or lost when a process or host dies
+
+•
+Keeping the host OS and kernel current across the fleet, rolling out upgrades without disrupting running sandboxes
+
+•
+Building the sandbox network: isolation, egress control and addressing for untrusted workloads
+
+•
+Enforcing resource isolation between sandboxes on shared hosts, so every sandbox gets the CPU, memory and I/O it was allocated
+
+•
+Building host-level observability, so we understand what every sandbox costs the host it runs on
+
+•
+Being on call for the platform you build, alongside the rest of the platform team
+
+This role requires a high amount of ownership. You&#39;ll write the code and the design docs for the hardest changes in your area, and ship every day.
+
+If you aren&#39;t afraid of going deep into the Linux kernel when a problem needs it, and words like eBPF, cgroups, network namespaces, nftables, conntrack, or noisy neighbor problem sound exciting to you, we want to hear from you!
+
+What we&#39;re looking for
+
+•
+Experience building and operating systems software across a large production fleet: node agents, container or VM runtimes, schedulers, or similar
+
+•
+Strong Go, or strong Rust or C/C++ and the willingness to pick up Go quickly; our services are in Go
+
+•
+Deep Linux knowledge: processes, CPU scheduling, memory management, cgroups and namespaces, and the network stack
+
+•
+Experience making software correct under failure: crash recovery, reconciling recorded state with what is actually running, and cleanup when a process or host dies
+
+•
+For a networking focus: Linux networking for multi-tenant workloads, such as network namespaces, virtual interfaces, iptables/nftables and egress control
+
+•
+A performance mindset: you&#39;ve shaved milliseconds off hot paths, profiled production systems under load, and treat p99 as a number you own
+
+•
+Excited to work in person from San Francisco
+
+•
+Comfortable with our code and infrastructure being public
+
+We expect this experience will often come from around five or more years of relevant work, but the depth of what you&#39;ve built matters more than a specific number.
+
+Bonus points for:
+
+•
+Experience with VM or container runtimes such as Firecracker, KVM, gVisor or runc, including memory management and snapshot and restore
+
+•
+GPU or accelerator infrastructure, passthrough or GPU-as-a-service
+
+•
+Kernel tracing and eBPF tooling
+
+•
+OS-level hardening, such as seccomp and Linux security modules
+
+•
+Running workloads on Kubernetes, which our fleet runs on
+
+•
+Contributions to the Linux kernel, Firecracker, CNCF or similar open source projects
+
+What it’s like to work at E2B
+
+We’re a fast-growing startup with in-person (4 days on-site, 1 day WFH) offices in San Francisco and Prague, Czech Republic. We already generate 9-figure revenue and work directly with top-tier AI companies like Manus, Genspark, Lindy, Groq, Artificial Analysis and other exciting teams pushing the frontier of AI.
+
+We offer healthcare, vision, and dental insurance, unlimited PTO, 401k, and a variety of perks for in-office employees.</div>
+      <p class="caution">Вакансия собрана автоматически из открытого источника. Перед тем как отправлять документы, проверьте компанию. Никогда не платите за трудоустройство и не устанавливайте программы по просьбе «рекрутера».</p>
+    </article>
+
+    <aside class="job-side">
+      
+      <section class="side-box">
+        <h2 class="side-title">Зарплата</h2>
+        <p class="salary-big">$250 000 – $350 000/год</p>
+        <p class="muted">≈ $20 800 – 29 200 в месяц, по фиксированному курсу</p>
+      </section>
+      
+
+      <section class="side-box apply">
+        <h2 class="side-title">Как откликнуться</h2>
+        
+        
+        
+        <a class="btn" href="https://jobs.ashbyhq.com/e2b/98c4b5ca-05c0-4456-9b86-78fa4922d448/application" target="_blank" rel="noopener">
+          <span class="btn-label">Откликнуться на сайте</span><span class="btn-value">jobs.ashbyhq.com ↗</span>
+        </a>
+        
+        
+        
+      </section>
+
+      <section class="side-box">
+        <h2 class="side-title">Источник</h2>
+        <ul class="sources">
+          
+          <li><a href="https://jobs.ashbyhq.com/e2b/98c4b5ca-05c0-4456-9b86-78fa4922d448" target="_blank">e2b (Ashby) ↗</a><span class="muted"> · <time data-ts="1794947728">17 ноября 2026</time></span></li>
+          
+        </ul>
+      </section>
+    </aside>
+  </div>
+  
+</main>
+
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <p>Бесплатно и без регистрации. Вакансии собраны из открытых источников; у каждой есть ссылка на оригинал.</p>
+    <p>
+      
+      <a href="/gojobs/about/">Источники и статус</a> ·
+      <a href="https://github.com/Beknur1003/gojobs">Код на GitHub</a> ·
+      <a href="https://github.com/Beknur1003/gojobs/issues/new?title=Добавить+источник">Предложить канал</a>
+    </p>
+  </div>
+</footer>
+
+<script src="/gojobs/assets/app.js" defer></script>
+</body>
+</html>

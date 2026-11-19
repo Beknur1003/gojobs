@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="ru" data-base="/gojobs">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="/gojobs/assets/style.css">
+<link rel="icon" href="/gojobs/assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Go Jobs" href="/gojobs/feed.xml">
+
+
+<title>Software Engineer, Infrastructure — e2b | Go Jobs</title>
+<meta name="description" content="Software Engineer, Infrastructure · e2b · $250 000 – $350 000/год · Офис. About E2B E2B is a fast-growing Series A startup with over $37M in funding and 9-figure revenue. We are building the Agent Cloud and power the infrastructure behind AI labs and some of the most widely used consumer and enterprise agents…">
+<link rel="canonical" href="https://beknur1003.github.io/gojobs/jobs/software-engineer-infrastructure-d53188/">
+<meta property="og:title" content="Software Engineer, Infrastructure — e2b">
+<meta property="og:description" content="Software Engineer, Infrastructure · e2b · $250 000 – $350 000/год · Офис. About E2B E2B is a fast-growing Series A startup with over $37M in funding and 9-figure revenue. We are building the Agent Cloud and power the infrastructure behind AI labs and some of the most widely used consumer and enterprise agents…">
+<meta property="og:url" content="https://beknur1003.github.io/gojobs/jobs/software-engineer-infrastructure-d53188/">
+<meta property="og:type" content="article">
+
+
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="/gojobs/" aria-label="Go Jobs, на главную">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M7.5 12.5h5.5M10 9.5h6.5M9 15.5h5" stroke="var(--bg)" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </span>
+      <span class="brand-name">Go Jobs</span>
+    </a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="/gojobs/">Вакансии</a>
+      <a href="/gojobs/about/">О проекте</a>
+      <a href="/gojobs/feed.xml" class="nav-rss" title="RSS со свежими вакансиями">RSS</a>
+    </nav>
+  </div>
+</header>
+
+
+<main class="wrap job">
+  <a class="back" href="/gojobs/">← Все вакансии</a>
+
+  
+  
+
+  <header class="job-head">
+    <h1>Software Engineer, Infrastructure</h1>
+    <p class="job-meta">
+      <span class="company">e2b</span>
+      <span>San Francisco</span>
+      <span>опубликовано <time datetime="2026-11-17T20:34:33Z" data-ts="1794947673">17 ноября 2026</time></span>
+    </p>
+    <div class="chips">
+      <span class="chip chip-go">Go — основной язык</span>
+      
+      <span class="chip chip-format">Офис</span>
+      
+      <span class="chip">Полная занятость</span>
+      
+      
+    </div>
+  </header>
+
+  <div class="job-layout">
+    <article class="job-body">
+      
+      <div class="chips job-stack" aria-label="Стек"><span class="chip">PostgreSQL</span><span class="chip">Redis</span><span class="chip">gRPC</span><span class="chip">Kubernetes</span><span class="chip">Terraform</span><span class="chip">AWS</span><span class="chip">GCP</span><span class="chip">Azure</span><span class="chip">Linux</span><span class="chip">AI/LLM</span></div>
+      
+      <div class="post">About E2B
+
+E2B is a fast-growing Series A startup with over $37M in funding and 9-figure revenue. We are building the Agent Cloud and power the infrastructure behind AI labs and some of the most widely used consumer and enterprise agents, including Manus, Genspark, Lindy, Groq, and Artificial Analysis. Our team includes original authors of Firecracker, the AWS microVM technology powering Lambda, along with alumni of Cognition, JetBrains, Zapier, and Wish.
+
+About the role
+
+E2B has started billions of Firecracker sandboxes across regions on Google Cloud, AWS and Azure, and single customers now ask for 100,000 of them running at once. The control plane behind that is a set of Go services backed by Postgres and Redis, deployed on Kubernetes and managed through GitOps.
+
+Your job will be to own how the platform fits together: the API and the proxy layer that routes traffic to sandboxes, our Kubernetes infrastructure across clouds and regions, and the infrastructure that makes every region and cloud run the same code. You&#39;ll work closely with our systems engineers, who own Linux, the software that runs sandboxes on each host, and sandbox networking, and with the engineers building the product on top of the control plane.
+
+Our runtime is open source at github.com/e2b-dev/runtime, and the api service and the proxy are good places to see what you&#39;d work on.
+
+Responsibilities include:
+
+•
+Designing and building Go services and APIs: new endpoints, gRPC and OpenAPI contracts, and the data models behind them
+
+•
+Building and evolving the edge proxy and the routing state behind it, so traffic stays correct as sandboxes pause, resume and move between hosts
+
+•
+Scaling the API and the Redis and Postgres behind it to hundreds of thousands of concurrent sandboxes per region: query and schema design, caching, sharding and migrations under load
+
+•
+Writing the Kubernetes automation that scales the platform with demand: provisioning capacity ahead of load spikes and draining long-lived nodes without disrupting running sandboxes
+
+•
+Implementing placement across machine families and CPU generations on multiple clouds, so a resumed sandbox always lands on a host that can restore it
+
+•
+Building the Terraform modules, Helm charts and Argo CD configuration that make a new region or cloud fast and repeatable to stand up
+
+•
+Building the metrics, tracing and alerting for the services you own
+
+•
+Making sure self-hosted and enterprise deployments run what we run (we&#39;re open source)
+
+•
+Being on call for the platform you build, alongside the rest of the platform team
+
+This role requires a high amount of ownership. You&#39;ll write the code and the design docs for the hardest changes in your area, and ship every day.
+
+If words like control plane, Kubernetes, L7 routing, GitOps, gRPC contracts, or multi-region sound exciting to you, we want to hear from you!
+
+What we&#39;re looking for
+
+•
+Experience owning a large-scale distributed system end to end: building it, running it in production across regions, and being the person called when it breaks
+
+•
+Strong Go: you build services and ship fixes in services you did not write
+
+•
+Experience operating large-scale Kubernetes clusters in production, including controllers, operators and node lifecycle management
+
+•
+Infrastructure as code and GitOps, for example Terraform and Argo CD, with deep experience on at least one of GCP, AWS or Azure; we run on all three, and you don&#39;t need to know them all
+
+•
+API and data design: service contracts and Postgres data models (gRPC, OpenAPI) that stay backward compatible, with schema changes and migrations under load on a primary that cannot go down
+
+•
+Solid Linux and networking fundamentals: enough to debug a host under load and reason about L4/L7 traffic, load balancing and connection draining
+
+•
+Excited to work in person from San Francisco
+
+•
+Comfortable with our code and infrastructure being public
+
+We expect this experience will often come from around five or more years of relevant work, but the depth of what you&#39;ve built matters more than a specific number.
+
+Bonus points for:
+
+•
+Building reliable distributed APIs: idempotency, leases and backpressure
+
+•
+Multi-account cloud organizations, such as AWS Organizations and GCP folder hierarchies
+
+•
+Shipping infrastructure that customers run themselves
+
+•
+Familiarity with Firecracker, KVM or how VM workloads behave on shared hosts
+
+•
+Contributions to Kubernetes or other CNCF projects
+
+What it’s like to work at E2B
+
+We’re a fast-growing startup with in-person (4 days on-site, 1 day WFH) offices in San Francisco and Prague, Czech Republic. We already generate 9-figure revenue and work directly with top-tier AI companies like Manus, Genspark, Lindy, Groq, Artificial Analysis and other exciting teams pushing the frontier of AI.
+
+We offer healthcare, vision, and dental insurance, unlimited PTO, 401k, and a variety of perks for in-office employees.</div>
+      <p class="caution">Вакансия собрана автоматически из открытого источника. Перед тем как отправлять документы, проверьте компанию. Никогда не платите за трудоустройство и не устанавливайте программы по просьбе «рекрутера».</p>
+    </article>
+
+    <aside class="job-side">
+      
+      <section class="side-box">
+        <h2 class="side-title">Зарплата</h2>
+        <p class="salary-big">$250 000 – $350 000/год</p>
+        <p class="muted">≈ $20 800 – 29 200 в месяц, по фиксированному курсу</p>
+      </section>
+      
+
+      <section class="side-box apply">
+        <h2 class="side-title">Как откликнуться</h2>
+        
+        
+        
+        <a class="btn" href="https://jobs.ashbyhq.com/e2b/b183352f-bfbb-42fa-9e8f-a03f42162b74/application" target="_blank" rel="noopener">
+          <span class="btn-label">Откликнуться на сайте</span><span class="btn-value">jobs.ashbyhq.com ↗</span>
+        </a>
+        
+        
+        
+      </section>
+
+      <section class="side-box">
+        <h2 class="side-title">Источник</h2>
+        <ul class="sources">
+          
+          <li><a href="https://jobs.ashbyhq.com/e2b/b183352f-bfbb-42fa-9e8f-a03f42162b74" target="_blank">e2b (Ashby) ↗</a><span class="muted"> · <time data-ts="1794947673">17 ноября 2026</time></span></li>
+          
+        </ul>
+      </section>
+    </aside>
+  </div>
+  
+</main>
+
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <p>Бесплатно и без регистрации. Вакансии собраны из открытых источников; у каждой есть ссылка на оригинал.</p>
+    <p>
+      
+      <a href="/gojobs/about/">Источники и статус</a> ·
+      <a href="https://github.com/Beknur1003/gojobs">Код на GitHub</a> ·
+      <a href="https://github.com/Beknur1003/gojobs/issues/new?title=Добавить+источник">Предложить канал</a>
+    </p>
+  </div>
+</footer>
+
+<script src="/gojobs/assets/app.js" defer></script>
+</body>
+</html>
