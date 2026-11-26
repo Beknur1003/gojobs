@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="ru" data-base="/gojobs">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="/gojobs/assets/style.css">
+<link rel="icon" href="/gojobs/assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Go Jobs" href="/gojobs/feed.xml">
+
+
+<title>Software Engineer, SDK — keycard-labs | Go Jobs</title>
+<meta name="description" content="Software Engineer, SDK · keycard-labs · Удалёнка. About Keycard At Keycard, we&#39;re building identity and access infrastructure for the agent-native era, where software isn&#39;t static but a dynamic, constantly changing system of AI agents working on behalf of people and businesses. Keycard…">
+<link rel="canonical" href="https://beknur1003.github.io/gojobs/jobs/software-engineer-sdk-ea1b69/">
+<meta property="og:title" content="Software Engineer, SDK — keycard-labs">
+<meta property="og:description" content="Software Engineer, SDK · keycard-labs · Удалёнка. About Keycard At Keycard, we&#39;re building identity and access infrastructure for the agent-native era, where software isn&#39;t static but a dynamic, constantly changing system of AI agents working on behalf of people and businesses. Keycard…">
+<meta property="og:url" content="https://beknur1003.github.io/gojobs/jobs/software-engineer-sdk-ea1b69/">
+<meta property="og:type" content="article">
+
+
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="/gojobs/" aria-label="Go Jobs, на главную">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M7.5 12.5h5.5M10 9.5h6.5M9 15.5h5" stroke="var(--bg)" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </span>
+      <span class="brand-name">Go Jobs</span>
+    </a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="/gojobs/">Вакансии</a>
+      <a href="/gojobs/about/">О проекте</a>
+      <a href="/gojobs/feed.xml" class="nav-rss" title="RSS со свежими вакансиями">RSS</a>
+    </nav>
+  </div>
+</header>
+
+
+<main class="wrap job">
+  <a class="back" href="/gojobs/">← Все вакансии</a>
+
+  
+  
+
+  <header class="job-head">
+    <h1>Software Engineer, SDK</h1>
+    <p class="job-meta">
+      <span class="company">keycard-labs</span>
+      <span>US - Remote</span>
+      <span>опубликовано <time datetime="2026-10-26T21:28:13Z" data-ts="1793050093">26 октября 2026</time></span>
+    </p>
+    <div class="chips">
+      
+      
+      <span class="chip chip-format">Удалёнка</span>
+      
+      <span class="chip">Полная занятость</span>
+      
+      
+    </div>
+  </header>
+
+  <div class="job-layout">
+    <article class="job-body">
+      
+      <div class="chips job-stack" aria-label="Стек"><span class="chip">gRPC</span><span class="chip">Terraform</span><span class="chip">CI/CD</span><span class="chip">Python</span><span class="chip">TypeScript</span><span class="chip">AI/LLM</span></div>
+      
+      <div class="post">About Keycard
+
+At Keycard, we&#39;re building identity and access infrastructure for the agent-native era, where software isn&#39;t static but a dynamic, constantly changing system of AI agents working on behalf of people and businesses. Keycard gives every agent a verified identity and issues short-lived, task-scoped credentials at runtime, so agents can only do what they were asked to do, and every action is fully auditable. We&#39;re backed by a16z, Boldstart, and Acrew, and our founding team built and scaled Snyk, Auth0, HashiCorp, and Heroku.
+
+The Role
+
+We&#39;re hiring a staff-level Software Engineer, SDK to own the libraries developers use to put Keycard in front of their agents and MCP servers. For most teams, the SDK is the first Keycard code they touch: a few lines that add OAuth to an MCP server, then token exchange so a tool can call GitHub or Google as the user.
+
+Keycard is a control plane for agents: identity, credential exchange, delegation, policy, and audit. Our SDKs come in two kinds. The REST API clients for Python, TypeScript, and Go are generated from our OpenAPI spec. The agent SDKs are handwritten: OAuth primitives, MCP server and client auth, agent-to-agent (A2A) delegation (in preview), and integrations for frameworks like FastMCP, LangChain, Temporal, and Cloudflare Workers. The hard design work is on the handwritten side.
+
+Python is the most complete today. TypeScript is in preview and working toward parity, and Go and Ruby are earlier. Keeping behavior consistent across four languages, while priorities differ and TypeScript comes next, is the core of the job. You&#39;ll work with founders, product, and the engineers building the services underneath.
+
+What You&#39;ll Do
+
+•
+API design. Keep authorization concepts and behavior consistent across languages while making each API idiomatic. Map credential types and error semantics across Python, TypeScript, Go, and Ruby.
+
+•
+Safe defaults. Require the expected issuer and audience for token validation, and handle signing-key outages without accepting unverified tokens. Refresh client-held access tokens when the grant permits it, and return clear errors when fresh authorization is needed.
+
+•
+Track upstream. Our MCP package follows the upstream MCP SDK&#39;s major versions, and framework integrations are tested nightly against each upstream&#39;s latest release. Ship support for new versions quickly, and decide when an old line moves to security fixes only.
+
+•
+Releases. Each package versions and publishes on its own, to PyPI, npm, and RubyGems, with Go modules released as versioned tags in their repos. Own semver, changelogs, deprecations, and the CI that bumps and publishes on merge.
+
+•
+Generated clients. Own the path from our OpenAPI spec to the generated clients. Fix problems in the spec, not in generated code.
+
+•
+Developer experience. Quick starts, examples, and docs that take someone from install to a protected MCP server, and a loop that turns developer feedback into API changes.
+
+•
+Agents at work. Coding agents already open a good share of our SDK pull requests. Decide what they&#39;re trusted to do, and keep tests and review strong enough to catch what they get wrong.
+
+What We&#39;re Looking For
+
+•
+You&#39;ve shipped libraries or SDKs that other developers depend on, and supported them through breaking changes.
+
+•
+You&#39;ve kept one API consistent across at least two languages. You write idiomatic Python and TypeScript; Go or Ruby is a plus.
+
+•
+You know OAuth 2.0 and OIDC at the library level: token verification, refresh, PKCE, and token exchange (RFC 8693).
+
+•
+You&#39;ve managed versioning in the real world: peer dependency ranges, maintenance branches, and deprecations users could plan around.
+
+•
+You&#39;ve built framework integrations or protocol libraries, and can work through MCP&#39;s authorization flows and compatibility changes.
+
+Strong Candidates May Also Have
+
+•
+Code generation for multi-language SDKs: Stainless, Speakeasy, Fern, OpenAPI, or protobuf.
+
+•
+Plugin or integration ecosystems, like Terraform providers, framework adapters, or editor extensions.
+
+•
+Contributions to MCP, the A2A protocol (which we support in preview), or open source agent frameworks.
+
+•
+Edge runtimes like Cloudflare Workers, or durable execution like Temporal.
+
+Your First 90 Days
+
+•
+Close the biggest gaps between the TypeScript and Python SDKs, toward dropping TypeScript&#39;s preview label.
+
+•
+Publish a cross-language API guide: names, errors, and credential types, mapped across Python, TypeScript, Go, and Ruby.
+
+•
+Take one upstream breaking change, like a new MCP SDK major or framework release, from nightly failure to released support.
+
+•
+Agree an SDK roadmap with product and engineering, including where generated clients end and handwritten SDKs begin.
+
+Who Will Love This Job
+
+•
+You care about the first ten lines a developer writes with your library.
+
+•
+You&#39;d rather design an API once than explain it four different ways.
+
+•
+You use coding agents every day, and you know which of their changes need a closer look.
+
+What We Offer
+
+•
+Build at the Frontier: Work every day at the frontier of agent-native systems — shipping, inventing, and iterating on technology that hasn’t been built before. You’ll be given huge autonomy, the opportunity to gain mastery, and the chance to work in a team that holds each other accountable to succeed.
+
+•
+Truly Agent-Native Culture: At Keycard, we don’t just enable others to adopt agents — we use them ourselves to build. You’ll help shape an organization that embeds AI into its foundation as an enduring competitive advantage.
+
+•
+Compensation With Upside: Market-competitive salaries and generous equity packages (4-year vest, 1-year cliff) give you the security to focus on building — and the asymmetric upside of ownership in a company chasing a category-defining mission.
+
+•
+Comprehensive Benefits &amp; Recharge: Health, dental, vision, and paramedical coverage for you and your family, plus 4 weeks vacation, 11 statutory holidays, and 1 volunteer day annually. We encourage at least 2 weeks off each year to fully recharge.
+
+•
+Tools That Keep You Ahead: A new MacBook Pro, a $500 stipend for peripherals, and the best AI tools available so you can work at the forefront of agent-native workflows.
+
+•
+Remote-First Flexibility: We are a remote-first team prioritizing asynchronous collaboration, with hiring focused in North and South America. Work where you’re strongest — we just want the best.</div>
+      <p class="caution">Вакансия собрана автоматически из открытого источника. Перед тем как отправлять документы, проверьте компанию. Никогда не платите за трудоустройство и не устанавливайте программы по просьбе «рекрутера».</p>
+    </article>
+
+    <aside class="job-side">
+      
+
+      <section class="side-box apply">
+        <h2 class="side-title">Как откликнуться</h2>
+        
+        
+        
+        <a class="btn" href="https://jobs.ashbyhq.com/keycard-labs/cf6f7c72-3cad-4dd6-814d-dec537404518/application" target="_blank" rel="noopener">
+          <span class="btn-label">Откликнуться на сайте</span><span class="btn-value">jobs.ashbyhq.com ↗</span>
+        </a>
+        
+        
+        
+      </section>
+
+      <section class="side-box">
+        <h2 class="side-title">Источник</h2>
+        <ul class="sources">
+          
+          <li><a href="https://jobs.ashbyhq.com/keycard-labs/cf6f7c72-3cad-4dd6-814d-dec537404518" target="_blank">keycard-labs (Ashby) ↗</a><span class="muted"> · <time data-ts="1793050093">26 октября 2026</time></span></li>
+          
+        </ul>
+      </section>
+    </aside>
+  </div>
+  
+</main>
+
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <p>Бесплатно и без регистрации. Вакансии собраны из открытых источников; у каждой есть ссылка на оригинал.</p>
+    <p>
+      
+      <a href="/gojobs/about/">Источники и статус</a> ·
+      <a href="https://github.com/Beknur1003/gojobs">Код на GitHub</a> ·
+      <a href="https://github.com/Beknur1003/gojobs/issues/new?title=Добавить+источник">Предложить канал</a>
+    </p>
+  </div>
+</footer>
+
+<script src="/gojobs/assets/app.js" defer></script>
+</body>
+</html>
